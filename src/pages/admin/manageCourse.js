@@ -15,11 +15,11 @@ export default function ManageCourse() {
   };
 
 
-  const handleFormSubmit = (formData) => {
-    // Handle the form submission logic
-    console.log('Form data submitted:', formData);
-    closeModal();
-  };
+  // const handleFormSubmit = (formData) => {
+  //   // Handle the form submission logic
+  //   console.log('Form data submitted:', formData);
+  //   closeModal();
+  // };
 
 
 

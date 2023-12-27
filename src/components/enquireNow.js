@@ -7,8 +7,8 @@ function EnquireNow() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm();
 
   let enquiryData = "";

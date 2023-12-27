@@ -1,51 +1,51 @@
-import React, { useState } from "react";
-import { BsArrowLeftCircle } from "react-icons/bs";
-import { BsArrowRightCircle } from "react-icons/bs";
+// import React, { useState } from "react";
+// import { BsArrowLeftCircle } from "react-icons/bs";
+// import { BsArrowRightCircle } from "react-icons/bs";
 
-const data = [
-  {
-    profileImage: "/profile.jpg",
-    name: "Monika Srivastava",
-    designation: "Sr Digit Market expert",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.",
-  },
-  {
-    profileImage: "/profile-1.jpg",
-    name: "Maria doe",
-    designation: "UX designer",
-    comment:
-      "porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
-  },
-  {
-    profileImage: "/profile-2.jpg",
-    name: "Komal Singh",
-    designation: "Test Automation",
-    comment:
-      " sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,",
-  },
-];
+// const data = [
+//   {
+//     profileImage: "/profile.jpg",
+//     name: "Monika Srivastava",
+//     designation: "Sr Digit Market expert",
+//     comment:
+//       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.",
+//   },
+//   {
+//     profileImage: "/profile-1.jpg",
+//     name: "Maria doe",
+//     designation: "UX designer",
+//     comment:
+//       "porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.",
+//   },
+//   {
+//     profileImage: "/profile-2.jpg",
+//     name: "Komal Singh",
+//     designation: "Test Automation",
+//     comment:
+//       " sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,",
+//   },
+// ];
 
 export default function Testimonials() {
-  const [testimonialCount, setTestimonialCount] = useState(0);
+//   const [testimonialCount, setTestimonialCount] = useState(0);
 
-  function handleNext() {
-    if (testimonialCount < data.length - 1){
-      setTestimonialCount(testimonialCount + 1);
-    }
-    else{
-      setTestimonialCount(testimonialCount-(data.length-1))
-    }
-  }
+//   function handleNext() {
+//     if (testimonialCount < data.length - 1){
+//       setTestimonialCount(testimonialCount + 1);
+//     }
+//     else{
+//       setTestimonialCount(testimonialCount-(data.length-1))
+//     }
+//   }
 
-  function handlePrevious() {
-    if (testimonialCount > 0){
-      setTestimonialCount(testimonialCount - 1);
-    } else{
-      setTestimonialCount(testimonialCount+(data.length-1))
-    }
-    //alert(testimonialCount)
-  }
+//   function handlePrevious() {
+//     if (testimonialCount > 0){
+//       setTestimonialCount(testimonialCount - 1);
+//     } else{
+//       setTestimonialCount(testimonialCount+(data.length-1))
+//     }
+//     //alert(testimonialCount)
+//   }
 
   return (
       // <div class="flex items-center overflow-hidden bg-slate-900 text-white">

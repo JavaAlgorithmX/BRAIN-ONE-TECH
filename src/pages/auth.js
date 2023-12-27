@@ -69,8 +69,8 @@ export default function Auth({ updateLoggedInStatus }) {
     const {
       register,
       handleSubmit,
-      watch,
-      formState: { errors },
+      // watch,
+      // formState: { errors },
     } = useForm();
     return (
       <form
@@ -119,8 +119,8 @@ export default function Auth({ updateLoggedInStatus }) {
     const {
       register,
       handleSubmit,
-      watch,
-      formState: { errors },
+      // watch,
+      // formState: { errors },
     } = useForm();
     return (
       <form

@@ -36,7 +36,7 @@ const menuItems = [
     href: "#",
   },
 ];
-const isLoggedIn = false;
+// const isLoggedIn = false;
 
 function Navbar({ isLoggedIn }) {
   
@@ -191,12 +191,12 @@ function LogInButton() {
   );
 }
 
-function LoginCheck() {
-  if (isLoggedIn) {
-    return <ProfilePic />;
-  } else {
-    return <LogInButton />;
-  }
-}
+// function LoginCheck() {
+//   if (isLoggedIn) {
+//     return <ProfilePic />;
+//   } else {
+//     return <LogInButton />;
+//   }
+// }
 
 export default Navbar;

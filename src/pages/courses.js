@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { IoMdHeart } from "react-icons/io";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { Rating, ThinStar } from "@smastrom/react-rating";
+// import React, { useState } from "react";
+// import { IoMdHeart } from "react-icons/io";
+// import { IoMdHeartEmpty } from "react-icons/io";
+// import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import coursesData from "../staticUiData/courseData";
 import { FaHeart } from "react-icons/fa6";
 
 export default function Courses() {
-  const [rating, setRating] = useState(4); // Initial value
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  // const [rating, setRating] = useState(4); // Initial value
+  // const [isBookmarked, setIsBookmarked] = useState(false);
 
-  function handleBookmark() {
-    setIsBookmarked(!isBookmarked);
-  }
+  // function handleBookmark() {
+  //   setIsBookmarked(!isBookmarked);
+  // }
 
   function CardOne({
     image,
