@@ -1,24 +1,95 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import AboutUs from "./pages/aboutUs";
+import Auth from "./pages/auth";
+import Home from "./pages/home";
+import Admin from "./pages/admin";
+import Navbar from "./components/NavBar";
+import Footer from "./components/footer";
+import { useState } from "react";
+import AppLayout from "./components/AppLayout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import { AnimatePresence } from "framer-motion";
+import Consulting from "./pages/Consulting";
+import UserProfile from "./pages/user-profile";
+import Courses from "./pages/courses";
+import CourseDetail from "./pages/courseDetail";
+import ManageCourse from "./pages/admin/manageCourse";
+import AdminLayout from "./pages/admin/adminLayout";
+import Dashboard from "./pages/admin/adminDashboard";
+import Students from "./pages/admin/manageStudent";
+import Clients from "./pages/admin/manageClients";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 function App() {
+  const [isLoggedIn, setIsLogged] = useState(false);
+
+  const updateLoggedInStatus = (status) => {
+    setIsLogged(status);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AnimatePresence mode="wait">
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout isLoggedIn={isLoggedIn} />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/aboutUs" element={<AboutUs />} />
+              <Route path="/consulting" element={<Consulting />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses-details" element={<CourseDetail />} />
+              <Route path="/user" element={<UserProfile />} />
+
+              {/* <Route path="/admin/courses" element={<ManageCourse/>} /> */}
+            </Route>
+            <Route
+              path="/login"
+              element={<Auth updateLoggedInStatus={updateLoggedInStatus} />}
+            />
+
+            <Route element={<AdminLayout />}>
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/courses" element={<ManageCourse />} />
+              <Route path="/admin/students" element={<Students />} />
+              <Route path="/admin/clients" element={<Clients />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+
+        <Toaster
+          position="top-center"
+          gutter={6}
+          containerStyle={{ margin: "5px" }}
+          toastOptions={{
+            success: {
+              duration: 12000,
+            },
+            error: {
+              duration: 6000,
+            },
+            style: {
+              fontSize: "12px",
+              maxWidth: "400px",
+              padding: "10px 20px",
+              backgroundColor: "light-green",
+            },
+          }}
+        />
+      </QueryClientProvider>
+    </AnimatePresence>
   );
 }
 

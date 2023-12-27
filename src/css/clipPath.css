@@ -1,0 +1,14 @@
+/* .enquire{
+    z-index:2;
+    background-color : red;
+}
+
+.enquire::after{
+    content:"";
+    z-index:3;
+    background-color:yellow;
+} */
+
+.enquire{
+    clip-path: polygon(100% 0, 100% 94%, 79% 94%, 15% 6%, 0 7%, 0 0);
+}

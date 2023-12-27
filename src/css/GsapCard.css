@@ -1,0 +1,32 @@
+
+.box{
+  transition: transform 0.9s ease-in-out;
+}
+
+.box-right-swaped {
+  transform: translateX(-50%);
+}
+
+.box-left-swaped {
+  transform: translateX(200%);
+}
+
+.left-text {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+      opacity:1;
+  }
+  50% {
+    transform :translateX(-10%);
+    opacity:0.6;
+  }
+  100% {
+    transform :translateX(-20%);
+      opacity: 0;
+  }
+}
+
