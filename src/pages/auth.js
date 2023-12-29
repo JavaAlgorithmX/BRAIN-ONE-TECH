@@ -10,6 +10,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { UserRegistration } from "../services/api-auth";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "../store/authContext";
+
 
 export default function Auth({ updateLoggedInStatus }) {
   const [isSignUpClicked, SignUpToggler] = useState(false);
@@ -21,21 +23,23 @@ export default function Auth({ updateLoggedInStatus }) {
 
   let userData;
   const navigate = useNavigate(); 
+  const {storeTokenInLS} = useAuth();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     
     console.log(data);
     userData = data;
     if (isSignUpClicked) {
-      console.log("inside sign Up");
       try {
-        const registeredUser = UserRegistration(userData);
+        const registeredUser = await  UserRegistration(userData);
+        console.log("token to save in local storage ",registeredUser.token);
+        storeTokenInLS(registeredUser.token);
+
         console.log('User registered successfully:', registeredUser);
         updateLoggedInStatus(true);
-        navigate('/user');
+        navigate('/');
       } catch (error) {
         console.error('Registration failed:', error);
-       
       }
     } else {
       console.log("inside sign in");

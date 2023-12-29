@@ -4,26 +4,19 @@ import toast from "react-hot-toast";
 export async function UserRegistration(userData) {
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/users",
+      "http://localhost:4000/api/auth/register",
       userData
     );
 
-    console.log(response)
+    // console.log("response from api-auth", response.data);
 
-    const { username, mobile, email, token } = response.data.data;
-
-    // Store user details and token in local storage
-    localStorage.setItem('username', username);
-    localStorage.setItem('mobile', mobile);
-    localStorage.setItem('email', email);
-    localStorage.setItem('token', token);
+    // const { message, token } = response.data;
+   
 
     toast.success(`Congratulations you have joined us successfully`);
-    return response.data.data;
-    
+    return response.data;
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
-

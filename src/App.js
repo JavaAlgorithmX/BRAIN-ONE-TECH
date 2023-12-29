@@ -4,9 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/aboutUs";
 import Auth from "./pages/auth";
 import Home from "./pages/home";
-// import Admin from "./pages/admin";
-// import Navbar from "./components/NavBar";
-// import Footer from "./components/footer";
 import { useState } from "react";
 import AppLayout from "./components/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -22,6 +19,8 @@ import AdminLayout from "./pages/admin/adminLayout";
 import Dashboard from "./pages/admin/adminDashboard";
 import Students from "./pages/admin/manageStudent";
 import Clients from "./pages/admin/manageClients";
+import { LogOut } from "lucide-react";
+import { Logout } from "./pages/logout";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,13 +44,16 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout isLoggedIn={isLoggedIn} />}>
+            <Route element={<AppLayout
+            //  isLoggedIn={isLoggedIn} 
+             />}>
               <Route path="/" element={<Home />} />
               <Route path="/aboutUs" element={<AboutUs />} />
               <Route path="/consulting" element={<Consulting />} />
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses-details" element={<CourseDetail />} />
               <Route path="/user" element={<UserProfile />} />
+              <Route path="/logout" element={<Logout />} />
 
               {/* <Route path="/admin/courses" element={<ManageCourse/>} /> */}
             </Route>

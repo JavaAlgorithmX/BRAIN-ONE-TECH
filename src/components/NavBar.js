@@ -1,46 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import Headroom from "react-headroom";
+import { useAuth } from "../store/authContext";
 
 
-const menuItems = [
-  {
-    name: "Home",
-    href: "/",
-  },
- 
-  {
-    name: "Sevices",
-    href: "#",
-  },
-  {
-    name: "Courses",
-    href: "/courses",
-  },
-  {
-    name: "Consulting",
-    href: "/consulting",
-  },
-  
-  {
-    name: "About",
-    href: "/aboutUs",
-  },
-  {
-    name: "Admin",
-    href: "/admin",
-  },
-  {
-    name: "Blog",
-    href: "#",
-  },
-];
 // const isLoggedIn = false;
 
-function Navbar({ isLoggedIn }) {
+function Navbar(
+  // { isLoggedIn }
+  ) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [userData, setUserData] = useState(true);
+
+  const { user,isLoggedIn } = useAuth();
+  const {name,isAdmin=false} = user||{};
+
+  // const isAdmin = false;
+
+  const menuItems = [
+    {
+      name: "Home",
+      href: "/",
+    },
   
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    {
+      name: "Sevices",
+      href: "#",
+    },
+    {
+      name: "Courses",
+      href: "/courses",
+    },
+    {
+      name: "Consulting",
+      href: "/consulting",
+    },
+  
+    {
+      name: "About",
+      href: "/aboutUs",
+    },
+    {
+      name: "Blog",
+      href: "#",
+    },
+   isAdmin &&
+    {
+      name: "Admin",
+      href: "/admin",
+    },
+  ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,7 +60,6 @@ function Navbar({ isLoggedIn }) {
     <Headroom>
       <header className="h-20 w-full bg-gradient-to-b from-black to-transparent pb-1 relative  top-0 z-50">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1">
-         
           {/* Logo  */}
           <div className="inline-flex items-center space-x-2">
             <span>
@@ -80,15 +89,24 @@ function Navbar({ isLoggedIn }) {
               ))}
             </ul>
           </div>
+          {/* logout button  */}
 
           {/* Login Button  */}
           <div className="hidden lg:block">
-            {
-              isLoggedIn && <ProfilePic/>
-            }
-            {
-              !isLoggedIn && <LogInButton/>
-            }
+            {isLoggedIn && (
+              <>
+                <h1 className="text-white">
+                  {name || "username"}
+                </h1>
+                <ProfilePic />
+                <Link to="/logout">
+                  <div className="hidden lg:block">
+                    <button className="text-white">LogOUT</button>
+                  </div>
+                </Link>
+              </>
+            )}
+            {!isLoggedIn && <LogInButton />}
             {/* <LoginCheck /> */}
           </div>
 
@@ -157,7 +175,6 @@ function Navbar({ isLoggedIn }) {
               </div>
             </div>
           )}
-
         </div>
       </header>
     </Headroom>
@@ -168,13 +185,13 @@ function ProfilePic() {
   return (
     <div>
       {/* <p>{`Hi ${userName}`}</p> */}
-    <img
-      class="w-12 h-12 rounded-full"
-      src="/profile.jpg"
-      alt=""
-      width="384"
-      height="512"
-    ></img>
+      <img
+        class="w-12 h-12 rounded-full"
+        src="/profile.jpg"
+        alt=""
+        width="384"
+        height="512"
+      ></img>
     </div>
   );
 }

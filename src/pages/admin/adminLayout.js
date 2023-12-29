@@ -5,7 +5,7 @@ function AdminLayout(){
     return(
         <div className="h-screen flex bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-rose-100 to-teal-100">
             <SideMenu/>
-            <main className="px-2 py-2 overflow-auto mx-auto">
+            <main className="px-2 py-2 overflow-auto mx-auto w-full">
                 <Outlet/>
             </main>
         </div>

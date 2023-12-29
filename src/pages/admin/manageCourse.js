@@ -70,7 +70,7 @@ export default function ManageCourse() {
               <th scope="col" class="px-6 py-3">
                 Actual Price
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3  bg-gray-50">
                 Offer Price
               </th>
               <th scope="col" class="px-6 py-3">
@@ -98,7 +98,7 @@ export default function ManageCourse() {
                   {data.courseName}
                 </td>
                 <td class="px-6 py-4">{data.actualPrice}</td>
-                <td class="px-6 py-4">{data.specialPrice}</td>
+                <td class="px-6 py-4  bg-gray-50">{data.specialPrice}</td>
                 <td class="px-6 py-4"><button onClick={() => openEditModal(data)} className="text-blue-500">Edit</button></td>
               </tr>
             ))}
