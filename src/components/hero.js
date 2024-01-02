@@ -9,14 +9,14 @@ function Hero() {
   };
 
   return (
-    <div className="h-screen w-full bg-red-500 absolute top-0 left-0">
-      <div class=" bgImage" 
+    <div className="h-screen w-full bg-slate-800">
+      {/* <div class=" bgImage" 
       style={overlayStyle}
       >
 
-      </div>
+      </div> */}
       <div class="grid grid-rows-2 h-80 z-40 content">
-        <div class="text-slate-50 pt-10">
+        <div class="bg-gradient-to-r from-amber-500 to-pink-500 bg-clip-text text-transparent pt-10">
           <h2 class="text-3xl font-bold text-fuchsia-700">Elevate <span className = " text-green-600">Success</span> Through Innovative Solutions</h2>
           <TypeAnimation
             sequence={[
@@ -30,7 +30,7 @@ function Hero() {
             ]}
             wrapper="span"
             speed={10}
-            style={{ fontSize: "4em", display: "inline-block" }}
+            style={{ fontSize: "3em", display: "inline-block" }}
             repeat={Infinity}
           />
         </div>

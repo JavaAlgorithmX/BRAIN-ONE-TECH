@@ -65,7 +65,7 @@ export default function Consulting() {
   function Hero() {
     return (
       <div
-        className="h-screen w-full bg-slate-200 absolute top-0 left-0 flex justify-center items-center flex-col"
+        className="h-screen w-full bg-slate-800 flex justify-center items-center flex-col"
         style={{
           backgroundImage: `url("./consulting-wave.svg")`,
           backgroundPosition: "center",
@@ -97,17 +97,7 @@ export default function Consulting() {
         glareColor="#8b5cf6"
         glarePosition="bottom"
         glareBorderRadius="2px"
-        className=" bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 rounded-md mt-5  h-4/5 aspect-square  flex justify-center items-center flex-col "
-        style={{
-          
-         // background: "rgba(255,255,255,.05)",
-          // boxShadow: "0 25px 45px rgba(0, 0, 0, .2)",
-          // border: "2px solid rgba(255,255,255,.5)",
-          // borderRight: "2px solid rgba(255,255,255,.2)",
-          // borderBottom: "2px solid rgba(255,255,255,.2)",
-          // backdropFilter: "blur(10px)",
-        }}
-      >
+        className=" bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 rounded-md mt-5  h-4/5 aspect-square  flex justify-center items-center flex-col ">
         <div className="h-1/2 w-full text-start ">
           <h1 className="text-9xl font-bold pl-2 text-white">{heading}</h1>
         </div>
@@ -240,7 +230,6 @@ export default function Consulting() {
   return (
     <>
       <Hero />
-      <Dummy />
       <OurProcess />
       <BookConsulting />
     </>

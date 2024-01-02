@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/aboutUs";
 import Auth from "./pages/auth";
 import Home from "./pages/home";
-import { useState } from "react";
+// import { useState } from "react";
 import AppLayout from "./components/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -19,8 +19,9 @@ import AdminLayout from "./pages/admin/adminLayout";
 import Dashboard from "./pages/admin/adminDashboard";
 import Students from "./pages/admin/manageStudent";
 import Clients from "./pages/admin/manageClients";
-import { LogOut } from "lucide-react";
 import { Logout } from "./pages/logout";
+import Blog from "./pages/blog";
+import ReadBlog from "./pages/readBlog";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,11 +32,11 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [isLoggedIn, setIsLogged] = useState(false);
+  // const [isLoggedIn, setIsLogged] = useState(false);
 
-  const updateLoggedInStatus = (status) => {
-    setIsLogged(status);
-  };
+  // const updateLoggedInStatus = (status) => {
+  //   setIsLogged(status);
+  // };
 
   return (
     <AnimatePresence mode="wait">
@@ -44,9 +45,7 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout
-            //  isLoggedIn={isLoggedIn} 
-             />}>
+            <Route element={<AppLayout/>}>
               <Route path="/" element={<Home />} />
               <Route path="/aboutUs" element={<AboutUs />} />
               <Route path="/consulting" element={<Consulting />} />
@@ -54,13 +53,13 @@ function App() {
               <Route path="/courses-details" element={<CourseDetail />} />
               <Route path="/user" element={<UserProfile />} />
               <Route path="/logout" element={<Logout />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<ReadBlog/>} />
+              <Route path="/course/:id" element={<CourseDetail/>} />
+              <Route path="/login" element={<Auth/>}/>
 
-              {/* <Route path="/admin/courses" element={<ManageCourse/>} /> */}
             </Route>
-            <Route
-              path="/login"
-              element={<Auth updateLoggedInStatus={updateLoggedInStatus} />}
-            />
+            
 
             <Route element={<AdminLayout />}>
               <Route path="/admin" element={<Dashboard />} />
@@ -77,10 +76,10 @@ function App() {
           containerStyle={{ margin: "5px" }}
           toastOptions={{
             success: {
-              duration: 12000,
+              duration: 4000,
             },
             error: {
-              duration: 6000,
+              duration: 4000,
             },
             style: {
               fontSize: "12px",

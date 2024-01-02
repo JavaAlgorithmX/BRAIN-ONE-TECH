@@ -8,7 +8,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function SideMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const sideMenuItems = [
     {
@@ -44,7 +44,7 @@ export default function SideMenu() {
 
   return (
     <div
-      className={`bg-slate-100 h-screen ${
+      className={`bg-slate-100 h-screen drop-shadow-md ${
         isOpen ? "w-60" : "w-14"
       } relative  flex items-center justify-center ease-in duration-600`}
     >

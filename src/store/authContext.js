@@ -5,6 +5,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  // const [isAdmin, setIsAdmin] = useState(false);
+//   const [isLoading, setIsLoading] = useState(true);
 
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
@@ -30,23 +32,24 @@ export const AuthProvider = ({ children }) => {
                 Authorization:`Bearer ${token}`
             }
         });
-        console.log("Value of response",response)
         if(response.ok){
             const userData = await response.json();
-            // console.log(userData);
+            console.log("User data from auth context -> ",userData);
+            // setIsAdmin(userData)
             setUser(userData.userData);
-            console.log("user data -> ",userData.userData.name);
         }
     } catch (error) {
         
-    }
+    }finally{
+        // setIsLoading(false);
+      }
   }
   useEffect(()=>{
     userAuthentication();
   },[])
 
   return (
-    <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user }}>
+    <AuthContext.Provider value={{ storeTokenInLS, LogoutUser, isLoggedIn, user ,token }}>
       {children}
     </AuthContext.Provider>
   );

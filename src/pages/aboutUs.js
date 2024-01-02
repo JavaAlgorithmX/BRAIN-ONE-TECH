@@ -9,7 +9,7 @@ import Dummy from "../components/Dummy";
     return (
       <div>
         <div
-          className="bgImage h-screen w-full absolute top-0 left-0"
+          className="bgImage h-screen w-full "
           style={{
             backgroundImage: `url("./bg-about.jpg")`,
             
@@ -49,7 +49,6 @@ import Dummy from "../components/Dummy";
   return (
     <>
       <AboutUsHero />
-      <Dummy/>
       <QuickLinks />
     </>
   );

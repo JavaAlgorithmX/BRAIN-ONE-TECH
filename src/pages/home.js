@@ -3,7 +3,6 @@ import EnquireNow from "../components/enquireNow";
 import Testimonials from "../components/testimonials";
 import NewsLetter from "../components/newsLetter";
 import QuickLinks from "../components/QuickLinks";
-import Dummy from "../components/Dummy";
 import Services from "../components/Services";
 import DummyCaresol from "../components/Features";
 import TechStack from "../components/techStack";
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Dummy/>
       <DummyCaresol/>
       <Services/>
       <WhyChooseUs/>

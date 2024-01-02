@@ -1,18 +1,32 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 
 export default function CourseCard({
   image,
+  id,
   title,
   rating,
   specialPrice,
   originalPrice,
   nextBatch,
 }) {
+
+  const navigate = useNavigate();
+
+  function courseDetails(){
+    navigate(`/course/${id}`)
+  }
+
+
+
+
+
   return (
-    <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="/">
+    <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
+    onClick={courseDetails}>
+      {/* <a href="/"> */}
         <img
           class="rounded-t-lg"
           src={image ? image : 
@@ -20,13 +34,13 @@ export default function CourseCard({
           }
           alt=""
         />
-      </a>
+      {/* </a> */}
       <div class="p-5">
-        <a href="/">
+        {/* <a href="/"> */}
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
-        </a>
+        {/* </a> */}
         {/* rating  */}
         <div class="flex items-center mt-2.5 mb-3">
           <div class="flex items-center space-x-1 rtl:space-x-reverse">

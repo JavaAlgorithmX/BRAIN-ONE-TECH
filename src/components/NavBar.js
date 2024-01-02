@@ -7,14 +7,16 @@ import { useAuth } from "../store/authContext";
 
 // const isLoggedIn = false;
 
-function Navbar(
-  // { isLoggedIn }
-  ) {
+function Navbar( ) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const [userData, setUserData] = useState(true);
 
   const { user,isLoggedIn } = useAuth();
   const {name,isAdmin=false} = user||{};
+
+  // if(userData && user){
+
+  // }
 
   // const isAdmin = false;
 
@@ -43,7 +45,7 @@ function Navbar(
     },
     {
       name: "Blog",
-      href: "#",
+      href: "/blog",
     },
    isAdmin &&
     {
@@ -57,8 +59,8 @@ function Navbar(
   };
 
   return (
-    <Headroom>
-      <header className="h-20 w-full bg-gradient-to-b from-black to-transparent pb-1 relative  top-0 z-50">
+    // <Headroom>
+      <header className="h-20 w-full bg-slate-900 pb-1 drop-shadow-lg fixed z-50">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1">
           {/* Logo  */}
           <div className="inline-flex items-center space-x-2">
@@ -94,17 +96,18 @@ function Navbar(
           {/* Login Button  */}
           <div className="hidden lg:block">
             {isLoggedIn && (
-              <>
-                <h1 className="text-white">
-                  {name || "username"}
-                </h1>
-                <ProfilePic />
+              <div className="flex space-x-4 items-center">
                 <Link to="/logout">
                   <div className="hidden lg:block">
                     <button className="text-white">LogOUT</button>
                   </div>
                 </Link>
-              </>
+                <h1 className="text-white">
+                  {name || "username"}
+                </h1>
+                <ProfilePic />
+                
+                </div>
             )}
             {!isLoggedIn && <LogInButton />}
             {/* <LoginCheck /> */}
@@ -177,7 +180,7 @@ function Navbar(
           )}
         </div>
       </header>
-    </Headroom>
+    // </Headroom>
   );
 }
 

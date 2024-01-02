@@ -12,7 +12,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export default function DummyCaresol() {
   return (
-    <div className="relative h-screen w-full bg-slate-900">
+    <div className="relative h-screen w-full bg-slate-800">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

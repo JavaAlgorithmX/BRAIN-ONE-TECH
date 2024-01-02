@@ -11,7 +11,9 @@ export default function TechStack() {
         autoplay
         autoplaySpeed={8}
         speed={7}
-        onReady={() => console.log("I am ready")}
+        // onReady={
+        //   // () => console.log("I am ready")
+        // }
         className="py-5"
       >
         {techData.map((item) => (

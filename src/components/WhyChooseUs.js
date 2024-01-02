@@ -3,7 +3,7 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 export default function WhyChooseUs() {
   return (
-    <div className="relative">
+    <div className="relative ">
       <div className="h-screen w-full bg-slate-900  ">
         <div className="h-2/6 flex justify-end">
           <div className=" h-full w-1/2 px-2 flex">

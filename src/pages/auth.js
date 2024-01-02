@@ -3,17 +3,18 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import "../../src/css/GsapCard.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { UserRegistration } from "../services/api-auth";
+import { UserRegistration, UserLogIn } from "../services/api-auth";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../store/authContext";
+import Spinner from "../components/spinner";
 
-
-export default function Auth({ updateLoggedInStatus }) {
+export default function Auth(
+  // { updateLoggedInStatus }
+  ) {
   const [isSignUpClicked, SignUpToggler] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -26,23 +27,17 @@ export default function Auth({ updateLoggedInStatus }) {
   const {storeTokenInLS} = useAuth();
 
   const onSubmit = async (data) => {
-    
-    console.log(data);
     userData = data;
     if (isSignUpClicked) {
       try {
         const registeredUser = await  UserRegistration(userData);
-        console.log("token to save in local storage ",registeredUser.token);
         storeTokenInLS(registeredUser.token);
-
         console.log('User registered successfully:', registeredUser);
-        updateLoggedInStatus(true);
         navigate('/');
       } catch (error) {
         console.error('Registration failed:', error);
       }
     } else {
-      console.log("inside sign in");
       UserSignIn();
     }
   };
@@ -50,19 +45,12 @@ export default function Auth({ updateLoggedInStatus }) {
   const onError = (error) => {
     console.log(error);
   };
-
-  function UserSignIn() {
-    axios
-      .post("http://localhost:4000/api/users/login", userData)
-      .then(function (response) {
-        console.log(`response :`, response.data);
-        alert(
-          `Hi ${userData.name}, Congratulations you have successfully joined us`
-        );
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+ 
+  async function UserSignIn() {
+    const loggedInUser = await UserLogIn(userData);
+    storeTokenInLS(loggedInUser.token);
+    console.log("logged in user token",loggedInUser.token);
+    navigate('/');
   }
 
   function handleTogglerClick() {
@@ -73,8 +61,6 @@ export default function Auth({ updateLoggedInStatus }) {
     const {
       register,
       handleSubmit,
-      // watch,
-      // formState: { errors },
     } = useForm();
     return (
       <form
@@ -123,8 +109,6 @@ export default function Auth({ updateLoggedInStatus }) {
     const {
       register,
       handleSubmit,
-      // watch,
-      // formState: { errors },
     } = useForm();
     return (
       <form
@@ -189,6 +173,7 @@ export default function Auth({ updateLoggedInStatus }) {
           backdropFilter: "blur(6px)",
         }}
       >
+        <Spinner/>
         <h1 className="text-3xl md:text-2xl font-bold text-fuchsia-900 mb-10">
           {`${isSignUpClicked ? "Create Account" : "Sign In to BrainOne"}`}
         </h1>

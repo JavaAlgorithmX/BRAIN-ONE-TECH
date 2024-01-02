@@ -7,9 +7,7 @@ function AppLayout(
     ){
     return(
         <div>
-            <Navbar 
-            // isLoggedIn={isLoggedIn}
-            />
+            <Navbar/>
             <main>
                 <Outlet/>
             </main>
