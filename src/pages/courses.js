@@ -35,12 +35,12 @@ export default function Courses() {
   function CoursesList() {
     return (
       <div>
-        <div className="h-80 w-full relative bg-gradient-to-r from-red-200 to-red-600">
+        <div className="h-80 w-full relative bg-gradient-to-r from-orange-400 via-slate-800 to-blue-600">
           <img src="./course-banner.jpg" alt="" className="h-full w-full object-cover absolute mix-blend-overlay"></img>
-          {/* <div className="relative text-white flex justify-center items-center h-full w-full" >
+          <div className="relative text-white flex justify-center items-end h-full w-full pb-5" >
             <h1 className="text-3xl">Explore Our Cources</h1>
 
-          </div> */}
+          </div>
         </div> 
       <div className="bg-slate-800 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-4 text-slate-50 px-10 py-20 mx-auto ">
         {
