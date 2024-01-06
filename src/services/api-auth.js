@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export async function UserRegistration(userData) {
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/auth/register",
+      "https://bts-backend.vercel.app/api/auth/register",
       userData
     );
     toast.success(`Congratulations you have joined us successfully`);
@@ -18,7 +18,7 @@ export async function UserRegistration(userData) {
 export async function UserLogIn(userData) {
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/auth/login",
+      "https://bts-backend.vercel.app/api/auth/login",
       userData
     );
    // console.log("response from login --->",response)

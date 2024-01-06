@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <DummyCaresol/>
       <Services/>
-      <WhyChooseUs/>
+      {/* <WhyChooseUs/> */}
       <TechStack/>
       <EnquireNow />
       <Testimonials />

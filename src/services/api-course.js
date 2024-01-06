@@ -1,6 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-const baseCourseUrl = "http://localhost:4000/api/course";
+const baseCourseUrl = "https://bts-backend.vercel.app/api/course";
 
 export async function CreateCourse(courseData, token){
 

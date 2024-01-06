@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CiCircleChevDown } from "react-icons/ci";
-import Dummy from "../components/Dummy";
+// import Dummy from "../components/Dummy";
 import {
   CiUser,
   CiFileOn,
@@ -65,19 +65,20 @@ export default function Consulting() {
   function Hero() {
     return (
       <div
-        className="h-screen w-full bg-slate-800 flex justify-center items-center flex-col"
-        style={{
-          backgroundImage: `url("./consulting-wave.svg")`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
+        className="h-screen w-full bg-gradient-to-bl from-stone-900 via-stone-600 to-orange-500 flex justify-center items-center flex-col  relative"
+        // style={{
+        //   backgroundImage: `url("./consulting-wave.svg")`,
+        //   backgroundPosition: "center",
+        //   backgroundSize: "cover",
+        // }}
       >
-        <div className=" h-full flex flex-col justify-evenly">
-          <p className="text-5xl font-bold">
+        <img src="./consulting-hero.jpg" alt="" className="h-full w-full absolute mix-blend-overlay object-cover "></img>
+        <div className=" h-full flex flex-col justify-evenly relative">
+          <p className="text-5xl font-bold text-white drop-shadow-lg">
             Confused about your <span className="text-red-600">CAREER ?</span>
           </p>
           <div className=" text-center">
-            <p className="mb-5 text-3xl font-semibold">
+            <p className="mb-5 text-3xl font-semibold text-white">
               To Unlock your true career potential
             </p>
             <button className="animate-bounce px-5 py-2    rounded-full border-2 border-slate-50 text-slate-50">

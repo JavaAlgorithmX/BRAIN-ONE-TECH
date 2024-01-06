@@ -1,31 +1,24 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
-import Headroom from "react-headroom";
 import { useAuth } from "../store/authContext";
+import { FaUser } from "react-icons/fa";
+import { IoIosSettings } from "react-icons/io";
+import { IoMdPower } from "react-icons/io";
 
-
-// const isLoggedIn = false;
-
-function Navbar( ) {
+function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [userData, setUserData] = useState(true);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-  const { user,isLoggedIn } = useAuth();
-  const {name,isAdmin=false} = user||{};
-
-  // if(userData && user){
-
-  // }
-
-  // const isAdmin = false;
+  const { user, isLoggedIn } = useAuth();
+  const { name, isAdmin = false } = user || {};
 
   const menuItems = [
     {
       name: "Home",
       href: "/",
     },
-  
+
     {
       name: "Sevices",
       href: "#",
@@ -38,7 +31,7 @@ function Navbar( ) {
       name: "Consulting",
       href: "/consulting",
     },
-  
+
     {
       name: "About",
       href: "/aboutUs",
@@ -47,8 +40,7 @@ function Navbar( ) {
       name: "Blog",
       href: "/blog",
     },
-   isAdmin &&
-    {
+    (isLoggedIn && isAdmin) && {
       name: "Admin",
       href: "/admin",
     },
@@ -58,136 +50,167 @@ function Navbar( ) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  return (
-    // <Headroom>
-      <header className="h-20 w-full bg-slate-900 pb-1 drop-shadow-lg fixed z-50">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1">
-          {/* Logo  */}
-          <div className="inline-flex items-center space-x-2">
-            <span>
-              <img
-                src="/logo1.png"
-                alt=""
-                className="cursor-pointer h-20 object-cover"
-              ></img>
-            </span>
-          </div>
+  function ProfileMenu() {
+    return (
+      <div className="absolute right-5 top-20 bg-slate-500 rounded-md h-40 w-32 px-5 py-5 flex items-center justify-center drop-shadow-md">
+        <ul className="space-y-2">
+          <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
+            <NavLink to={"/profile"}>
+            <div className="flex space-x-1 items-center">
+              <FaUser />
+              <spam>Profile</spam>
+              </div>
+            </NavLink>
+          </li>
+          <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
+            <NavLink>
+            <div className="flex space-x-1 items-center">
+              <IoIosSettings />
+              <spam>Setting</spam>
+              </div>
+            </NavLink>
+           
+          </li>
+          <li className="flex space-x-1 items-center hover:bg-red-400 text-red-600 rounded-md px-2 py-1 drop-shadow-md cursor-pointer">
+            <NavLink to={"/logout"}>
+              <div className="flex space-x-1 items-center">
+                <IoMdPower />
+                <spam>Logout</spam>
+              </div>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    );
+  }
 
-          {/* Nav links  */}
-          <div className="hidden lg:block">
-            <ul className="inline-flex space-x-8">
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  <NavLink
-                    to={item.href}
-                    className="ease-in duration-300 text-md font-semibold
+  function openProfileMenu() {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  }
+
+  return (
+    <header className="h-20 w-full bg-slate-900 pb-1 drop-shadow-lg fixed z-50">
+      {/* <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1"> */}
+      <div className="grid grid-cols-12">
+        {/* Logo  */}
+        <div className="inline-flex items-center justify-center col-span-2 ">
+          <span>
+            <img
+              src="/logo1.png"
+              alt=""
+              className="cursor-pointer h-20 object-cover"
+            ></img>
+          </span>
+        </div>
+
+        {/* Nav links  */}
+        <div className="hidden lg:flex justify-center items-center col-span-8  ">
+          <ul className="inline-flex space-x-8">
+            {menuItems.map((item) => (
+              <li key={item.name}>
+                <NavLink
+                  to={item.href}
+                  className="ease-in duration-300 text-md font-semibold
                      text-white hover:text-orange-600 hover:tracking-widest 
                      hover:ease-in hover:duration-300 active:text-orange-600 active:tracking-widest
                      "
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* logout button  */}
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Login Button  */}
-          <div className="hidden lg:block">
-            {isLoggedIn && (
-              <div className="flex space-x-4 items-center">
-                <Link to="/logout">
-                  <div className="hidden lg:block">
-                    <button className="text-white">LogOUT</button>
-                  </div>
-                </Link>
-                <h1 className="text-white">
-                  {name || "username"}
-                </h1>
-                <ProfilePic />
-                
-                </div>
-            )}
-            {!isLoggedIn && <LogInButton />}
-            {/* <LoginCheck /> */}
-          </div>
-
-          {/* Toggle button  */}
-          <div className="lg:hidden">
-            <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
-          </div>
-
-          {isMenuOpen && (
-            <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
-              <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="px-5 pb-6 pt-5">
-                  <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center space-x-2">
-                      <span>
-                        <svg
-                          width="30"
-                          height="30"
-                          viewBox="0 0 50 56"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M23.2732 0.2528C20.8078 1.18964 2.12023 12.2346 1.08477 13.3686C0 14.552 0 14.7493 0 27.7665C0 39.6496 0.0986153 41.1289 0.83823 42.0164C2.12023 43.5449 23.2239 55.4774 24.6538 55.5267C25.9358 55.576 46.1027 44.3832 48.2229 42.4602C49.3077 41.474 49.3077 41.3261 49.3077 27.8158C49.3077 14.3055 49.3077 14.1576 48.2229 13.1714C46.6451 11.7415 27.1192 0.450027 25.64 0.104874C24.9497 -0.0923538 23.9142 0.00625992 23.2732 0.2528ZM20.2161 21.8989C20.2161 22.4906 18.9835 23.8219 17.0111 25.3997C15.2361 26.7803 13.8061 27.9637 13.8061 28.0623C13.8061 28.1116 15.2361 29.0978 16.9618 30.2319C18.6876 31.3659 20.2655 32.6479 20.4134 33.0917C20.8078 34.0286 19.871 35.2119 18.8355 35.2119C17.8001 35.2119 9.0233 29.3936 8.67815 28.5061C8.333 27.6186 9.36846 26.5338 14.3485 22.885C17.6521 20.4196 18.4904 20.0252 19.2793 20.4196C19.7724 20.7155 20.2161 21.3565 20.2161 21.8989ZM25.6893 27.6679C23.4211 34.9161 23.0267 35.7543 22.1391 34.8668C21.7447 34.4723 22.1391 32.6479 23.6677 27.9637C26.2317 20.321 26.5275 19.6307 27.2671 20.3703C27.6123 20.7155 27.1685 22.7864 25.6893 27.6679ZM36.0932 23.2302C40.6788 26.2379 41.3198 27.0269 40.3337 28.1609C39.1503 29.5909 31.6555 35.2119 30.9159 35.2119C29.9298 35.2119 28.9436 33.8806 29.2394 33.0424C29.3874 32.6479 30.9652 31.218 32.7403 29.8867L35.9946 27.4706L32.5431 25.1532C30.6201 23.9205 29.0915 22.7371 29.0915 22.5892C29.0915 21.7509 30.2256 20.4196 30.9159 20.4196C31.3597 20.4196 33.6771 21.7016 36.0932 23.2302Z"
-                            fill="white"
-                          />
-                        </svg>
-                      </span>
-                      <span className="font-bold">BrainOneTech</span>
-                    </div>
-                    <div className="-mr-2">
-                      <button
-                        type="button"
-                        onClick={toggleMenu}
-                        className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                      >
-                        <span className="sr-only">Close menu</span>
-                        <X className="h-6 w-6" aria-hidden="true" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-6">
-                    <nav className="grid gap-y-4">
-                      {menuItems.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
-                        >
-                          <span className="ml-3 text-base font-medium text-gray-800">
-                            {item.name}
-                          </span>
-                        </a>
-                      ))}
-                    </nav>
-                  </div>
-                  <Link to="/login">
-                    <button
-                      type="button"
-                      className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      Log In
-                    </button>
-                  </Link>
-                </div>
-              </div>
+        {/* Login Button  */}
+        <div className="hidden lg:flex items-center justify-center col-span-2 ">
+          {isLoggedIn && (
+            <div
+              className="flex space-x-2 items-center cursor-pointer"
+              onClick={openProfileMenu}
+            >
+             
+              <h1 className="text-white">{`Hi ${name}`}</h1>
+              <ProfilePic />
             </div>
           )}
+          {!isLoggedIn && <LogInButton />}
         </div>
-      </header>
-    // </Headroom>
+        {(isLoggedIn && isProfileMenuOpen) && <ProfileMenu />}
+
+        {/* Toggle button  */}
+        <div className="lg:hidden md:hidden">
+          <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
+        </div>
+
+        {isMenuOpen && (
+          <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
+            <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="px-5 pb-6 pt-5">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center space-x-2">
+                    <span>
+                      <svg
+                        width="30"
+                        height="30"
+                        viewBox="0 0 50 56"
+                        fill="black"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M23.2732 0.2528C20.8078 1.18964 2.12023 12.2346 1.08477 13.3686C0 14.552 0 14.7493 0 27.7665C0 39.6496 0.0986153 41.1289 0.83823 42.0164C2.12023 43.5449 23.2239 55.4774 24.6538 55.5267C25.9358 55.576 46.1027 44.3832 48.2229 42.4602C49.3077 41.474 49.3077 41.3261 49.3077 27.8158C49.3077 14.3055 49.3077 14.1576 48.2229 13.1714C46.6451 11.7415 27.1192 0.450027 25.64 0.104874C24.9497 -0.0923538 23.9142 0.00625992 23.2732 0.2528ZM20.2161 21.8989C20.2161 22.4906 18.9835 23.8219 17.0111 25.3997C15.2361 26.7803 13.8061 27.9637 13.8061 28.0623C13.8061 28.1116 15.2361 29.0978 16.9618 30.2319C18.6876 31.3659 20.2655 32.6479 20.4134 33.0917C20.8078 34.0286 19.871 35.2119 18.8355 35.2119C17.8001 35.2119 9.0233 29.3936 8.67815 28.5061C8.333 27.6186 9.36846 26.5338 14.3485 22.885C17.6521 20.4196 18.4904 20.0252 19.2793 20.4196C19.7724 20.7155 20.2161 21.3565 20.2161 21.8989ZM25.6893 27.6679C23.4211 34.9161 23.0267 35.7543 22.1391 34.8668C21.7447 34.4723 22.1391 32.6479 23.6677 27.9637C26.2317 20.321 26.5275 19.6307 27.2671 20.3703C27.6123 20.7155 27.1685 22.7864 25.6893 27.6679ZM36.0932 23.2302C40.6788 26.2379 41.3198 27.0269 40.3337 28.1609C39.1503 29.5909 31.6555 35.2119 30.9159 35.2119C29.9298 35.2119 28.9436 33.8806 29.2394 33.0424C29.3874 32.6479 30.9652 31.218 32.7403 29.8867L35.9946 27.4706L32.5431 25.1532C30.6201 23.9205 29.0915 22.7371 29.0915 22.5892C29.0915 21.7509 30.2256 20.4196 30.9159 20.4196C31.3597 20.4196 33.6771 21.7016 36.0932 23.2302Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                    <span className="font-bold">BrainOneTech</span>
+                  </div>
+                  <div className="-mr-2">
+                    <button
+                      type="button"
+                      onClick={toggleMenu}
+                      className="inline-flex items-center justify-center rounded-md p-2 text-slate-900 hover:bg-gray-100 hover:text-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                    >
+                      <span className="sr-only">Close menu</span>
+                      <X className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <nav className="grid gap-y-4">
+                    {menuItems.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
+                      >
+                        <span className="ml-3 text-base font-medium text-gray-800">
+                          {item.name}
+                        </span>
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  >
+                    Log In
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
   );
 }
 
 function ProfilePic() {
   return (
     <div>
-      {/* <p>{`Hi ${userName}`}</p> */}
       <img
         class="w-12 h-12 rounded-full"
         src="/profile.jpg"

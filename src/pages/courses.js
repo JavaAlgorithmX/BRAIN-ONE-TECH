@@ -34,8 +34,18 @@ export default function Courses() {
 
   function CoursesList() {
     return (
-      <div className="bg-slate-900 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-4 text-slate-50 px-10 py-10 mx-auto">
-        {courseDataList.map((data, index) => (
+      <div>
+        <div className="h-80 w-full relative bg-gradient-to-r from-red-200 to-red-600">
+          <img src="./course-banner.jpg" alt="" className="h-full w-full object-cover absolute mix-blend-overlay"></img>
+          {/* <div className="relative text-white flex justify-center items-center h-full w-full" >
+            <h1 className="text-3xl">Explore Our Cources</h1>
+
+          </div> */}
+        </div> 
+      <div className="bg-slate-800 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-4 text-slate-50 px-10 py-20 mx-auto ">
+        {
+        // courseDataList
+        coursesData.map((data, index) => (
           <CourseCard
             key={data._id}
             id={data._id}
@@ -46,6 +56,7 @@ export default function Courses() {
             image={data.image}
           />
         ))}
+      </div>
       </div>
     );
   }

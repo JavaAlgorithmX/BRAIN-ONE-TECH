@@ -46,7 +46,7 @@ export default function SideMenu() {
     <div
       className={`bg-slate-100 h-screen drop-shadow-md ${
         isOpen ? "w-60" : "w-14"
-      } relative  flex items-center justify-center ease-in duration-600`}
+      } relative  flex items-center justify-center ease-linear transition-all duration-600`}
     >
       <FaBarsStaggered
         className="absolute top-5 right-5 cursor-pointer hover:text-orange-600 font-bold"

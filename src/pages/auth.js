@@ -45,12 +45,19 @@ export default function Auth(
   const onError = (error) => {
     console.log(error);
   };
+
  
   async function UserSignIn() {
     const loggedInUser = await UserLogIn(userData);
     storeTokenInLS(loggedInUser.token);
     console.log("logged in user token",loggedInUser.token);
-    navigate('/');
+    if(loggedInUser){
+      navigate('/');
+    }
+   
+    // if(loggedInUser){
+    //   navigateToHomePage();
+    // }
   }
 
   function handleTogglerClick() {
@@ -116,27 +123,27 @@ export default function Auth(
         className="flex justify-center items-center flex-col"
       >
         <input
-          className=" h-10 w-80 mb-3 md:w-60 bg-fuchsia-100 rounded-md px-3"
+          className=" h-10 w-80 mb-2 md:w-60 bg-fuchsia-100 rounded-md px-3"
           type="text"
           placeholder="Name"
           {...register("name")}
         ></input>
 
         <input
-          className=" h-10 w-80 mb-3 md:w-60 bg-fuchsia-100 rounded-md px-3"
+          className=" h-10 w-80 mb-2 md:w-60 bg-fuchsia-100 rounded-md px-3"
           type="text"
           placeholder="Email"
           {...register("email")}
         ></input>
 
         <input
-          className=" h-10 w-80 mb-3 md:w-60 bg-fuchsia-100 rounded-md px-3"
+          className=" h-10 w-80 mb-2 md:w-60 bg-fuchsia-100 rounded-md px-3"
           type="password"
           placeholder="Password"
           {...register("password")}
         ></input>
         <input
-          className=" h-10 w-80 mb-5 md:w-60 bg-fuchsia-100 rounded-md px-3"
+          className=" h-10 w-80 mb-3 md:w-60 bg-fuchsia-100 rounded-md px-3"
           type="text"
           placeholder="Mobile"
           {...register("mobile")}
@@ -154,7 +161,7 @@ export default function Auth(
 
   return (
     <div
-      className="h-screen  bg-orange-600 flex items-center justify-center px-4 py-4"
+      className="h-screen bg-orange-600 pt-24 flex items-center justify-center px-4 py-4"
       style={{
         backgroundImage: `url(./login-back.jpg)`,
         backgroundPosition: "center",
@@ -174,7 +181,7 @@ export default function Auth(
         }}
       >
         <Spinner/>
-        <h1 className="text-3xl md:text-2xl font-bold text-fuchsia-900 mb-10">
+        <h1 className="text-3xl md:text-2xl font-bold text-fuchsia-900 mb-5 mt-5">
           {`${isSignUpClicked ? "Create Account" : "Sign In to BrainOne"}`}
         </h1>
         <div className="flex space-x-5 mb-5">
@@ -188,13 +195,13 @@ export default function Auth(
             <FaLinkedinIn className="text-indigo-700" />
           </div>
         </div>
-        <p className="text-md md:text-sm text-fuchsia-900 mb-5">
+        <p className="text-md md:text-sm text-fuchsia-900 mb-2">
           Or Use your Email for registration
         </p>
         {isSignUpClicked && <SignUpForm />}
         {!isSignUpClicked && <LoginForm />}
 
-        <p className="mt-10 text-white">
+        <p className="mt-5 mb-5 text-white">
           {`${
             isSignUpClicked
               ? "Already have an Account ?"
