@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [isDevModelOpen, setISDevModelOpen] = useState(false);
 
   const storeTokenInLS = (serverToken) => {
     return localStorage.setItem("token", serverToken);
@@ -16,6 +17,16 @@ export const AuthProvider = ({ children }) => {
   const LogoutUser = () => {
     setToken("");
     return localStorage.removeItem("token");
+  };
+
+  //opening dev contact model
+  const OpenDevModel = () => {
+    console.log("Inside open dev model")
+    console.log("value of isModel open ",isDevModelOpen);
+    setISDevModelOpen(true);
+  };
+  const CloseDevModel = () => {
+    setISDevModelOpen(false);
   };
 
   //   Authentication  jwt to get the logged in user data
@@ -43,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token }}
+      value={{ storeTokenInLS, LogoutUser, isLoggedIn, user, token, OpenDevModel, CloseDevModel ,isDevModelOpen}}
     >
       {children}
     </AuthContext.Provider>

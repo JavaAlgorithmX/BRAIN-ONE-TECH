@@ -22,6 +22,8 @@ import Clients from "./pages/admin/manageClients";
 import { Logout } from "./pages/logout";
 import Blog from "./pages/blog";
 import ReadBlog from "./pages/readBlog";
+import { ModalProvider } from "./store/modelContext";
+import DevloperModal from "./pages/model/developer-model";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,16 +34,12 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // const [isLoggedIn, setIsLogged] = useState(false);
-
-  // const updateLoggedInStatus = (status) => {
-  //   setIsLogged(status);
-  // };
-
   return (
+    <ModalProvider>
     <AnimatePresence mode="wait">
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+        <DevloperModal/>
 
         <BrowserRouter>
           <Routes>
@@ -57,7 +55,6 @@ function App() {
               <Route path="/blog/:id" element={<ReadBlog/>} />
               <Route path="/course/:id" element={<CourseDetail/>} />
               <Route path="/login" element={<Auth/>}/>
-
             </Route>
             
 
@@ -91,6 +88,7 @@ function App() {
         />
       </QueryClientProvider>
     </AnimatePresence>
+    </ModalProvider>
   );
 }
 

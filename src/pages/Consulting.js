@@ -66,11 +66,6 @@ export default function Consulting() {
     return (
       <div
         className="h-screen w-full bg-gradient-to-bl from-stone-900 via-stone-600 to-orange-500 flex justify-center items-center flex-col  relative"
-        // style={{
-        //   backgroundImage: `url("./consulting-wave.svg")`,
-        //   backgroundPosition: "center",
-        //   backgroundSize: "cover",
-        // }}
       >
         <img src="./consulting-hero.jpg" alt="" className="h-full w-full absolute mix-blend-overlay object-cover "></img>
         <div className=" h-full flex flex-col justify-evenly relative">

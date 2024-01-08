@@ -6,12 +6,9 @@ import { FaTelegramPlane } from "react-icons/fa";
 import '../css/blog-animation.css';
 
 
-function DevContact({open}){
-    if(!open){
-        return null;
-    }
+function DevContact(){
     return(
-        <div className=" h-60 w-2/4 bg-gradient-to-r from-purple-500 to-pink-500 grid grid-cols-3 mx-auto rounded-xl mt-3 mb-3"
+        <div className=" h-full w-full bg-gradient-to-r from-purple-500 to-pink-500 grid grid-cols-3 mx-auto rounded-md"
        
         >
             

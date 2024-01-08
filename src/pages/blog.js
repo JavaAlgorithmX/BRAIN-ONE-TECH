@@ -34,7 +34,12 @@ export default function Blog() {
   }
  
   return (
-    <div className=" bg-gradient-to-b from-gray-900 to-gray-600 px-10 pt-24">
+    <div className=" bg-gradient-to-b from-gray-900 to-gray-600">
+      {/* blog banner  */}
+      <div className="h-96 w-full bg-red-600">
+        <img src="./blog-banner.jpg" alt="" className="h-full w-full object-cover"></img>
+
+      </div>
     
       {/* blog nav  */}
       <div className="flex justify-between border-b border-slate-500 mb-3">

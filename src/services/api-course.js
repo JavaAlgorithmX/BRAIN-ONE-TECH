@@ -30,7 +30,7 @@ export async function CreateCourse(courseData, token){
 export async function getCourseList(){
     try {
         const response = await axios.get(`${baseCourseUrl}/`,);
-        toast.success(`Congratulations Course List loaded successfully`);
+        //toast.success(`Congratulations Course List loaded successfully`);
         return response.data;
       } catch (error) {
         console.error(error);
