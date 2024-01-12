@@ -3,16 +3,16 @@ import { FaArrowRight } from "react-icons/fa6";
 
 function NewsLetter() {
   return (
-    <div class="h-40 bg-slate-900 grid grid-rows-2 lg:px-20">
-      <div class="flex items-center justify-center">
+    <div class="h-40 w-screen bg-slate-900 grid grid-rows-2 lg:px-20">
+      <div class="flex items-center justify-center w-full">
         <p className="lg:mb-5 text-xl lg:text-2xl font-bold text-white font-serif">
           Subscribe Weekly Newsletter
         </p>
       </div>
-      <div className="flex justify-center">
-        <div className=" h-12 bg-blue-700 rounded-full relative">
+      <div className="flex justify-center px-2 w-full">
+        <div className=" h-12 bg-blue-700 rounded-full relative w-full">
           <input
-            class="h-12 w-96 rounded-full  pl-4  "
+            class="h-12 w-full rounded-full  pl-4  "
             type="text"
             placeholder="Email"
           ></input>

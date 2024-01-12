@@ -5,6 +5,8 @@ import { useAuth } from "../store/authContext";
 import { FaUser } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { IoMdPower } from "react-icons/io";
+import { IoIosMail } from "react-icons/io";
+import { CiMobile3 } from "react-icons/ci";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -134,7 +136,7 @@ function Navbar() {
         {isLoggedIn && isProfileMenuOpen && <ProfileMenu />}
 
         {/* Toggle button  */}
-        <div className="lg:hidden md:hidden col-start-11 col-span-2  ">
+        <div className="lg:hidden col-start-11 col-span-2  ">
           <Menu
             onClick={toggleMenu}
             className="h-full w-full px-3 py-3 cursor-pointer text-white"
@@ -147,8 +149,10 @@ function Navbar() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                    <span>{/* logo  */}</span>
-                    <span className="font-bold">BrainOneTech</span>
+                    <span>
+                      <img src="./logo2.png" alt="" className="h-10 w-10"></img>
+                    </span>
+                    <span className="font-bold text-xl">BrainOneTech</span>
                   </div>
                   <div className="-mr-2">
                     <button
@@ -162,6 +166,41 @@ function Navbar() {
                   </div>
                 </div>
                 <div className="mt-6">
+                {isLoggedIn &&
+                  <div className="border border-red-400 mx-1 h-24 rounded-md grid grid-cols-3 mb-5">
+                    <div className=" p-1 overflow-auto">
+                      <img
+                        src="./profile.jpg"
+                        alt="profile"
+                        className="h-full object-cover rounded-full"
+                      ></img>
+                    </div>
+                    
+                    <div className="border-l border-l-red-400 col-span-2 flex items-start justify-center flex-col pl-2 my-1">
+                      <div>
+                        <div className="flex items-center">
+                          <span className="text-red-400 mr-2">
+                            <FaUser />
+                          </span>
+                          {user.name}
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-red-400 mr-2">
+                            <IoIosMail />
+                          </span>
+                          {user.email}
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-red-400 mr-2">
+                            <CiMobile3 />
+                          </span>
+                          {user.mobile}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
                       <a
@@ -176,14 +215,26 @@ function Navbar() {
                     ))}
                   </nav>
                 </div>
-                <Link to="/login">
-                  <button
-                    type="button"
-                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  >
-                    Log In
-                  </button>
-                </Link>
+                {!isLoggedIn && (
+                  <Link to="/login">
+                    <button
+                      type="button"
+                      className="mt-4 w-full rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                    >
+                      Log In
+                    </button>
+                  </Link>
+                )}
+                {isLoggedIn && (
+                  <Link to="/logout">
+                    <button
+                      type="button"
+                      className="mt-4 w-full rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                    >
+                      Log Out
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -218,13 +269,5 @@ function LogInButton() {
     </Link>
   );
 }
-
-// function LoginCheck() {
-//   if (isLoggedIn) {
-//     return <ProfilePic />;
-//   } else {
-//     return <LogInButton />;
-//   }
-// }
 
 export default Navbar;

@@ -66,8 +66,8 @@ export default function WhyChooseUs() {
         </div>
 
         {/* get in touch  */}
-        <div className=" h-1/6 flex justify-center items-center lg:justify-end py-5 ">
-          <div className=" w-1/2 ">
+        <div className=" h-1/6 flex justify-center items-center lg:justify-end py-5 w-full">
+          <div className="w-full lg:w-1/2">
             <button
               className="mx-auto lg:mt-3 border-2 border-red-500 flex h-16 w-60
                 items-center rounded-full px-2 text-white "

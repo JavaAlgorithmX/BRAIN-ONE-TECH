@@ -12,9 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/authContext";
 import Spinner from "../components/spinner";
 
-export default function Auth(
-  // { updateLoggedInStatus }
-  ) {
+export default function Auth() {
+// { updateLoggedInStatus }
   const [isSignUpClicked, SignUpToggler] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -23,19 +22,19 @@ export default function Auth(
   }
 
   let userData;
-  const navigate = useNavigate(); 
-  const {storeTokenInLS} = useAuth();
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
 
   const onSubmit = async (data) => {
     userData = data;
     if (isSignUpClicked) {
       try {
-        const registeredUser = await  UserRegistration(userData);
+        const registeredUser = await UserRegistration(userData);
         storeTokenInLS(registeredUser.token);
-        console.log('User registered successfully:', registeredUser);
-        navigate('/');
+        console.log("User registered successfully:", registeredUser);
+        navigate("/");
       } catch (error) {
-        console.error('Registration failed:', error);
+        console.error("Registration failed:", error);
       }
     } else {
       UserSignIn();
@@ -46,15 +45,14 @@ export default function Auth(
     console.log(error);
   };
 
- 
   async function UserSignIn() {
     const loggedInUser = await UserLogIn(userData);
     storeTokenInLS(loggedInUser.token);
-    console.log("logged in user token",loggedInUser.token);
-    if(loggedInUser){
-      navigate('/');
+    console.log("logged in user token", loggedInUser.token);
+    if (loggedInUser) {
+      navigate("/");
     }
-   
+
     // if(loggedInUser){
     //   navigateToHomePage();
     // }
@@ -65,10 +63,7 @@ export default function Auth(
   }
 
   function LoginForm() {
-    const {
-      register,
-      handleSubmit,
-    } = useForm();
+    const { register, handleSubmit } = useForm();
     return (
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
@@ -113,10 +108,7 @@ export default function Auth(
   }
 
   function SignUpForm() {
-    const {
-      register,
-      handleSubmit,
-    } = useForm();
+    const { register, handleSubmit } = useForm();
     return (
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -151,7 +143,7 @@ export default function Auth(
 
         <button
           type="submit"
-          className="h-10 md:h-12 bg-fuchsia-900 w-40 rounded-full text-fuchsia-50"
+          className="h-12 md:h-12 bg-fuchsia-900 w-60 rounded-full text-fuchsia-50"
         >
           Sign Up
         </button>
@@ -161,7 +153,7 @@ export default function Auth(
 
   return (
     <div
-      className="h-screen bg-orange-600 pt-24 flex items-center justify-center px-4 py-4"
+      className="h-screen bg-orange-600 flex items-center justify-center px-4 py-4"
       style={{
         backgroundImage: `url(./login-back.jpg)`,
         backgroundPosition: "center",
@@ -170,7 +162,7 @@ export default function Auth(
       }}
     >
       <div
-        className=" h-full w-full md:w-72  bg-green-600 rounded-lg flex flex-col items-center justify-center"
+        className=" h-4/5 w-full md:w-72 rounded-lg flex flex-col items-center justify-center"
         style={{
           background: "rgba(255,255,255,.05)",
           boxShadow: "0 25px 45px rgba(0, 0, 0, .2)",
@@ -180,23 +172,14 @@ export default function Auth(
           backdropFilter: "blur(6px)",
         }}
       >
-        <Spinner/>
+        {/* <Spinner /> */}
+
         <h1 className="text-3xl md:text-2xl font-bold text-fuchsia-900 mb-5 mt-5">
           {`${isSignUpClicked ? "Create Account" : "Sign In to BrainOne"}`}
         </h1>
-        <div className="flex space-x-5 mb-5">
-          <div className="bg-fuchsia-100 p-2 rounded-full">
-            <FaFacebookF className="text-blue-600" />
-          </div>
-          <div className="bg-fuchsia-100 p-2 rounded-full">
-            <FcGoogle />
-          </div>
-          <div className="bg-fuchsia-100 p-2 rounded-full">
-            <FaLinkedinIn className="text-indigo-700" />
-          </div>
-        </div>
+
         <p className="text-md md:text-sm text-fuchsia-900 mb-2">
-          Or Use your Email for registration
+          Use your Email for registration
         </p>
         {isSignUpClicked && <SignUpForm />}
         {!isSignUpClicked && <LoginForm />}

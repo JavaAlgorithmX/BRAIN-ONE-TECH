@@ -32,10 +32,10 @@ function EnquireNow() {
   }
   return (
     // <>
-      <div class=" h-80 lg:h-60 w-full bg-gradient-to-r from-red-500 to-orange-500 grid grid-rows-7 lg:grid-rows-2">
+      <div class="px-3 w-screen py-3 lg:h-60 bg-gradient-to-r from-red-500 to-orange-500 grid grid-rows-7 lg:grid-rows-2">
         
-          <div class=" flex items-center justify-center">
-            <h1 class="text-xl lg:text-3xl text-white font-semibold">
+          <div class=" flex items-center justify-center px-2 w-full">
+            <h1 class="text-xl lg:text-3xl text-white font-semibold text-center">
               Are you ready to Transforme your
               <span className="font-bold"> Career? </span>{" "}
             </h1>
@@ -43,27 +43,28 @@ function EnquireNow() {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            class="flex justify-center items-center lg:items-start flex-col  lg:flex-row "
+            class="w-full flex justify-center items-center lg:items-start flex-col  lg:flex-row px-2 overflow-auto"
           >
             <input
-              class=" h-10 pl-4 w-96 lg:w-60 rounded-lg"
+              class=" h-10 mt-3 pl-4 w-full lg:w-60 rounded-lg"
               type="text"
               placeholder="Your Name"
               {...register("name")}
             ></input>
             <input
-              class="my-2 h-10 pl-4  w-96 lg:w-60 lg:mx-3 lg:my-0 rounded-lg"
+              class="my-2 h-10 pl-4  w-full lg:w-60 lg:mx-3 lg:my-0 rounded-lg"
               type="text"
               placeholder="Email"
               {...register("email")}
             ></input>
             <input
-              class="mb-3 h-10 pl-4  w-96 lg:w-60 lg:mb-0  rounded-lg"
+              class="mb-3 h-10 pl-4  w-full lg:w-60 lg:mb-0  rounded-lg"
               type="text"
               placeholder="Mobile Number"
               {...register("mobile")}
             ></input>
-            <button class="bg-blue-500 ml-3 h-10 w-36 rounded-lg hover:bg-blue-700 text-white">
+            <textarea className="w-full rounded-md mb-3 px-4 py-2 h-20 " placeholder="Your Query"></textarea>
+            <button class="bg-blue-500 ml-3 h-10 w-36 rounded-lg hover:bg-blue-700 text-white my-2">
               Enquire Now
             </button>
           </form>
