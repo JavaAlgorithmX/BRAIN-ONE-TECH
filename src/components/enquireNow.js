@@ -32,33 +32,33 @@ function EnquireNow() {
   }
   return (
     // <>
-      <div class="relative h-80 lg:h-60 w-full bg-gradient-to-r from-red-500 to-orange-500 grid grid-rows-7 lg:grid-rows-2">
+      <div class=" h-80 lg:h-60 w-full bg-gradient-to-r from-red-500 to-orange-500 grid grid-rows-7 lg:grid-rows-2">
         
           <div class=" flex items-center justify-center">
-            <h1 class="text-md lg:text-3xl text-white font-semibold">
+            <h1 class="text-xl lg:text-3xl text-white font-semibold">
               Are you ready to Transforme your
-              <span className="font-bold"> career? </span>{" "}
+              <span className="font-bold"> Career? </span>{" "}
             </h1>
           </div>
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            class="flex justify-center items-center lg:items-start flex-col  lg:flex-row"
+            class="flex justify-center items-center lg:items-start flex-col  lg:flex-row "
           >
             <input
-              class=" h-10 pl-4 w-72 lg:w-60 rounded-lg"
+              class=" h-10 pl-4 w-96 lg:w-60 rounded-lg"
               type="text"
               placeholder="Your Name"
               {...register("name")}
             ></input>
             <input
-              class="my-2 h-10 pl-4 w-72 lg:w-60 lg:mx-3 lg:my-0 rounded-lg"
+              class="my-2 h-10 pl-4  w-96 lg:w-60 lg:mx-3 lg:my-0 rounded-lg"
               type="text"
               placeholder="Email"
               {...register("email")}
             ></input>
             <input
-              class="mb-3 h-10 pl-4 w-72 lg:w-60 lg:mb-0  rounded-lg"
+              class="mb-3 h-10 pl-4  w-96 lg:w-60 lg:mb-0  rounded-lg"
               type="text"
               placeholder="Mobile Number"
               {...register("mobile")}

@@ -19,12 +19,8 @@ function Navbar() {
       href: "/",
     },
 
-    // {
-    //   name: "Sevices",
-    //   href: "#",
-    // },
     {
-      name: "Courses",
+      name: "Trainings",
       href: "/courses",
     },
     {
@@ -40,10 +36,11 @@ function Navbar() {
       name: "Blog",
       href: "/blog",
     },
-    (isLoggedIn && isAdmin) && {
-      name: "Admin",
-      href: "/admin",
-    },
+    isLoggedIn &&
+      isAdmin && {
+        name: "Admin",
+        href: "/admin",
+      },
   ];
 
   const toggleMenu = () => {
@@ -56,20 +53,19 @@ function Navbar() {
         <ul className="space-y-2">
           <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
             <NavLink to={"/profile"}>
-            <div className="flex space-x-1 items-center">
-              <FaUser />
-              <spam>Profile</spam>
+              <div className="flex space-x-1 items-center">
+                <FaUser />
+                <spam>Profile</spam>
               </div>
             </NavLink>
           </li>
           <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
             <NavLink>
-            <div className="flex space-x-1 items-center">
-              <IoIosSettings />
-              <spam>Setting</spam>
+              <div className="flex space-x-1 items-center">
+                <IoIosSettings />
+                <spam>Setting</spam>
               </div>
             </NavLink>
-           
           </li>
           <li className="flex space-x-1 items-center hover:bg-red-400 text-red-600 rounded-md px-2 py-1 drop-shadow-md cursor-pointer">
             <NavLink to={"/logout"}>
@@ -129,18 +125,20 @@ function Navbar() {
               className="flex space-x-2 items-center cursor-pointer"
               onClick={openProfileMenu}
             >
-             
               <h1 className="text-white">{`Hi ${name}`}</h1>
               <ProfilePic />
             </div>
           )}
           {!isLoggedIn && <LogInButton />}
         </div>
-        {(isLoggedIn && isProfileMenuOpen) && <ProfileMenu />}
+        {isLoggedIn && isProfileMenuOpen && <ProfileMenu />}
 
         {/* Toggle button  */}
-        <div className="lg:hidden md:hidden col-span-2">
-          <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer text-white" />
+        <div className="lg:hidden md:hidden col-start-11 col-span-2  ">
+          <Menu
+            onClick={toggleMenu}
+            className="h-full w-full px-3 py-3 cursor-pointer text-white"
+          />
         </div>
 
         {isMenuOpen && (
@@ -149,9 +147,7 @@ function Navbar() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                    <span>
-                      {/* logo  */}
-                    </span>
+                    <span>{/* logo  */}</span>
                     <span className="font-bold">BrainOneTech</span>
                   </div>
                   <div className="-mr-2">

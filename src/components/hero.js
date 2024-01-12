@@ -15,10 +15,29 @@ function Hero() {
       ></img>
 
       <div class="px-4 lg:px-20 h-full w-full text-white flex flex-col justify-center relative">
-        <h2 class="sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-500 drop-shadow-lg">
+        <h2 class="text-4xl sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-500 drop-shadow-lg pb-5">
           Elevate <span className=" text-purple-500">Success</span> Through
           Innovative Solutions
         </h2>
+        <h2 className="lg:hidden text-5xl mb-5">Your Partner in</h2>
+        {/* for mobile  */}
+        <TypeAnimation
+          sequence={[
+            // Same substring at the start will only be typed out once, initially
+            "IT Excellencee",
+            2000, // wait 1s before replacing "Mice" with "Hamsters"
+            "Training and Certification",
+            2000,
+            "Digital Transformation",
+            2000,
+          ]}
+          wrapper="span"
+          speed={10}
+          // style={{ fontSize: "3em", display: "inline-block" }}
+          className="lg:hidden text-3xl md:text-3xl lg:text-5xl font-bold md:pt-2 lg:pt-3"
+          repeat={Infinity}
+        />
+        {/* for laptop  */}
         <TypeAnimation
           sequence={[
             // Same substring at the start will only be typed out once, initially
@@ -32,7 +51,7 @@ function Hero() {
           wrapper="span"
           speed={10}
           // style={{ fontSize: "3em", display: "inline-block" }}
-          className="md:text-3xl lg:text-5xl font-bold md:pt-2 lg:pt-3"
+          className="hidden lg:block md:text-3xl lg:text-5xl font-bold md:pt-2 lg:pt-3"
           repeat={Infinity}
         />
       </div>

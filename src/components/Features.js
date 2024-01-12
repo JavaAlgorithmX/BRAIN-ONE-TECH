@@ -12,7 +12,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export default function DummyCaresol() {
   return (
-    <div className="relative h-screen w-full bg-slate-800">
+    <div className="  h-screen w-full bg-slate-900">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -28,7 +28,7 @@ export default function DummyCaresol() {
         className="mySwiper h-screen w-full"
       >
         {featuresData.map((data, index) => (
-          <SwiperSlide key={index} className="pt-14">
+          <SwiperSlide key={index} className="lg:pt-14">
             <FeatureCard heading={data.heading} paragraph={data.paragraph} />
           </SwiperSlide>
         ))}
