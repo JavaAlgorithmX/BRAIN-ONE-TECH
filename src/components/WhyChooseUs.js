@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
         <div className=" h-1/6 flex justify-end ">
           <div className=" w-1/2 ">
           <button
-            className="mx-auto mt-3 border-2 border-red-500 flex h-16 w-60 
+            className="mx-auto mt-3 border-2 border-red-500 flex h-16 w-60
                 items-center rounded-full px-2 text-white "
             style={{
               letterSpacing: "0.2em",
@@ -64,7 +64,7 @@ export default function WhyChooseUs() {
             <IoIosArrowDroprightCircle className="text-5xl mr-4 text-white" /> GET IN TOUCH
           </button>
           </div>
-          
+
         </div>
       </div>
       {/* image  */}
@@ -80,13 +80,6 @@ export default function WhyChooseUs() {
         />
       </div>
     </div>
+    
   );
 }
-
-// Expert Instructors: Learn from industry professionals with a passion for teaching.
-
-// Hands-On Approach: Practical experience that goes beyond theory.
-
-// Comprehensive Curriculum: Stay ahead with the latest in IT trends and technologies.
-
-// Career Support: Your success is our success. We provide guidance and support beyond the classroom

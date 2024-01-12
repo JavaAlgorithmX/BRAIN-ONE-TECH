@@ -19,10 +19,10 @@ function Navbar() {
       href: "/",
     },
 
-    {
-      name: "Sevices",
-      href: "#",
-    },
+    // {
+    //   name: "Sevices",
+    //   href: "#",
+    // },
     {
       name: "Courses",
       href: "/courses",

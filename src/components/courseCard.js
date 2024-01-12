@@ -10,7 +10,7 @@ export default function CourseCard({
   rating,
   specialPrice,
   originalPrice,
-  nextBatch,
+  // nextBatch,
 }) {
 
   const navigate = useNavigate();
@@ -18,10 +18,6 @@ export default function CourseCard({
   function courseDetails(){
     navigate(`/course/${id}`)
   }
-
-
-
-
 
   return (
     <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
@@ -37,7 +33,7 @@ export default function CourseCard({
       {/* </a> */}
       <div class="p-5">
         {/* <a href="/"> */}
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
         {/* </a> */}
@@ -105,9 +101,9 @@ export default function CourseCard({
 
         {/* Next batch  */}
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        {/* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
           Next batch :<span>{nextBatch}</span>
-        </p>
+        </p> */}
         {/* Bookmark button  */}
         <button className="text-red-600 absolute top-2 right-2 text-lg bg-slate-50 px-2 py-2 rounded-full"><FaHeart/></button>
 
