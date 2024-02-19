@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import coursesData from "../../staticUiData/courseData";
-import CourseModal from "./model/courseModel";
 import { useNavigate } from "react-router-dom";
 import { getCourseList } from "../../services/api-course";
 
@@ -30,16 +28,18 @@ export default function ManageCourse() {
   }, []);
 
   function handleCourseEdit(courseData){
-    // console.log("course data ",courseData);
-    // console.log(id);
     navigate(`/admin/courses/${courseData._id}`)
   }
 
-  const openModal = () => {
-    setIsModalOpen(true);
-    setIsEditing(false); // Set to add mode
-    setEditData(null); // Reset edit data
-  };
+  function handleCourseAdd(){
+    navigate(`/admin/courses/create`)
+  }
+
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  //   setIsEditing(false); // Set to add mode
+  //   setEditData(null); // Reset edit data
+  // };
 
   const openEditModal = (rowData) => {
     setIsModalOpen(true);
@@ -47,39 +47,30 @@ export default function ManageCourse() {
     setEditData(rowData);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setIsEditing(false);
-    setEditData(null);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  //   setIsEditing(false);
+  //   setEditData(null);
+  // };
 
-  const handleFormSubmit = (formData) => {
-    // Handle form submission based on isEditing state
-    if (isEditing) {
-      console.log("Form data for editing submitted:", formData);
-      // Perform editing logic
-    } else {
-      console.log("Form data for adding submitted:", formData);
-      // Perform adding logic
-    }
-    closeModal();
-  };
+  // const handleFormSubmit = (formData) => {
+  //   // Handle form submission based on isEditing state
+  //   if (isEditing) {
+  //     console.log("Form data for editing submitted:", formData);
+  //     // Perform editing logic
+  //   } else {
+  //     console.log("Form data for adding submitted:", formData);
+  //     // Perform adding logic
+  //   }
+  //   closeModal();
+  // };
 
   return (
     <div>
       <div>
-        <button className="bg-slate-400 rounded-lg px-2 py-1 my-2 drop-shadow-md text-slate-50" onClick={openModal}>Add New Course</button>
+        <button className="bg-slate-400 rounded-lg px-2 py-1 my-2 drop-shadow-md text-slate-50" onClick={handleCourseAdd}>Add New Course</button>
       </div>
      
-     {/* Model  */}
-
-     <CourseModal  
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        onSubmit={handleFormSubmit}  
-        isEditing={isEditing}
-        editData={editData}
-        />
 
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

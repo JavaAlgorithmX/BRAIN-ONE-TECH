@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+
 import { useForm } from "react-hook-form";
 import "../../src/css/GsapCard.css";
 import { FaRegEye } from "react-icons/fa";
@@ -10,7 +8,6 @@ import { UserRegistration, UserLogIn } from "../services/api-auth";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../store/authContext";
-import Spinner from "../components/spinner";
 
 export default function Auth() {
 // { updateLoggedInStatus }

@@ -1,41 +1,14 @@
 import axios from "axios";
-// import toast from "react-hot-toast";
-// import { useQuery } from '@tanstack/react-query';
-// import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMutation, useQueryClient,useQuery } from '@tanstack/react-query'
-
-
-
-
-
 
 const baseCourseUrl = "https://bts-backend.vercel.app/api/course";
 
-// export async function CreateCourse(courseData, token){
-
-//     console.log("course Data  :",courseData);
-//     try {
-//         const response = await axios.post(
-//           `${baseCourseUrl}/create`,
-//           courseData,
-//           {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           }
-//         );
-//         toast.success(`Congratulations Course saved successfully`);
-//         return response.data;
-//       } catch (error) {
-//         console.error(error);
-//         throw error;
-//       }
-// }
+const baseUrlLocal = "http://localhost:4000/api/course/create"
 
 // create course using react query
 export async function createCourse(courseData, token) {
   try {
-    const response = await axios.post(`${baseCourseUrl}/create`, courseData, {
+    const response = await axios.post(`${baseUrlLocal}`, courseData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

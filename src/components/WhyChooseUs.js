@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
 
 
       {/* image  */}
-      <div className="hidden h-full w-1/2 absolute top-0 left-0  pl-10">
+      <div className="hidden h-full w-1/2 lg:absolute top-0 left-0  pl-10">
         <img
           src="./why.png"
           alt=""

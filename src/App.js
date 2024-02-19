@@ -25,6 +25,7 @@ import ReadBlog from "./pages/readBlog";
 import { ModalProvider } from "./store/modelContext";
 import DevloperModal from "./pages/model/developer-model";
 import EditCourse from "./pages/admin/editCourse";
+import AddCourse from "./pages/admin/addCourse";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,6 +66,7 @@ function App() {
               <Route path="/admin/students" element={<Students />} />
               <Route path="/admin/clients" element={<Clients />} />
               <Route path="/admin/courses/:id" element={<EditCourse/>} />
+              <Route path="/admin/courses/create" element={<AddCourse/>} />
             </Route>
           </Routes>
         </BrowserRouter>

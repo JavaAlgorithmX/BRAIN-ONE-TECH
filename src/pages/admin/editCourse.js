@@ -25,33 +25,7 @@ export default function EditCourse() {
     fetchData();
   }, [id]);
 
-  // const MemoizedAddSubTopicInput = memo(({ index, value, onRemove }) => {
-  //   return (
-  //     <div className="flex space-x-2">
-  //       <input
-  //         type="text"
-  //         placeholder="Add Sub Topic Title"
-  //         className="w-full rounded-md px-2 py-1"
-  //       />
-
-  //       {index === subTopics.length - 1 ? (
-  //         <div
-  //           className="px-2 py-2 bg-slate-300 rounded-md cursor-pointer"
-  //           onClick={() => handleAddSubTopic()}
-  //         >
-  //           <FaPlus />
-  //         </div>
-  //       ) : (
-  //         <div
-  //           className="px-2 py-2 bg-slate-300 rounded-md cursor-pointer"
-  //           onClick={() => onRemove(index)}
-  //         >
-  //           <FaMinus />
-  //         </div>
-  //       )}
-  //     </div>
-  //   );
-  // });
+ 
 
   const AddSubTopicInput = memo(({ index, value, onRemove, onChange }) => {
     return (
@@ -118,9 +92,7 @@ export default function EditCourse() {
     );
   }
 
-  // function handleAddSubTopic() {
-  //   setSubTopics((prevSubTopics) => [...prevSubTopics, ""]);
-  // }
+  
   const handleAddSubTopic = useCallback(() => {
     setSubTopics((prevSubTopics) => [...prevSubTopics, ""]);
   }, []);
@@ -139,134 +111,4 @@ export default function EditCourse() {
     </div>
   );
 }
- 
- 
 
- 
-
-//   function AddBasicCourseDetails() {
-//     return(
-//       <div className=" border border-slate-200 px-2 py-2 space-y-2 rounded-md">
-//       <input
-//         type="text"
-//         placeholder="Course Name"
-//         className="w-full rounded-md px-2 py-1"
-//       ></input>
-//       <input
-//         type="text"
-//         placeholder="Image url"
-//         className="w-full rounded-md px-2 py-1"
-//       ></input>
-//       <input
-//         type="text"
-//         placeholder="Course Description"
-//         className="w-full rounded-md px-2 py-1"
-//       ></input>
-//       <div className="flex space-x-2">
-//         <input
-//           type="text"
-//           placeholder="Actual Price"
-//           className="w-full rounded-md px-2 py-1"
-//         ></input>
-//         <input
-//           type="text"
-//           placeholder="Discount %"
-//           className="w-full rounded-md px-2 py-1"
-//         ></input>
-//         <input
-//           type="text"
-//           placeholder="Discounted price"
-//           className="w-full rounded-md px-2 py-1"
-//         ></input>
-//       </div>
-//     </div>
-//     );
-//   }
-
-//   function AddSubTopicInput({ index, value, onRemove }) {
-//     return (
-//       <div className="flex space-x-2">
-//         <input
-//           type="text"
-//           placeholder="Add Sub Topic Title"
-//           className="w-full rounded-md px-2 py-1"
-//         />
-
-//         {index === subTopics.length - 1 ? (
-//           <div
-//             className="px-2 py-2 bg-slate-300 rounded-md cursor-pointer"
-//             onClick={() => handleAddSubTopic()}
-//           >
-//             <FaPlus />
-//           </div>
-//         ) : (
-//           <div
-//             className="px-2 py-2 bg-slate-300 rounded-md cursor-pointer"
-//             onClick={() => onRemove(index)}
-//           >
-//             <FaMinus />
-//           </div>
-//         )}
-//       </div>
-//     );
-//   }
-
-//   function handleRemoveSubTopic(index) {
-//     const updatedSubTopics = [...subTopics];
-//     updatedSubTopics.splice(index, 1);
-//     setSubTopics(updatedSubTopics);
-//   }
-
-//   function AddMainTopic() {
-//     return (
-//       <div className="flex flex-col space-y-2 border border-slate-50 rounded-md px-2 py-2">
-//         <input
-//           type="text"
-//           placeholder="Add Main Topic Title"
-//           className="rounded-md px-2 py-1"
-//         />
-//         <div className="border border-slate-50 rounded-md px-2 py-2 space-y-2">
-//         {subTopics.map((subTopic, index) => (
-//           <AddSubTopicInput
-//             key={index}
-//             index={index}
-//             value={subTopic}
-//             onChange={(i, val) => handleSubTopicChange(i, val)}
-//             onRemove={(i) => handleRemoveSubTopic(i)}
-//           />
-//         ))}
-//         </div>
-//         <div className="flex flex-row-reverse">
-//           <button className="bg-slate-300 px-2 py-1 rounded-md">Save</button>
-//           <button className="bg-slate-300 mx-2 px-2 py-1 rounded-md">
-//             Clear
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
-
-//   function handleSubTopicChange(index, value) {
-//     const updatedSubTopics = [...subTopics];
-//     updatedSubTopics[index] = value;
-//     setSubTopics(updatedSubTopics);
-//   }
-
-//   function handleAddSubTopic() {
-//     setSubTopics([...subTopics, ""]);
-//   }
-
-//   return (
-//     <div className="space-y-2">
-//       <div className="bg-slate-400 w-full h-16 rounded-md px-2 py-1 flex items-center">
-//         <button className="bg-gradient-to-tr from-blue-500 to via-purple-400 bg-yellow-300 px-3 py-2 rounded-md text-white font-bold drop-shadow-md">
-//           Create New Course
-//         </button>
-//       </div>
-//       <div className="w-full bg-slate-400 rounded-md px-2 py-2 space-y-2 transition-all">
-//         <AddBasicCourseDetails/>  
-//         <AddMainTopic />
-//       </div>
-//     </div>
-//   );
-// }

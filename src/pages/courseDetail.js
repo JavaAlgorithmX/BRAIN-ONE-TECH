@@ -4,8 +4,6 @@ import "@smastrom/react-rating/style.css";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { enrollInToCourse, useCourseById } from "../services/api-course";
 import { useParams } from "react-router-dom";
-// import { RiBook3Line } from "react-icons/ri";
-// import { BsCircleFill } from "react-icons/bs";
 import { BsFileText } from "react-icons/bs";
 import { BsFolder } from "react-icons/bs";
 import { BsFolder2Open } from "react-icons/bs";
