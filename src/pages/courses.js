@@ -1,10 +1,14 @@
 import "@smastrom/react-rating/style.css";
 import CourseCard from "../components/courseCard";
 import { useCourseList } from "../services/api-course";
+import coursesData from "../staticUiData/courseData";
+import ScrollToTop from "../components/ScrollToTop";
+import QuickLinks from "../components/QuickLinks";
 
 export default function Courses() {
   
-  const { isLoading, error, data } = useCourseList();
+  // const { isLoading, error, data } = useCourseList();
+
  
   function CoursesList() {
     return (
@@ -24,16 +28,17 @@ export default function Courses() {
 
         {/* grid  */}
 
-        <div className="bg-slate-800 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5   gap-4 text-slate-50 px-10 py-20 mx-auto ">
+        <div className="bg-slate-800 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-4 text-slate-50 px-10 py-20 mx-auto ">
           {
-            data
+            // data
+            coursesData
             .map((data, index) => (
               <CourseCard
                 key={data._id}
-                id={data._id}
-                title={data.name}
-                originalPrice={data.actualPrice}
-                specialPrice={data.price}
+                // id={data._id}
+                title={data.courseName}
+                // originalPrice={data.actualPrice}
+                // specialPrice={data.price}
                 // nextBatch={data.nextBatch}
                 image={data.image}
               />
@@ -44,12 +49,19 @@ export default function Courses() {
     );
   }
 
-  if (isLoading) return 'Loading...';
-  if (error) console.log('An error occurred while fetching the user data ', error);
+  // if (isLoading) return 'Loading...';
+  // if (error) console.log('An error occurred while fetching the user data ', error);
 
   return (
+    <>
+    <ScrollToTop/>
     <div className="flex items-center justify-center">
+      
       <CoursesList />
+      
     </div>
+    {/* <QuickLinks/> */}
+    </>
+    
   );
 }

@@ -25,8 +25,6 @@ export default function EditCourse() {
     fetchData();
   }, [id]);
 
- 
-
   const AddSubTopicInput = memo(({ index, value, onRemove, onChange }) => {
     return (
       <div className="flex space-x-2">

@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth } from "../store/authContext";
-import { FaUser } from "react-icons/fa";
-import { IoIosSettings } from "react-icons/io";
-import { IoMdPower } from "react-icons/io";
-import { IoIosMail } from "react-icons/io";
-import { CiMobile3 } from "react-icons/ci";
+// import { useAuth } from "../store/authContext";
+// import { FaUser } from "react-icons/fa";
+// import { IoIosSettings } from "react-icons/io";
+// import { IoMdPower } from "react-icons/io";
+// import { IoIosMail } from "react-icons/io";
+// import { CiMobile3 } from "react-icons/ci";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  // const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-  const { user, isLoggedIn } = useAuth();
-  const { name, isAdmin = false } = user || {};
+  // const { user, isLoggedIn } = useAuth();
+  // const { name, isAdmin = false } = user || {};
+  const [scroll, setScroll] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScroll(position);
+  };
 
   const menuItems = [
     {
@@ -38,56 +51,56 @@ function Navbar() {
       name: "Blog",
       href: "/blog",
     },
-    isLoggedIn &&
-      isAdmin && {
-        name: "Admin",
-        href: "/admin",
-      },
+    // isLoggedIn &&
+    //   isAdmin && {
+    //     name: "Admin",
+    //     href: "/admin",
+    //   },
   ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  function ProfileMenu() {
-    return (
-      <div className="absolute right-5 top-20 bg-slate-500 rounded-md h-40 w-32 px-5 py-5 flex items-center justify-center drop-shadow-md">
-        <ul className="space-y-2">
-          <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
-            <NavLink to={"/profile"}>
-              <div className="flex space-x-1 items-center">
-                <FaUser />
-                <spam>Profile</spam>
-              </div>
-            </NavLink>
-          </li>
-          <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
-            <NavLink>
-              <div className="flex space-x-1 items-center">
-                <IoIosSettings />
-                <spam>Setting</spam>
-              </div>
-            </NavLink>
-          </li>
-          <li className="flex space-x-1 items-center hover:bg-red-400 text-red-600 rounded-md px-2 py-1 drop-shadow-md cursor-pointer">
-            <NavLink to={"/logout"}>
-              <div className="flex space-x-1 items-center">
-                <IoMdPower />
-                <spam>Logout</spam>
-              </div>
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+  // function ProfileMenu() {
+  //   return (
+  //     <div className="absolute right-5 top-20 bg-slate-500 rounded-md h-40 w-32 px-5 py-5 flex items-center justify-center drop-shadow-md">
+  //       <ul className="space-y-2">
+  //         <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
+  //           <NavLink to={"/profile"}>
+  //             <div className="flex space-x-1 items-center">
+  //               <FaUser />
+  //               <spam>Profile</spam>
+  //             </div>
+  //           </NavLink>
+  //         </li>
+  //         <li className="flex space-x-1 items-center rounded-md px-2 py-1 drop-shadow-md hover:bg-slate-400 cursor-pointer">
+  //           <NavLink>
+  //             <div className="flex space-x-1 items-center">
+  //               <IoIosSettings />
+  //               <spam>Setting</spam>
+  //             </div>
+  //           </NavLink>
+  //         </li>
+  //         <li className="flex space-x-1 items-center hover:bg-red-400 text-red-600 rounded-md px-2 py-1 drop-shadow-md cursor-pointer">
+  //           <NavLink to={"/logout"}>
+  //             <div className="flex space-x-1 items-center">
+  //               <IoMdPower />
+  //               <spam>Logout</spam>
+  //             </div>
+  //           </NavLink>
+  //         </li>
+  //       </ul>
+  //     </div>
+  //   );
+  // }
 
-  function openProfileMenu() {
-    setIsProfileMenuOpen(!isProfileMenuOpen);
-  }
+  // function openProfileMenu() {
+  //   setIsProfileMenuOpen(!isProfileMenuOpen);
+  // }
 
   return (
-    <header className="h-20 w-full  pb-1 drop-shadow-lg fixed z-50">
+    <header className={`h-20 w-full  pb-1 drop-shadow-lg fixed z-50 ${scroll>10 ? "bg-purple-800" :''}`}>
       {/* <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1"> */}
       <div className="grid grid-cols-12">
         {/* Logo  */}
@@ -121,7 +134,7 @@ function Navbar() {
         </div>
 
         {/* Login Button  */}
-        <div className="hidden lg:flex items-center justify-center col-span-2 ">
+        {/* <div className="hidden lg:flex items-center justify-center col-span-2 ">
           {isLoggedIn && (
             <div
               className="flex space-x-2 items-center cursor-pointer"
@@ -133,7 +146,7 @@ function Navbar() {
           )}
           {!isLoggedIn && <LogInButton />}
         </div>
-        {isLoggedIn && isProfileMenuOpen && <ProfileMenu />}
+        {isLoggedIn && isProfileMenuOpen && <ProfileMenu />} */}
 
         {/* Toggle button  */}
         <div className="lg:hidden col-start-11 col-span-2  ">
@@ -166,7 +179,7 @@ function Navbar() {
                   </div>
                 </div>
                 <div className="mt-6">
-                {isLoggedIn &&
+                {/* {isLoggedIn &&
                   <div className="border border-red-400 mx-1 h-24 rounded-md grid grid-cols-3 mb-5">
                     <div className=" p-1 overflow-auto">
                       <img
@@ -199,7 +212,7 @@ function Navbar() {
                       </div>
                     </div>
                   </div>
-                }
+                } */}
 
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
@@ -215,7 +228,7 @@ function Navbar() {
                     ))}
                   </nav>
                 </div>
-                {!isLoggedIn && (
+                {/* {!isLoggedIn && (
                   <Link to="/login">
                     <button
                       type="button"
@@ -234,7 +247,7 @@ function Navbar() {
                       Log Out
                     </button>
                   </Link>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -244,30 +257,30 @@ function Navbar() {
   );
 }
 
-function ProfilePic() {
-  return (
-    <div>
-      <img
-        class="w-12 h-12 rounded-full"
-        src="/profile.jpg"
-        alt=""
-        width="384"
-        height="512"
-      ></img>
-    </div>
-  );
-}
-function LogInButton() {
-  return (
-    <Link to="/login">
-      <button
-        type="button"
-        className="  border-orange-600 border-2 rounded-full bg-transparent px-4 pb-2 pt-1 text-center text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 hover:text-orange-600 hover:border-white hover:scale-100 hover:tracking-widest hover:ease-in hover:duration-300 ease-in duration-300"
-      >
-        Log In
-      </button>
-    </Link>
-  );
-}
+// function ProfilePic() {
+//   return (
+//     <div>
+//       <img
+//         class="w-12 h-12 rounded-full"
+//         src="/profile.jpg"
+//         alt=""
+//         width="384"
+//         height="512"
+//       ></img>
+//     </div>
+//   );
+// }
+// function LogInButton() {
+//   return (
+//     <Link to="/login">
+//       <button
+//         type="button"
+//         className="  border-orange-600 border-2 rounded-full bg-transparent px-4 pb-2 pt-1 text-center text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 hover:text-orange-600 hover:border-white hover:scale-100 hover:tracking-widest hover:ease-in hover:duration-300 ease-in duration-300"
+//       >
+//         Log In
+//       </button>
+//     </Link>
+//   );
+// }
 
 export default Navbar;

@@ -1,25 +1,32 @@
-import React, { useState } from "react";
-import { CiCircleChevDown } from "react-icons/ci";
-// import Dummy from "../components/Dummy";
+
+import React from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import {
+  CiCircleChevDown,
   CiUser,
-  CiFileOn,
   CiCircleQuestion,
   CiMail,
   CiMobile2,
 } from "react-icons/ci";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-// import "../styles.css";
-import { Pagination } from "swiper/modules";
 import Tilt from "react-parallax-tilt";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function Consulting() {
-  const [isFormShown, setIsFormShown] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("NO");
-  //   const [isResumeInputShown , setIsResumeInputShown] = useState(false);
+  // const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+    toast.success("You are registered successfully!")
+  };
 
   const processData = [
     {
@@ -49,25 +56,19 @@ export default function Consulting() {
       description: "Defining clear, achievable goal and objectives",
     },
     {
-      id: "7   ",
+      id: "7",
       description: "Identifying pain points and area for improvement",
     },
   ];
 
-  function handleShowForm() {
-    setIsFormShown(true);
-  }
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
   function Hero() {
     return (
-      <div
-        className="h-screen w-full bg-gradient-to-bl from-stone-900 via-stone-600 to-orange-500 flex justify-center items-center flex-col  relative"
-      >
-        <img src="./consulting-hero.jpg" alt="" className="h-full w-full absolute mix-blend-overlay object-cover "></img>
+      <div className="h-screen w-full bg-gradient-to-bl from-stone-900 via-stone-600 to-orange-500 flex justify-center items-center flex-col  relative">
+        <img
+          src="./consulting-hero.jpg"
+          alt=""
+          className="h-full w-full absolute mix-blend-overlay object-cover "
+        ></img>
         <div className=" h-full flex flex-col justify-evenly relative">
           <p className="text-5xl font-bold text-white drop-shadow-lg">
             Confused about your <span className="text-red-600">CAREER ?</span>
@@ -77,7 +78,8 @@ export default function Consulting() {
               To Unlock your true career potential
             </p>
             <button className="animate-bounce px-5 py-2    rounded-full border-2 border-slate-50 text-slate-50">
-              <CiCircleChevDown className="inline text-4xl mr-1" /> SCROLL DOWN
+              <CiCircleChevDown className="inline text-4xl mr-1" /> SCROLL
+              DOWN
             </button>
           </div>
         </div>
@@ -93,12 +95,13 @@ export default function Consulting() {
         glareColor="#8b5cf6"
         glarePosition="bottom"
         glareBorderRadius="2px"
-        className=" bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 rounded-md mt-5  h-4/5 aspect-square  flex justify-center items-center flex-col ">
+        className="hover:text-blue-400 cursor-pointer text-white bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 rounded-md mt-5  h-4/5 aspect-square  flex justify-center items-center flex-col "
+      >
         <div className="h-1/2 w-full text-start ">
-          <h1 className="text-9xl font-bold pl-2 text-white">{heading}</h1>
+          <h1 className="text-9xl font-bold pl-2 ">{heading}</h1>
         </div>
-        <div className="h-1/2">
-          <p className="text-lg text-black">{paragraph}</p>
+        <div className="h-1/2 px-2">
+          <p className="text-md ">{paragraph}</p>
         </div>
       </Tilt>
     );
@@ -107,27 +110,15 @@ export default function Consulting() {
   function OurProcess() {
     return (
       <>
-        <div className="bg-fuchsia-600 h-screen w-full relative flex flex-col items-center justify-center">
-          <div className="text-8xl font-bold absolute top-2 text-slate-400 text-center w-full">
+        <div className="bg-slate-900  w-full pt-20 flex flex-col items-center justify-center">
+          <div className="text-8xl font-bold text-slate-400 text-center w-full">
             HOW WE PROCEED
           </div>
 
-          <div className=" w-full h-4/5 px-10 py-14">
-            <Swiper
-              slidesPerView={4}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className=" w-full h-1/2 "
-            >
-              {processData.map((data, index) => (
-                <SwiperSlide key={index} className=" h-60 w-full">
-                  <TiltCard heading={data.id} paragraph={data.description} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          <div className=" w-full px-10 py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+            {processData.map((data, index) => (
+              <TiltCard heading={data.id} paragraph={data.description} />
+            ))}
           </div>
         </div>
       </>
@@ -137,85 +128,101 @@ export default function Consulting() {
   function BookConsulting() {
     return (
       <div
-        className=" w-full bg-fuchsia-900 text-center"
+        className=" w-full bg-slate-900 text-center"
         style={{
           backgroundImage: `url("./consulting-wave-flip.png")`,
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
       >
-        <p className="text-3xl mb-5">
+        <p className="text-3xl text-white mb-5">
           Register for One to One Career Consultancy Now
         </p>
-        <button
-          onClick={handleShowForm}
-          className="text-center px-5 py-2 rounded-full border-2 border-state-50 text-slate-50 mb-10"
-        >
-          REGISTER
-        </button>
-        <div className={` ${isFormShown ? "" : "hidden"} mx-10 px-10 `}>
-          <p className="mb-3 text-lg">Fill below form to register </p>
-          <form className="flex flex-col justify-center items-center">
+
+        <div className={`mx-10 px-10 `}>
+          <form
+            className="flex flex-col justify-center items-center"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="mb-2 relative">
               <input
                 className="pl-8 w-80 h-8 rounded-md"
                 type="text"
+                id="name"
                 placeholder="Name"
-              ></input>
+                name="name"
+                {...register("name", { required: "Name is required" })}
+                // ref={register({ required: true })}
+              />
               <CiUser className="absolute top-1 left-1 text-xl" />
+              {errors.name && (
+                <span className="text-red-500">Name is required</span>
+              )}
             </div>
             <div className="mb-2 relative">
               <input
                 className="pl-8 w-80 h-8 rounded-md"
-                type="text"
+                type="email"
+                id="email"
                 placeholder="Email"
-              ></input>
+                name="email"
+                // ref={register({
+                //   required: true,
+                //   pattern: /^\S+@\S+\.\S+$/,
+                // })}
+                {...register("email", { required: "Email is required" })}
+              />
               <CiMail className="absolute top-1 left-1 text-xl" />
+              {errors.email && (
+                <span className="text-red-500">
+                  {errors.email.type === "required"
+                    ? "Email is required"
+                    : "Invalid email address"}
+                </span>
+              )}
             </div>
             <div className="mb-2 relative">
               <input
                 className="pl-8 w-80 h-8 rounded-md"
-                type="text"
+                type="tel"
                 placeholder="Mobile"
-              ></input>
+                id="mobile"
+                name="mobile"
+                {...register("mobile", { required: "Mobile is required" })}
+                // ref={register({
+                //   required: true,
+                //   pattern: /^\d{10}$/,
+                // })}
+              />
               <CiMobile2 className="absolute top-1 left-1 text-xl" />
+              {errors.mobile && (
+                <span className="text-red-500">
+                  {errors.mobile.type === "required"
+                    ? "Mobile number is required"
+                    : "Invalid mobile number"}
+                </span>
+              )}
             </div>
             <div className="mb-2 relative">
               <input
                 className="pl-8 w-80 h-8 rounded-md"
                 type="text"
                 placeholder="Query description"
-              ></input>
+                name="query"
+                id="query"
+                {...register("query", { required: "Query is required" })}
+                // ref={register({ required: true })}
+              />
               <CiCircleQuestion className="absolute top-1 left-1 text-xl" />
+              {errors.query && (
+                <span className="text-red-500">Query description is required</span>
+              )}
             </div>
-            <div className="mb-2 relative h-8 w-80 flex justify-between border rounded-md">
-              <label className="mr-2 pl-2 text-slate-50" for="cars">
-                Do you have a Resume ready ?
-              </label>
-              <select
-                className="rounded-md h-8 w-20 px-3"
-                id="resume"
-                name="resume-value"
-                value={selectedValue}
-                onChange={handleChange}
-              >
-                <option value="NO">NO</option>
-                <option value="YES">YES</option>
-              </select>
-            </div>
-
-            {selectedValue === "YES" && (
-              <div className={`mb-2 relative`}>
-                <input
-                  className="pl-8 w-80 h-8 rounded-md"
-                  type="text"
-                  placeholder="Resume "
-                ></input>
-                <CiFileOn className="absolute top-1 left-1 text-xl" />
-              </div>
-            )}
-            <button className="px-6 py-2 my-5 rounded-full border-2 border-green-500 text-green-500">
-              Submit
+            <button
+              type="submit"
+              className="px-6 py-2 my-5 rounded-full border-2 border-green-500 text-green-500"
+            >
+              Register
             </button>
           </form>
         </div>
@@ -225,9 +232,11 @@ export default function Consulting() {
 
   return (
     <>
+      <ScrollToTop/>
       <Hero />
       <OurProcess />
       <BookConsulting />
     </>
   );
 }
+

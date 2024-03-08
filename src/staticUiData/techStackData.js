@@ -39,6 +39,11 @@ const techData =[
       stackName: "InteliJ",
       stackImage: "./techStack/intelij.png",
     },
+    {
+      id: 9,
+      stackName: "Python",
+      stackImage: "./techStack/python.png",
+    },
   ];
 
   export default techData;

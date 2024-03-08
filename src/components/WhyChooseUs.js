@@ -1,7 +1,13 @@
-import React from "react";
+// import React, { useState } from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+// import ContactUs from "../pages/model/ContactUs-model";
 
-export default function WhyChooseUs() {
+export default function WhyChooseUs({setShowContactUs}) {
+
+  // function setShowModel(){
+  //   setShowContactUs(true);
+  // }
+ 
   return (
     <div className="relative ">
       <div className="lg:h-screen w-full bg-slate-900  ">
@@ -69,6 +75,7 @@ export default function WhyChooseUs() {
         <div className=" h-1/6 flex justify-center items-center lg:justify-end py-5 w-full">
           <div className="w-full lg:w-1/2">
             <button
+              onClick={setShowContactUs}
               className="mx-auto lg:mt-3 border-2 border-red-500 flex h-16 w-60
                 items-center rounded-full px-2 text-white "
               style={{

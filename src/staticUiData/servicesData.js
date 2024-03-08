@@ -11,10 +11,10 @@ const servicesData = [
         heading : "QA Services",
         paragraph: "Ensuring your software stands the test of perfection."
     },
-    {
-        heading : "Staff Augumentation",
-        paragraph: "Ensuring your software stands the test of perfection."
-    },
+    // {
+    //     heading : "Staff Augumentation",
+    //     paragraph: "Ensuring your software stands the test of perfection."
+    // },
     {
         heading : "OutSourcing",
         paragraph: "Ensuring your software stands the test of perfection."

@@ -1,44 +1,50 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
-
+// import { FaHeart } from "react-icons/fa6";
+// import { useNavigate } from "react-router-dom";
 
 export default function CourseCard({
   image,
-  id,
+  // id,
   title,
-  rating,
-  specialPrice,
-  originalPrice,
+  // rating,
+  // specialPrice,
+  // originalPrice,
   // nextBatch,
 }) {
+  // const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
-  function courseDetails(){
-    navigate(`/course/${id}`)
-  }
+  // function courseDetails(){
+  //   navigate(`/course/${id}`)
+  // }
 
   return (
-    <div class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
-    onClick={courseDetails}>
+    <div
+      class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer
+      grid grid-rows-3
+      "
+      // onClick={courseDetails}
+    >
       {/* <a href="/"> */}
-        <img
-          class="rounded-t-lg"
-          src={image ? image : 
-            "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-          }
-          alt=""
-        />
+      <div className="  row-span-2">
+      <img
+        class="rounded-t-lg  object-cover  "
+        src={
+          image
+            ? image
+            : "../place-holder.jpg"
+        }
+        alt=""
+      />
+      </div>
       {/* </a> */}
-      <div class="p-5">
+      <div class="p-5 flex items-center justify-center row-span-1">
         {/* <a href="/"> */}
-          <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {title}
-          </h5>
+        <h5 class=" text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
+          {title}
+        </h5>
         {/* </a> */}
         {/* rating  */}
-        <div class="flex items-center mt-2.5 mb-3">
+        {/* <div class="flex items-center mt-2.5 mb-3">
           <div class="flex items-center space-x-1 rtl:space-x-reverse">
             <svg
               class="w-4 h-4 text-yellow-300"
@@ -89,15 +95,15 @@ export default function CourseCard({
           <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
             5.0
           </span>
-        </div>
+        </div> */}
 
         {/* Pricing  */}
-        <div className="flex space-x-2 text-lg font-semibold leading-tight">
+        {/* <div className="flex space-x-2 text-lg font-semibold leading-tight">
           <p className="text-slate-800">&#8377; {specialPrice}</p>
           <p className="line-through text-stone-400">
             &#8377; {originalPrice}
           </p>
-        </div>
+        </div> */}
 
         {/* Next batch  */}
 
@@ -105,7 +111,7 @@ export default function CourseCard({
           Next batch :<span>{nextBatch}</span>
         </p> */}
         {/* Bookmark button  */}
-        <button className="text-red-600 absolute top-2 right-2 text-lg bg-slate-50 px-2 py-2 rounded-full"><FaHeart/></button>
+        {/* <button className="text-red-600 absolute top-2 right-2 text-lg bg-slate-50 px-2 py-2 rounded-full"><FaHeart/></button> */}
 
         {/* button  */}
         {/* <a

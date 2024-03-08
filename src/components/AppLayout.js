@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./NavBar";
 import Footer from "./footer";
+import QuickLinks from "./QuickLinks";
 
 function AppLayout(
     // { children, isLoggedIn }
@@ -11,6 +12,7 @@ function AppLayout(
             <main>
                 <Outlet/>
             </main>
+            <QuickLinks/>
             <Footer/>
         </div>
     );
