@@ -72,11 +72,11 @@ export default function QuickLinks() {
                 <h3>ABOUT US</h3>
               </NavLink>
             </div>
-            <div>
+            {/* <div>
               <NavLink to={"/blog"}>
                 <h3>BLOGS</h3>
               </NavLink>
-            </div>
+            </div> */}
           </div>
         </div>
 

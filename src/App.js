@@ -50,24 +50,24 @@ function App() {
               <Route path="/aboutUs" element={<AboutUs />} />
               <Route path="/consulting" element={<Consulting />} />
               <Route path="/courses" element={<Courses />} />
-              <Route path="/courses-details" element={<CourseDetail />} />
-              <Route path="/profile" element={<UserProfile />} />
+              {/* <Route path="/courses-details" element={<CourseDetail />} /> */}
+              {/* <Route path="/profile" element={<UserProfile />} /> */}
               <Route path="/logout" element={<Logout />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<ReadBlog/>} />
-              <Route path="/course/:id" element={<CourseDetail/>} />
+              {/* <Route path="/blog" element={<Blog />} /> */}
+              {/* <Route path="/blog/:id" element={<ReadBlog/>} /> */}
+              {/* <Route path="/course/:id" element={<CourseDetail/>} /> */}
               <Route path="/login" element={<Auth/>}/>
             </Route>
             
 
-            <Route element={<AdminLayout />}>
+            {/* <Route element={<AdminLayout />}>
               <Route path="/admin" element={<Dashboard />} />
               <Route path="/admin/courses" element={<ManageCourse />} />
               <Route path="/admin/students" element={<Students />} />
               <Route path="/admin/clients" element={<Clients />} />
               <Route path="/admin/courses/:id" element={<EditCourse/>} />
               <Route path="/admin/courses/create" element={<AddCourse/>} />
-            </Route>
+            </Route> */}
           </Routes>
         </BrowserRouter>
 

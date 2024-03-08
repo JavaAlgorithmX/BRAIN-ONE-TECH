@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useLocation, useRouteMatch } from "react-router-dom";
 // import { useAuth } from "../store/authContext";
 // import { FaUser } from "react-icons/fa";
 // import { IoIosSettings } from "react-icons/io";
@@ -15,6 +15,7 @@ function Navbar() {
   // const { user, isLoggedIn } = useAuth();
   // const { name, isAdmin = false } = user || {};
   const [scroll, setScroll] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -47,10 +48,10 @@ function Navbar() {
       name: "About",
       href: "/aboutUs",
     },
-    {
-      name: "Blog",
-      href: "/blog",
-    },
+    // {
+    //   name: "Blog",
+    //   href: "/blog",
+    // },
     // isLoggedIn &&
     //   isAdmin && {
     //     name: "Admin",
@@ -121,10 +122,18 @@ function Navbar() {
               <li key={item.name}>
                 <NavLink
                   to={item.href}
-                  className="ease-in duration-300 text-md font-semibold
-                     text-white hover:text-orange-600 hover:tracking-widest 
-                     hover:ease-in hover:duration-300 active:text-orange-600 active:tracking-widest
-                     "
+                  className={`ease-in duration-300 text-md font-semibold
+                     text-white  hover:tracking-widest 
+                     hover:ease-in hover:duration-300
+                     ${
+
+                      ((location.pathname === item.href &&
+                        (item.href === "/" && location.pathname === "/")) ||
+                        (location.pathname.startsWith(item.href) && item.href !=="/")) ? "text-orange-600" : ""
+
+                      // location.pathname.startsWith(item.href) ? "text-orange-600" : ""
+                    }
+                     `}
                 >
                   {item.name}
                 </NavLink>
