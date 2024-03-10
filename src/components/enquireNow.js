@@ -1,14 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+// import axios from "axios";
 import "../css/clipPath.css";
+import { SendEnquiry } from "../services/api-enquiries";
+// import { d } from "@tanstack/react-query-devtools/build/legacy/devtools-ZdlRR-0P";
 
 function EnquireNow() {
   const {
     register,
     handleSubmit,
-    // watch,
-    // formState: { errors },
+   
   } = useForm();
 
   let enquiryData = "";
@@ -17,18 +18,11 @@ function EnquireNow() {
     console.log(data);
     enquiryData = data;
     console.log("Enquiry Data ", enquiryData);
-    submitEnquireNowData();
+    submitEnquireNowData(data);
   };
 
-  function submitEnquireNowData() {
-    axios
-      .post("http://localhost:4000/api/createenquiry", enquiryData)
-      .then(function (response) {
-        console.log(`response : ${response}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  function submitEnquireNowData(data) {
+    SendEnquiry(data);
   }
   return (
     // <>
@@ -71,6 +65,7 @@ function EnquireNow() {
             <textarea
               className="drop-shadow-md w-1/2 lg:h-full rounded-md mb-3 lg:mb-0 px-4 py-2 h-20 "
               placeholder="Your Query"
+              {...register("message")}
             ></textarea>
           </div>
         </div>
