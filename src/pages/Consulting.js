@@ -70,7 +70,7 @@ export default function Consulting() {
           className="h-full w-full absolute mix-blend-overlay object-cover "
         ></img>
         <div className=" h-full flex flex-col justify-evenly relative">
-          <p className="text-5xl font-bold text-white drop-shadow-lg">
+          <p className="flex flex-col text-center text-4xl lg:block lg:text-5xl font-bold text-white drop-shadow-lg">
             Confused about your <span className="text-red-600">CAREER ?</span>
           </p>
           <div className=" text-center">
@@ -95,13 +95,18 @@ export default function Consulting() {
         glareColor="#8b5cf6"
         glarePosition="bottom"
         glareBorderRadius="2px"
-        className="hover:text-blue-400 cursor-pointer text-white bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-pink-500 via-red-500 to-yellow-500 rounded-md mt-5  h-4/5 aspect-square  flex justify-center items-center flex-col "
+        className=" 
+         hover:text-slate-900 cursor-pointer
+          text-white bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))]
+           from-pink-500 via-red-500 to-yellow-500 
+           rounded-md  aspect-square  
+           flex justify-center items-center flex-col "
       >
         <div className="h-1/2 w-full text-start ">
           <h1 className="text-9xl font-bold pl-2 ">{heading}</h1>
         </div>
         <div className="h-1/2 px-2">
-          <p className="text-md ">{paragraph}</p>
+          <p className="text-3xl lg:text-2xl ">{paragraph}</p>
         </div>
       </Tilt>
     );
@@ -111,11 +116,11 @@ export default function Consulting() {
     return (
       <>
         <div className="bg-slate-900  w-full pt-20 flex flex-col items-center justify-center">
-          <div className="text-8xl font-bold text-slate-400 text-center w-full">
-            HOW WE PROCEED
+          <div className="flex flex-col lg:block text-7xl lg:text-8xl font-bold text-slate-400 text-center w-full">
+           <span>HOW WE</span> <span>PROCEED</span>
           </div>
 
-          <div className=" w-full px-10 py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+          <div className=" w-full px-5 py-5 lg:px-10  lg:py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {processData.map((data, index) => (
               <TiltCard heading={data.id} paragraph={data.description} />
             ))}

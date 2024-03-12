@@ -1,13 +1,14 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
+import ContactUsButton from "./ContactUsButton";
 
-function Hero() {
-  // const imageUrl = "/hero.jpg";
+function Hero({setShowContactUs}) {
+  
 
   return (
     <div
       className="h-screen w-full 
-    bg-gradient-to-b from-slate-900 via-slate-700 to-orange-400
+    bg-gradient-to-tr from-slate-900 via-slate-700 to-orange-400
     lg:bg-gradient-to-r relative"
     >
       <img
@@ -54,6 +55,9 @@ function Hero() {
           className="hidden lg:block md:text-3xl lg:text-5xl font-bold md:pt-2 lg:pt-3"
           repeat={Infinity}
         />
+      </div>
+      <div className="absolute bottom-10 right-14">
+        <ContactUsButton setShowContactUs={setShowContactUs}/>
       </div>
     </div>
   );

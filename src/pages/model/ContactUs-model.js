@@ -31,7 +31,7 @@ const ContactUs = ({setClose}) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-slate-100 w-3/5 px-5 py-5 rounded-md relative">
+      <div className="bg-slate-100 w-4/5 lg:w-1/2 px-5 py-5 rounded-md relative">
         <div onClick={setClose} className="cursor-pointer absolute top-2 right-2 px-4 font-bold py-2 bg-white drop-shadow-md rounded-full">
           X
         </div>

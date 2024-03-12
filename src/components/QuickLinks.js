@@ -15,8 +15,8 @@ import { ImOffice } from "react-icons/im";
 
 export default function QuickLinks() {
   return (
-    <div className="bg-slate-900  text-white text-sm px-10 ">
-      <div className="grid grid-cols-4 px-20 py-10 gap-4">
+    <div className="bg-slate-900  text-white text-sm px-10 py-5 ">
+      <div className="grid lg:grid-cols-4 lg:px-20 lg:py-10 lg:gap-4 gap-10">
         <div className="">
           <div className="h-36 w-36">
             <img className="object-cover" src="./logo1.png" alt=""></img>
