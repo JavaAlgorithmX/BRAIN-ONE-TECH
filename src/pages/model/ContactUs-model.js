@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { SendEnquiry } from "../../services/api-enquiries";
 
 const ContactUs = ({setClose}) => {
   const [formData, setFormData] = useState({
@@ -16,7 +18,7 @@ const ContactUs = ({setClose}) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Here you can add your logic to handle form submission, like sending the form data to a backend server
     console.log(formData);
@@ -27,6 +29,9 @@ const ContactUs = ({setClose}) => {
       mobile: "",
       message: "",
     });
+    await SendEnquiry(formData);
+    setClose(true)
+    // toast.success("Your request is submited successfully")
   };
 
   return (

@@ -21,7 +21,7 @@ export default function Courses() {
             className="h-full w-full object-cover absolute mix-blend-overlay"
           ></img>
           <div className="relative text-white flex justify-center items-end h-full w-full pb-5">
-            <h1 className="text-3xl">Explore Our Cources</h1>
+            <h1 className="text-3xl">Explore Our Courses</h1>
           </div>
         </div>
         

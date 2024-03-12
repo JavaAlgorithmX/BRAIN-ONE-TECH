@@ -71,7 +71,7 @@ function EnquireNow() {
         </div>
         <div className="  flex items-center justify-center w-full">
           <button class="flex items-center justify-center drop-shadow-md ml-3 h-10 w-36 rounded-lg hover:bg-blue-700 text-white my-2 bg-blue-600">
-             {isLoading ? '':'Enquire Now'}{isLoading && <Spinner/>} 
+             {isLoading ? '':'Submit Enquiry'}{isLoading && <Spinner/>} 
           </button>
         </div>
       </form>

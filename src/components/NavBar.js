@@ -107,11 +107,13 @@ function Navbar() {
         {/* Logo  */}
         <div className="inline-flex items-center justify-center col-span-2 ">
           <span>
+            <Link to={'/'}>
             <img
               src="/logo1.png"
               alt=""
               className="cursor-pointer h-20 object-cover"
             ></img>
+            </Link>
           </span>
         </div>
 
