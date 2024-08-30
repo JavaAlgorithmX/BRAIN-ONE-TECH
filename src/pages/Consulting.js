@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
@@ -61,6 +61,10 @@ export default function Consulting() {
     },
   ];
 
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+  const processRef = useRef(null);
+  const handleScrollDown = () => scrollToRef(processRef);
+
   function Hero() {
     return (
       <div className="h-screen w-full bg-gradient-to-bl from-stone-900 via-stone-600 to-orange-500 flex justify-center items-center flex-col  relative">
@@ -77,7 +81,7 @@ export default function Consulting() {
             <p className="mb-5 text-3xl font-semibold text-white">
               To Unlock your true career potential
             </p>
-            <button className="animate-bounce px-5 py-2    rounded-full border-2 border-slate-50 text-slate-50">
+            <button onClick={handleScrollDown} className="animate-bounce px-5 py-2    rounded-full border-2 border-slate-50 text-slate-50">
               <CiCircleChevDown className="inline text-4xl mr-1" /> SCROLL
               DOWN
             </button>
@@ -115,7 +119,7 @@ export default function Consulting() {
   function OurProcess() {
     return (
       <>
-        <div className="bg-slate-900  w-full pt-20 flex flex-col items-center justify-center">
+        <div ref={processRef} className="bg-slate-900  w-full pt-20 flex flex-col items-center justify-center">
           <div className="flex flex-col lg:block text-7xl lg:text-8xl font-bold text-slate-400 text-center w-full">
            <span>HOW WE</span> <span>PROCEED</span>
           </div>

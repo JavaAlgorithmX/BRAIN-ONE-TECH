@@ -26,6 +26,8 @@ import { ModalProvider } from "./store/modelContext";
 import DevloperModal from "./pages/model/developer-model";
 import EditCourse from "./pages/admin/editCourse";
 import AddCourse from "./pages/admin/addCourse";
+import Projects from "./pages/Projects";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,6 +55,8 @@ function App() {
               {/* <Route path="/courses-details" element={<CourseDetail />} /> */}
               {/* <Route path="/profile" element={<UserProfile />} /> */}
               <Route path="/logout" element={<Logout />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/products" element={<Products />} />
               {/* <Route path="/blog" element={<Blog />} /> */}
               {/* <Route path="/blog/:id" element={<ReadBlog/>} /> */}
               {/* <Route path="/course/:id" element={<CourseDetail/>} /> */}
