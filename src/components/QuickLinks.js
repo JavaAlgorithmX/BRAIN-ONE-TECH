@@ -63,6 +63,11 @@ export default function QuickLinks() {
               </NavLink>
             </div>
             <div>
+              <NavLink to={"/projects"}>
+                <h3>PROJECTS</h3>
+              </NavLink>
+            </div>
+            <div>
               <NavLink to={"/consulting"}>
                 <h3>CONSULTING</h3>
               </NavLink>

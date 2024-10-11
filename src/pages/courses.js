@@ -34,12 +34,9 @@ export default function Courses() {
             coursesData
             .map((data, index) => (
               <CourseCard
-                key={data._id}
-                // id={data._id}
+                key={data.id}
+                id={data.id}
                 title={data.courseName}
-                // originalPrice={data.actualPrice}
-                // specialPrice={data.price}
-                // nextBatch={data.nextBatch}
                 image={data.image}
               />
             ))

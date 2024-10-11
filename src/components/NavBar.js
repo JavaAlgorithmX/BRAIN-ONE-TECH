@@ -34,10 +34,17 @@ function Navbar() {
       name: "Home",
       href: "/",
     },
-
     {
       name: "Trainings",
       href: "/courses",
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+    },
+    {
+      name: "Products",
+      href: "/products",
     },
     {
       name: "Consulting",
