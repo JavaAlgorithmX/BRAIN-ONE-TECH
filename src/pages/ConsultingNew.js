@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     CiCircleChevDown,
     CiUser,
@@ -8,6 +8,8 @@ import {
 } from "react-icons/ci";
 import ScrollToTop from '../components/ScrollToTop';
 import BookingCalendar from '../components/BookingCalender';
+// import React from "react";
+import { useForm, useWatch } from "react-hook-form";
 
 const services = [
     {
@@ -33,8 +35,14 @@ const services = [
 ];
 
 const ConsultingPage = () => {
+    const bookingSectionRef = useRef(null); // Create a reference for the booking section
+
 
     function Hero() {
+        // Scroll to the booking section when the button is clicked
+        const handleScrollToBooking = () => {
+            bookingSectionRef.current.scrollIntoView({ behavior: "smooth" });
+        };
         return (
             <div className="h-screen w-full bg-gradient-to-bl from-orange-500 via-stone-700 to-stone-900 flex justify-center items-center flex-col  relative">
                 <img
@@ -50,7 +58,9 @@ const ConsultingPage = () => {
                         <p className="mb-5 text-3xl font-semibold text-white">
                             Book a career consulting session today
                         </p>
-                        <button className=" px-5 py-2 text-xl font-bold  rounded-full border-2 border-lime-600 text-lime-600">
+                        <button
+                            onClick={handleScrollToBooking}
+                            className=" px-5 py-2 text-xl font-bold  rounded-full border-2 border-lime-600 text-lime-600">
                             <CiCircleChevDown className="inline text-4xl mr-1" /> Book a Slot
                         </button>
                     </div>
@@ -67,12 +77,6 @@ const ConsultingPage = () => {
                     <h3 className="text-2xl font-bold mb-3">{title}</h3>
                     <p>{description}</p>
                 </div>
-                {/* <div className="mt-4 flex justify-end">
-                    <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                        Book Now
-                    </button>
-                </div> */}
-
             </div>
         );
     }
@@ -99,123 +103,223 @@ const ConsultingPage = () => {
     }
 
     function BookingSection() {
-        const [name, setName] = useState('');
-        const [email, setEmail] = useState('');
-        const [phone, setPhone] = useState('');
-        const [selectedDate, setSelectedDate] = useState('');
-        const [selectedTime, setSelectedTime] = useState('');
-        const [isFormValid, setIsFormValid] = useState(false);
-
-        // Check if all fields are filled out
-        useEffect(() => {
-            if (name && email && phone && selectedDate && selectedTime) {
-                setIsFormValid(true);
-            } else {
-                setIsFormValid(false);
-            }
-        }, [name, email, phone, selectedDate, selectedTime]);
-
-        // Handle form submission
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            const formData = {
-                name,
-                email,
-                phone,
-                selectedDate,
-                selectedTime,
-                service: "Career Consulting", // Or dynamically capture service from dropdown
-                amount: "500 INR"
-            };
-            console.log("Form Data Submitted:", formData);
+        const {
+            register,
+            handleSubmit,
+            formState: { errors, isValid },
+            control, // Control needed for useWatch
+            setValue, // Add this line to destructure setValue
+        } = useForm({
+            mode: "onChange",
+            defaultValues: {
+                bookingType: "withoutPayment",
+                selectedDate: "",
+            },
+        });
+    
+        const bookingType = useWatch({
+            control, // Use control from useForm
+            name: "bookingType", 
+        });
+    
+        const [selectedDate, setSelectedDate] = useState("");
+        const handleDateChange = (date) => {
+            setSelectedDate(date.toDateString());
+            setValue("selectedDate", date.toDateString()); // Update form state with selected date
         };
-
+    
+        const onSubmit = async (data) => {
+            if (
+                data.bookingType === "withPayment" &&
+                (!data.paymentMethod || !data.transactionNumber)
+            ) {
+                alert("Payment details are required for 'With Payment' bookings.");
+                return;
+            }
+            // Proceed with form submission logic
+            console.log(data);
+        };
+    
         return (
-            <div className="bg-gradient-to-tr from-blue-50 to-blue-600 p-6 md:p-10 flex flex-col md:flex-row flex-col-reverse">
+            <div
+                ref={bookingSectionRef} // Attach the ref to the section
+                className="bg-gradient-to-tr from-blue-50 to-blue-600 p-6 md:p-10 flex flex-col md:flex-row flex-col-reverse"
+            >
                 {/* Form Section */}
-                <div className="md:w-1/2 md:p-5 ">
+                <div className="md:w-1/2 md:p-5">
                     <h2 className="text-3xl font-bold mb-5">Book Your Session</h2>
                     <p className="mb-5">Fill out the form below to book your career consulting session.</p>
-
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+    
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-4"
+                    >
+                        {/* Name */}
                         <div>
-                            <label className="block text-sm font-medium">Your Name</label>
-                            <input onChange={(e) => setName(e.target.value)} type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+                            {/* <label className="block text-sm font-medium">Your Name</label> */}
+                            <input
+                                className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                type="text"
+                                placeholder="Your Name"
+                                {...register("name", { required: "Name is required" })}
+                            />
+                            {errors.name && (
+                                <span className="text-red-500 text-sm">{errors.name.message}</span>
+                            )}
                         </div>
-
+    
+                        {/* Email */}
                         <div>
-                            <label className="block text-sm font-medium">Email</label>
-                            <input onChange={(e) => setEmail(e.target.value)} type="email" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+                            {/* <label className="block text-sm font-medium">Email</label> */}
+                            <input
+                                className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                type="email"
+                                placeholder="Email"
+                                {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                                        message: "Invalid email address",
+                                    },
+                                })}
+                            />
+                            {errors.email && (
+                                <span className="text-red-500 text-sm">{errors.email.message}</span>
+                            )}
                         </div>
-
-                        <div className='flex-1'>
-                                <label className="block text-sm font-medium">Phone Number</label>
-                                <input onChange={(e) => setPhone(e.target.value)} type="tel" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+    
+                        {/* Phone Number */}
+                        <div className="flex space-x-3">
+                            <div className="flex-1">
+                                {/* <label className="block text-sm font-medium">Phone Number</label> */}
+                                <input
+                                    className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                    type="text"
+                                    placeholder="Mobile Number"
+                                    {...register("mobile", {
+                                        required: "Mobile number is required",
+                                        pattern: {
+                                            value: /^[0-9]{10}$/,
+                                            message: "Invalid mobile number",
+                                        },
+                                    })}
+                                />
+                                {errors.mobile && (
+                                    <span className="text-blue-700 text-sm">{errors.mobile.message}</span>
+                                )}
                             </div>
-
-
-                        <div className='flex space-x-3'>
-                            
-
-                            <div className='flex-1'>
-                                <label className="block text-sm font-medium">Selected Date</label>
+    
+                            {/* Selected Date */}
+                            <div className="flex-1">
+                                {/* <label className="block text-sm font-medium">Selected Date</label> */}
                                 <input
                                     type="text"
                                     value={selectedDate}
-                                    className="mt-1 block w-full p-2 border border-gray-300 rounded"
                                     readOnly
-                                />
-                            </div>
-
-                            <div className='flex-1'>
-                                <label className="block text-sm font-medium">Selected Time</label>
-                                <input
-                                    type="text"
-                                    value={selectedTime}
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                    readOnly
+                                    onClick={() => setSelectedDate(selectedDate)} // Update date logic
                                 />
                             </div>
                         </div>
-                        <div className='flex space-x-3'>
-
-                            <div className='flex-1'>
-                                <label className="block text-sm font-medium">Select Service</label>
-                                <select className="mt-1 block w-full p-2 border border-gray-300 rounded">
-                                    <option value="career-consulting">Career Consulting</option>
-                                    <option value="linkedin-optimization">LinkedIn Profile Optimization</option>
-                                </select>
-                            </div>
-                            <div className='flex-1'>
-                                <label className="block text-sm font-medium">Session Amount</label>
-                                <input
-                                    type="text"
-                                    value="500 INR"
+    
+                        {/* Message */}
+                        <div className="flex space-x-3">
+                            <div className="flex-1">
+                                {/* <label className="block text-sm font-medium">Note to Consuler</label> */}
+                                <textarea
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                    readOnly
-                                />
+                                    placeholder="Note to Counceler"
+                                    {...register("message", { required: "Query is required" })}
+                                ></textarea>
+                                {errors.message && (
+                                    <span className="text-red-500 text-sm">{errors.message.message}</span>
+                                )}
                             </div>
                         </div>
-
+    
+                        {/* Booking Type */}
+                        <div className="flex space-x-3 mt-2 space-y-2">
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="radio"
+                                    value="withoutPayment"
+                                    {...register("bookingType", { required: "Select a booking type" })}
+                                />
+                                <span>Book Slot Without Payment</span>
+                            </label>
+                            <label className="flex items-center space-x-2">
+                                <input
+                                    type="radio"
+                                    value="withPayment"
+                                    {...register("bookingType", { required: "Select a booking type" })}
+                                />
+                                <span>Book Slot With Payment</span>
+                            </label>
+                        </div>
+    
+                        {/* Conditional Payment Fields */}
+                        {bookingType === "withPayment" && (
+                            <div className="flex space-x-3">
+                                <div className="flex-1">
+                                    {/* <label className="block text-sm font-medium">Payment Method</label> */}
+                                    <select
+                                        className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                        {...register("paymentMethod", { required: "Payment method is required" })}
+                                    >
+                                        <option value="">Select Payment Method</option>
+                                        <option value="UPI">UPI</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                    </select>
+                                    {errors.paymentMethod && (
+                                        <span className="text-red-500 text-sm">{errors.paymentMethod.message}</span>
+                                    )}
+                                </div>
+                                <div className="flex-1">
+                                    {/* <label className="block text-sm font-medium">Transaction Number</label> */}
+                                    <input
+                                        type="text"
+                                        placeholder="Transaction Number"
+                                        className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                        {...register("transactionNumber", { required: "Transaction number is required" })}
+                                    />
+                                    {errors.transactionNumber && (
+                                        <span className="text-red-500 text-sm">{errors.transactionNumber.message}</span>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+    
+                        {/* Submit Button */}
                         <div>
-                            <button disabled={!isFormValid} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit Booking</button>
+                            <button
+                                disabled={!isValid}
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                            >
+                                Submit Booking
+                            </button>
                         </div>
                     </form>
-
-                    <p className="mt-4 text-sm text-gray-600">Payment details will be shared via email or WhatsApp after submission.</p>
+    
+                    <p className="mt-4 text-sm text-gray-600">
+                        Payment details will be shared via email or WhatsApp after submission.
+                    </p>
                 </div>
-
+    
                 {/* Calendar Section */}
-                <div className="md:w-1/2 p-5 flex justify-center items-center ">
-                    <div className=" rounded-lg p-5">
+                <div className="md:w-1/2 p-5 flex justify-center items-center">
+                    <div className="rounded-lg p-5">
                         <h3 className="text-xl font-semibold mb-3">Available Dates</h3>
-                        <BookingCalendar onDateChange={(date) => setSelectedDate(date.toDateString())}
-                            onTimeSelect={(time) => setSelectedTime(time)} />
+                        <BookingCalendar 
+                        // onDateChange={(date) => setSelectedDate(date.toDateString())} 
+                        onDateChange={handleDateChange}
+
+                        />
                     </div>
                 </div>
             </div>
         );
     }
+    
 
 
     function PaymentDetails() {
@@ -241,7 +345,7 @@ const ConsultingPage = () => {
                     {/* Bank details section  */}
                     <div className='flex-1 flex justify-center flex-col'>
                         <h3 className="text-xl font-semibold">Bank Details</h3>
-                        <img src='../file.png' className='h-28 w-28 mx-auto'/>
+                        <img src='../file.png' className='h-28 w-28 mx-auto' />
                         <p>Account Name: Your Name</p>
                         <p>Account Number: 1234567890</p>
                         <p>IFSC Code: ABCD1234567</p>
