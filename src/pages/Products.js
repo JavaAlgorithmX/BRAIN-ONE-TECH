@@ -36,7 +36,7 @@ const products = [
         image: "../hrms.jpg",
         bgColor: "bg-blue-400",
         textColour: "text-white",
-        buttonTextColour:"text-blue-400",
+        buttonTextColour: "text-blue-400",
         isReady: false
     },
     {
@@ -45,7 +45,7 @@ const products = [
         image: "../payFlow.jpg",
         bgColor: "bg-green-500",
         textColour: "text-black",
-        buttonTextColour:"text-green-500",
+        buttonTextColour: "text-green-500",
         isReady: false
     },
     {
@@ -54,7 +54,7 @@ const products = [
         image: "../taskTracker.jpg",
         bgColor: "bg-red-600",
         textColour: "text-white",
-        buttonTextColour:"text-red-600",
+        buttonTextColour: "text-red-600",
         isReady: false
     },
     {
@@ -63,7 +63,7 @@ const products = [
         image: "../examEase.jpg",
         bgColor: "bg-purple-700",
         textColour: "text-white",
-        buttonTextColour:"text-purple-700",
+        buttonTextColour: "text-purple-700",
         isReady: false
     },
     {
@@ -72,7 +72,7 @@ const products = [
         image: "../ProjectPulse.jpg",
         bgColor: "bg-emerald-500",
         textColour: "text-black",
-        buttonTextColour:"text-emerald-500",
+        buttonTextColour: "text-emerald-500",
         isReady: false
     }
 ];
@@ -92,12 +92,20 @@ function Product({ product, index }) {
                     <h1 className="text-4xl font-bold mb-8">{product.name}</h1>
                     <p className='text-xl mb-5'>{product.description}</p>
                     <div >
-                    <button className={` px-5 py-2 mt-3 bg-white text-xl  rounded-full border-2 ${product.buttonTextColour} `}>
+                        {/* <button className={` px-5 py-2 mt-3 bg-white text-xl  rounded-full border-2 ${product.buttonTextColour} `}>
                         <CiCircleChevDown className="inline text-4xl mr-1" /> {product.isReady ? "VISIT WEBSITE" : "COMMING SOON"}
-                    </button>
+                    </button> */}
+                        <button
+                            className={`px-5 py-2 mt-3 bg-white text-xl rounded-full border-2 ${product.buttonTextColour} ${product.isReady ? "cursor-pointer" : "cursor-default"
+                                }`}
+                            disabled={!product.isReady} // Disable the button if the product is not ready
+                        >
+                            <CiCircleChevDown className="inline text-4xl mr-1" />{" "}
+                            {product.isReady ? "VISIT WEBSITE" : "COMING SOON"}
+                        </button>
 
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -116,11 +124,11 @@ function Hero() {
             ></img>
             <div className=" h-full w-full flex flex-col justify-center relative p-20  ">
                 <p className="flex flex-col text-4xl lg:block lg:text-3xl font-bold text-white drop-shadow-lg mb-3">
-                Discover Our Ready-Made Solutions
+                    Discover Our Ready-Made Solutions
                 </p>
                 <div className=" ">
                     <p className="mb-5 text-xl  text-lime-400">
-                    Enhance efficiency and cut costs with our automated, streamlined<br/> processes tailored to meet your business needs
+                        Enhance efficiency and cut costs with our automated, streamlined<br /> processes tailored to meet your business needs
                     </p>
                     <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
                         <CiCircleChevDown className="inline text-4xl mr-1" /> GET IN TOUCH

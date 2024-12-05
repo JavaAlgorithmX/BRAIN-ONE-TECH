@@ -87,7 +87,7 @@ const BookingCalendar = ({ onDateChange, onTimeSelect }) => {
 
 
     return (
-        <div className="w-full flex  items-center space-x-3">
+        <div className="w-full flex flex-col md:flex-row items-center space-x-3 ">
             <div>
                 <h3 className="text-xl font-semibold mb-4">Select a Date</h3>
                 <Calendar

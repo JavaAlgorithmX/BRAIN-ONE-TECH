@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     CiCircleChevDown,
     CiUser,
@@ -34,7 +34,6 @@ const services = [
 
 const ConsultingPage = () => {
 
-
     function Hero() {
         return (
             <div className="h-screen w-full bg-gradient-to-bl from-orange-500 via-stone-700 to-stone-900 flex justify-center items-center flex-col  relative">
@@ -68,11 +67,11 @@ const ConsultingPage = () => {
                     <h3 className="text-2xl font-bold mb-3">{title}</h3>
                     <p>{description}</p>
                 </div>
-                <div className="mt-4 flex justify-end">
+                {/* <div className="mt-4 flex justify-end">
                     <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">
                         Book Now
                     </button>
-                </div>
+                </div> */}
 
             </div>
         );
@@ -85,7 +84,7 @@ const ConsultingPage = () => {
                     <h2 className="text-4xl font-bold">Services We Offer</h2>
                     <p className="text-gray-600 mt-2">Enhance your career with our personalized services</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-40">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 md:px-40">
                     {services.map((service, index) => (
                         <ServiceCard
                             key={index}
@@ -100,32 +99,63 @@ const ConsultingPage = () => {
     }
 
     function BookingSection() {
+        const [name, setName] = useState('');
+        const [email, setEmail] = useState('');
+        const [phone, setPhone] = useState('');
         const [selectedDate, setSelectedDate] = useState('');
         const [selectedTime, setSelectedTime] = useState('');
+        const [isFormValid, setIsFormValid] = useState(false);
+
+        // Check if all fields are filled out
+        useEffect(() => {
+            if (name && email && phone && selectedDate && selectedTime) {
+                setIsFormValid(true);
+            } else {
+                setIsFormValid(false);
+            }
+        }, [name, email, phone, selectedDate, selectedTime]);
+
+        // Handle form submission
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            const formData = {
+                name,
+                email,
+                phone,
+                selectedDate,
+                selectedTime,
+                service: "Career Consulting", // Or dynamically capture service from dropdown
+                amount: "500 INR"
+            };
+            console.log("Form Data Submitted:", formData);
+        };
+
         return (
-            <div className="bg-gradient-to-tr from-blue-50 to-blue-600 p-10 flex flex-col md:flex-row">
+            <div className="bg-gradient-to-tr from-blue-50 to-blue-600 p-6 md:p-10 flex flex-col md:flex-row flex-col-reverse">
                 {/* Form Section */}
-                <div className="md:w-1/2 p-5 ">
+                <div className="md:w-1/2 md:p-5 ">
                     <h2 className="text-3xl font-bold mb-5">Book Your Session</h2>
                     <p className="mb-5">Fill out the form below to book your career consulting session.</p>
 
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm font-medium">Your Name</label>
-                            <input type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+                            <input onChange={(e) => setName(e.target.value)} type="text" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium">Email</label>
-                            <input type="email" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+                            <input onChange={(e) => setEmail(e.target.value)} type="email" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
                         </div>
+
+                        <div className='flex-1'>
+                                <label className="block text-sm font-medium">Phone Number</label>
+                                <input onChange={(e) => setPhone(e.target.value)} type="tel" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
+                            </div>
 
 
                         <div className='flex space-x-3'>
-                            <div className='flex-1'>
-                                <label className="block text-sm font-medium">Phone Number</label>
-                                <input type="tel" className="mt-1 block w-full p-2 border border-gray-300 rounded" required />
-                            </div>
+                            
 
                             <div className='flex-1'>
                                 <label className="block text-sm font-medium">Selected Date</label>
@@ -168,7 +198,7 @@ const ConsultingPage = () => {
                         </div>
 
                         <div>
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit Booking</button>
+                            <button disabled={!isFormValid} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit Booking</button>
                         </div>
                     </form>
 
@@ -192,10 +222,10 @@ const ConsultingPage = () => {
         return (
             <section className="p-10 bg-gray-200 text-center">
                 <h2 className="text-3xl font-bold">Payment Details</h2>
-                <div className='flex space-x-3 mt-5'>
+                <div className='flex flex-col md:flex-row space-x-3 mt-5'>
                     {/* Steps section  */}
                     <div className='flex-1 flex text-start flex-col '>
-                        <h1>Steps For Making Payment</h1>
+                        <h1 className="text-xl font-semibold">Steps For Making Payment</h1>
                         <ol>
                             <li>1. Choose Payment Method</li>
                             <li className='px-6'>Bank Transfer | UPI </li>
@@ -211,6 +241,7 @@ const ConsultingPage = () => {
                     {/* Bank details section  */}
                     <div className='flex-1 flex justify-center flex-col'>
                         <h3 className="text-xl font-semibold">Bank Details</h3>
+                        <img src='../file.png' className='h-28 w-28 mx-auto'/>
                         <p>Account Name: Your Name</p>
                         <p>Account Number: 1234567890</p>
                         <p>IFSC Code: ABCD1234567</p>
@@ -219,10 +250,10 @@ const ConsultingPage = () => {
                     {/* QR code section and UPI */}
                     <div className='flex-1  space-y-3'>
                         <div>
-                            <h1>UPI ID : yourupiid@bank.com </h1>
+                            <h1 className="text-xl font-semibold">Scan And Pay </h1>
                         </div>
                         <div className='flex items-center justify-center'>
-                            <img className='h-56 w-56' src='../QRCODE.png'/>
+                            <img className='h-56 w-56' src='../QRCODE.png' />
                         </div>
 
                     </div>

@@ -16,7 +16,7 @@ export default function CourseCard({
   function courseDetails(){
     console.log(id)
     console.log(image)
-    navigate(`/course/${id}`)
+    navigate(`/courses/${id}`)
   }
 
   return (
@@ -44,7 +44,7 @@ export default function CourseCard({
         <h5 class=" text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-        <h2 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">{id}</h2>
+        <h2 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white"></h2>
       </div>
     </div>
   );

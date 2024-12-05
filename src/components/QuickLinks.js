@@ -21,7 +21,7 @@ export default function QuickLinks() {
           <div className="h-36 w-36">
             <img className="object-cover" src="./logo1.png" alt=""></img>
           </div>
-          <div className="flex text-2xl space-x-3 text-orange-500">
+          <div className=" flex  text-2xl space-x-8 text-orange-500">
             <a
               href="https://www.facebook.com/brainonetech?mibextid=ZbWKwL"
               target="_blank"
@@ -34,7 +34,7 @@ export default function QuickLinks() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedinIn className="hover:text-white"  />
+              <FaLinkedinIn className="hover:text-white" />
             </a>
             <a
               href="https://www.instagram.com/brainonetech_solutions?utm_source=qr&igsh=MW90dXA2NzM0OHhwcA=="
@@ -42,9 +42,6 @@ export default function QuickLinks() {
               rel="noopener noreferrer"
             >
               <FaInstagram className="hover:text-white" />
-            </a>
-            <a href="/" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="hover:text-white" />
             </a>
           </div>
         </div>
@@ -97,13 +94,13 @@ export default function QuickLinks() {
         <div className=" space-y-2">
           <h2 className="mb-5 text-xl">CONTACT</h2>
           <div className="flex space-x-2 items-center ">
-            <ImOffice className="self-start  mt-2 text-fuchsia-500"/><span>
-            RRG Green Phase 1<br /> Shivraj Nagar Rahatani
-            <br /> Pune 411017</span>
-            </div>
+            <ImOffice className="self-start  mt-2 text-fuchsia-500" /><span>
+              RRG Green Phase 1<br /> Shivraj Nagar Rahatani
+              <br /> Pune 411017</span>
+          </div>
           <div className="flex space-x-2 items-center ">
             <FaWhatsapp className="text-green-500" />
-            <IoIosCall className="text-blue-500"/>
+            <IoIosCall className="text-blue-500" />
             <span>+91 9209440305</span>
           </div>
           <div className="flex space-x-2 items-center ">

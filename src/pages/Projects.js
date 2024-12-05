@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollToTop from '../components/ScrollToTop';
 import {
     CiCircleChevDown,
@@ -12,6 +12,7 @@ import { SiTailwindcss } from "react-icons/si";
 import { SiMongodb } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiSpringboot } from "react-icons/si";
+import ContactUsButton from '../components/ContactUsButton';
 
 
 
@@ -94,7 +95,7 @@ function Project({ project, index }) {
     );
 }
 
-function Hero() {
+function Hero({setShowContactUs}) {
     return (
         <div className="h-screen w-full bg-gradient-to-bl from-orange-500 via-stone-800 via-stone-600 to-slate-900 flex justify-center items-center flex-col  relative">
             <img
@@ -112,32 +113,44 @@ function Hero() {
                         A Showcase of Our Accomplished Projects Across Various Fields,<br />
                         Highlighting Our Expertise in Application, Website, and<br /> Mobile Development
                     </p>
-                    <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
+                    {/* <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
                         <CiCircleChevDown className="inline text-4xl mr-1" /> GET IN TOUCH
-                    </button>
+                    </button> */}
+                    <ContactUsButton setShowContactUs={setShowContactUs}/>
                 </div>
             </div>
         </div>
     );
 }
 
-function Filter() {
-    return (
-        <div className='flex px-10 py-3 justify-evenly'>
-            <div className='cursor-pointer'>All Projects</div>
-            <div className='cursor-pointer'>Application Development</div>
-            <div className='cursor-pointer'>Website Development</div>
-        </div>
-    )
-}
+// function Filter() {
+//     return (
+//         <div className='flex px-10 py-3 justify-evenly'>
+//             <div className='cursor-pointer'>All Projects</div>
+//             <div className='cursor-pointer'>Application Development</div>
+//             <div className='cursor-pointer'>Website Development</div>
+//         </div>
+//     )
+// }
+
 
 
 const Projects = () => {
+    const [showContactUs, setShowContactUs] = useState(false);
+    function openContactModel() {
+        setShowContactUs(true)
+        document.body.style.overflow = 'hidden'; // Disable scrolling
+      }
+      function closeContactUsModel() {
+        setShowContactUs(false);
+        document.body.style.overflow = 'auto';
+      }
     return (
         <div>
             <ScrollToTop />
-            <Hero />
-            <Filter />
+            <Hero setShowContactUs={openContactModel} />
+            {/* <Filter /> */}
+            <div className='h-2 bg-white'></div>
             {projects.map((project, index) => (
                 <Project key={index} project={project} index={index} />
             ))}

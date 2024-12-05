@@ -16,14 +16,16 @@ const coursesData = [
   },
   {
     "id": "4",
-    "courseName": "JAVA WEB DEVELOPMENT",
-    "image": "../courses/java-web-development.jpg"
+    "courseName": "SCRUM MASTER",
+    "image": "../courses/java8.png"
   },
   {
     "id": "5",
-    "courseName": "JAVA DEVELOPMENT TOOLS - MAVEN, SONAR, GRADLE, JUNIT",
-    "image": ""
+    "courseName": "DATA SCIENCE",
+    "image": "../courses/java8.png"
   },
+  
+  
   {
     "id": "6",
     "courseName": "AGILE",
@@ -44,26 +46,14 @@ const coursesData = [
     "courseName": "CAPITAL MARKET FOR BEGGINERS",
     "image": "../courses/capital-market.jpg"
   },
-  {
-    "id": "10",
-    "courseName": "AMAZON WEB SERVICES",
-    "image": "../courses/aws.png"
-  },
-  {
-    "id": "11",
-    "courseName": "DEVOPS",
-    "image": "../courses/Devops.jpeg"
-  },
+ 
+
   {
     "id": "12",
     "courseName": "MANUAL TESTING",
     "image": "../courses/manual.png"
   },
-  {
-    "id": "13",
-    "courseName": "AUTOMATION TESTING",
-    "image": "../courses/automation-testing.jpg"
-  },
+ 
   {
     "id": "14",
     "courseName": "MOBILE AUTOMATION TESTING",
