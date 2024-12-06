@@ -2,6 +2,8 @@
 import { useParams } from "react-router-dom";
 import coursesData from "../staticUiData/courseData";
 import { FaWhatsapp, FaFileDownload } from "react-icons/fa";
+import PDFViewer from "../components/PdfViewer";
+import { useForm } from "react-hook-form";
 
 
 
@@ -17,6 +19,11 @@ export default function CourseDetilsStatic() {
     function getCourseTitleById(id) {
         const course = coursesData.find(course => course.id === id);
         return course ? course.courseName : 'Untitled';
+    }
+
+    function getStructureById(id){
+        const course = coursesData.find(course => course.id === id);
+        return course ? course.courseStructure : 'NA';
     }
 
     function CourseDetailsBanner() {
@@ -39,8 +46,7 @@ export default function CourseDetilsStatic() {
     function CourseDetailsBody() {
         return (
             <div className="">
-                <CourseStructure />
-                <PaymentAndEnroll />
+                <CourseStructure courseName={getCourseTitleById(courseId)} />
             </div>
         )
     }
@@ -71,40 +77,128 @@ export default function CourseDetilsStatic() {
         );
     }
 
-    function CourseStructure() {
+
+    function CourseStructure({courseName}) {
+        const {
+            register,
+            handleSubmit,
+            formState: { errors,isValid },
+        } = useForm();
+
+        const onSubmit = (data) => {
+            console.log("Form Submitted:", data);
+            alert("Course Enquiry submitted successfully!");
+        };
         return (
-            <>
-                <div className="h-80 bg-red-200 flex justify-center items-center">
-                    <div className="bg-blue-200 px-20 py-8 rounded-full shadow-lg hover:shadow-xl cursor-pointer text-3xl">Course Structure <FaFileDownload className="inline" /></div>
-                </div>
-            </>
-        )
-    }
-
-    function PaymentAndEnroll() {
-        return (
-            <div className=" h-full bg-red-300">
-                <div className="text-center text-2xl bg-blue-200 py-2 capitalize">Enroll to {getCourseTitleById(courseId).toLowerCase()} </div>
-                <div className="flex justify-between px-2 bg-green-200 ">
-                    <div className=" bg-red-300 w-full px-5 py-5">
-                        <div className="border-b-2 border-slate-700 text-xl">Steps</div>
-                    </div>
-                    <div className="bg-blue-400 w-full border-l-2 border-r-2 border-gray-500 px-5 py-5">
-                        <div className="border-b-2 border-slate-700 text-xl"> Bank Details</div>
-
-                    </div>
-                    <div className="bg-slate-200 w-full flex flex-col space-y-5 px-5 py-5">
-                        <div className="border-b-2 border-slate-700 text-xl"> QR Code</div>
-                        <div className="flex justify-center items-center">
-
-                        <img className="w-60" src="../QRCODE.png" />
-                        </div>
-                        </div>
+            <div className="flex w-full">
+                {/* PDF Viewer Section */}
+                <div className="w-3/5 pr-4"> {/* 60% width with some right padding */}
+                    <PDFViewer pdfUrl={getStructureById(courseId)} />
                 </div>
 
+                {/* Enquiry Form Section */}
+
+                <div className="w-2/5">
+                    <div className="rounded m-2 p-4 border shadow-lg bg-white">
+                        <h2 className="text-xl font-bold mb-4">Course Enquiry Form</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="mb-4">
+
+                                <input
+                                    id="name"
+                                    type="text"
+                                    className="w-full p-2 border rounded"
+                                    placeholder="Your Name"
+                                    {...register("name", { required: "Name is required" })}
+                                />
+                                {errors.name && (
+                                    <span className="text-red-500 text-sm">{errors.name.message}</span>
+                                )}
+                            </div>
+                            <div className="mb-4">
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    className="w-full p-2 border rounded"
+                                    placeholder="Your Email"
+                                    {...register("email", {
+                                        required: "Email is required",
+                                        pattern: {
+                                            value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                                            message: "Invalid email address",
+                                        },
+                                    })}
+                                />
+                                {errors.email && (
+                                    <span className="text-red-500 text-sm">{errors.email.message}</span>
+                                )}
+                            </div>
+                            <div className="mb-4">
+
+                                <input
+                                    id="mobile"
+                                    type="tel"
+                                    className="w-full p-2 border rounded"
+                                    placeholder="Your Mobile Number"
+                                    {...register("mobile", {
+                                        required: "Mobile number is required",
+                                        pattern: {
+                                            value: /^[0-9]{10}$/,
+                                            message: "Mobile number must be 10 digits",
+                                        },
+                                    })}
+                                />
+                                {errors.mobile && (
+                                    <span className="text-red-500 text-sm">{errors.mobile.message}</span>
+                                )}
+                            </div>
+                            <div className="mb-4">
+                                <input
+                                    id="course"
+                                    type="text"
+                                    className="w-full p-2 border rounded"
+                                    //placeholder="Your Mobile Number"
+                                    value={courseName}
+                                    readOnly
+                                    {...register("course", {
+                                     
+                                    })}
+                                />
+
+                              
+                            </div>
+                            <div className="mb-4">
+                              
+                                <textarea
+                                    id="query"
+                                    className="w-full p-2 border rounded"
+                                    rows="4"
+                                    placeholder="Your Query"
+                                    {...register("query", { required: "Query is required" })}
+                                ></textarea>
+                                {errors.message && (
+                                    <span className="text-red-500 text-sm">{errors.message.message}</span>
+                                )}
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={!isValid }
+                                className={`${
+                                      !isValid ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+                                  }
+                                     text-white px-4 py-2 rounded `}
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        )
+        );
     }
+
+
 
     return (
         <>

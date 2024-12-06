@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     CiCircleChevDown,
-    CiUser,
-    CiCircleQuestion,
-    CiMail,
-    CiMobile2,
 } from "react-icons/ci";
 import ScrollToTop from '../components/ScrollToTop';
 import BookingCalendar from '../components/BookingCalender';
-// import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 
 const services = [
@@ -116,18 +111,18 @@ const ConsultingPage = () => {
                 selectedDate: "",
             },
         });
-    
+
         const bookingType = useWatch({
             control, // Use control from useForm
-            name: "bookingType", 
+            name: "bookingType",
         });
-    
+
         const [selectedDate, setSelectedDate] = useState("");
         const handleDateChange = (date) => {
             setSelectedDate(date.toDateString());
             setValue("selectedDate", date.toDateString()); // Update form state with selected date
         };
-    
+
         const onSubmit = async (data) => {
             if (
                 data.bookingType === "withPayment" &&
@@ -139,7 +134,7 @@ const ConsultingPage = () => {
             // Proceed with form submission logic
             console.log(data);
         };
-    
+
         return (
             <div
                 ref={bookingSectionRef} // Attach the ref to the section
@@ -149,7 +144,7 @@ const ConsultingPage = () => {
                 <div className="md:w-1/2 md:p-5">
                     <h2 className="text-3xl font-bold mb-5">Book Your Session</h2>
                     <p className="mb-5">Fill out the form below to book your career consulting session.</p>
-    
+
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         className="space-y-4"
@@ -167,7 +162,7 @@ const ConsultingPage = () => {
                                 <span className="text-red-500 text-sm">{errors.name.message}</span>
                             )}
                         </div>
-    
+
                         {/* Email */}
                         <div>
                             {/* <label className="block text-sm font-medium">Email</label> */}
@@ -187,7 +182,7 @@ const ConsultingPage = () => {
                                 <span className="text-red-500 text-sm">{errors.email.message}</span>
                             )}
                         </div>
-    
+
                         {/* Phone Number */}
                         <div className="flex space-x-3">
                             <div className="flex-1">
@@ -208,7 +203,7 @@ const ConsultingPage = () => {
                                     <span className="text-blue-700 text-sm">{errors.mobile.message}</span>
                                 )}
                             </div>
-    
+
                             {/* Selected Date */}
                             <div className="flex-1">
                                 {/* <label className="block text-sm font-medium">Selected Date</label> */}
@@ -221,24 +216,40 @@ const ConsultingPage = () => {
                                 />
                             </div>
                         </div>
-    
+
                         {/* Message */}
                         <div className="flex space-x-3">
                             <div className="flex-1">
                                 {/* <label className="block text-sm font-medium">Note to Consuler</label> */}
                                 <textarea
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                    placeholder="Note to Counceler"
-                                    {...register("message", { required: "Query is required" })}
+                                    placeholder="Note to Counceler (You can write your brief query)"
+                                    {...register("noteToCounceler", { required: "Note is required" })}
                                 ></textarea>
                                 {errors.message && (
                                     <span className="text-red-500 text-sm">{errors.message.message}</span>
                                 )}
                             </div>
                         </div>
-    
+                        <div className='text-gray-600'>
+                            <label className='text-md'>Booking amount for 1 session is 500 INR</label>
+                            <div className='mx-5 border-2 border-gray-400 px-3'>
+                                <label className='text-md border-b border-black'>Services Included</label>
+                                <div className='flex'>
+                                    <ul className='mx-3'>
+                                        <li>Career Consultation</li>
+                                        <li>Resume Review</li>
+                                    </ul>
+                                    <ul className='mx-3'>
+                                        <li>Interview Preparation</li>
+                                        <li>LinkedIn Profile Optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* Booking Type */}
-                        <div className="flex space-x-3 mt-2 space-y-2">
+                        <div className="flex space-x-3 mt-2 ">
                             <label className="flex items-center space-x-2">
                                 <input
                                     type="radio"
@@ -256,7 +267,13 @@ const ConsultingPage = () => {
                                 <span>Book Slot With Payment</span>
                             </label>
                         </div>
-    
+                        {/* Conditional message based on booking type  */}
+                        {bookingType === "withoutPayment" && (
+                            <div>
+                                <label className=" text-sm text-gray-600">You can do payment before {`${selectedDate}`} to get meating invite. </label>
+                            </div>
+                        )}
+
                         {/* Conditional Payment Fields */}
                         {bookingType === "withPayment" && (
                             <div className="flex space-x-3">
@@ -288,30 +305,35 @@ const ConsultingPage = () => {
                                 </div>
                             </div>
                         )}
-    
+
                         {/* Submit Button */}
                         <div>
                             <button
                                 disabled={!isValid}
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                            >
+                                className={`${isValid ? 'bg-blue-500' : 'bg-gray-400'}
+                                 text-white px-4 py-2 rounded 
+                                 ${isValid ? 'hover:bg-blue-600' : ''}
+                                 ${isValid ? 'cursor-pointer' : 'cursor-not-allowed'}
+                                 `}
+
+                           >
                                 Submit Booking
                             </button>
                         </div>
                     </form>
-    
+
                     <p className="mt-4 text-sm text-gray-600">
-                        Payment details will be shared via email or WhatsApp after submission.
+                        Payment details can be shared via email or WhatsApp after submission.
                     </p>
                 </div>
-    
+
                 {/* Calendar Section */}
                 <div className="md:w-1/2 p-5 flex justify-center items-center">
                     <div className="rounded-lg p-5">
                         <h3 className="text-xl font-semibold mb-3">Available Dates</h3>
-                        <BookingCalendar 
-                        // onDateChange={(date) => setSelectedDate(date.toDateString())} 
-                        onDateChange={handleDateChange}
+                        <BookingCalendar
+                            // onDateChange={(date) => setSelectedDate(date.toDateString())} 
+                            onDateChange={handleDateChange}
 
                         />
                     </div>
@@ -319,7 +341,7 @@ const ConsultingPage = () => {
             </div>
         );
     }
-    
+
 
 
     function PaymentDetails() {

@@ -2,22 +2,27 @@ const coursesData = [
   {
     "id": "1",
     "courseName": "PERSONAL DEVELOPMENT COURSE",
-    "image": "../courses/PERSONAL_DEVELOPMENT.jpg"
+    "image": "../courses/PERSONAL_DEVELOPMENT.jpg",
+    "courseStructure":"../pdf/personalDevelopment.pdf"
   },
   {
     "id": "2",
     "courseName": "DIGITAL MARKETING",
-    "image": "../courses/digital-marketing.png"
+    "image": "../courses/digital-marketing.png",
+    "courseStructure":"../pdf/"
   },
   {
     "id": "3",
     "courseName": "CORE JAVA WITH JAVA 8",
-    "image": "../courses/java8.png"
+    "image": "../courses/java8.png",
+     "courseStructure":"../pdf/coreJava.pdf"
   },
   {
     "id": "4",
     "courseName": "SCRUM MASTER",
-    "image": "../courses/java8.png"
+    "image": "../courses/java8.png",
+    "courseStructure":"../pdf/ScrumMaster.pdf"
+
   },
   {
     "id": "5",
@@ -34,7 +39,9 @@ const coursesData = [
   {
     "id": "7",
     "courseName": "BUSINESS ANALYST",
-    "image": "../courses/Business_Analyst.jpg"
+    "image": "../courses/Business_Analyst.jpg",
+    "courseStructure":"../pdf/BA.pdf"
+
   },
   {
     "id": "8",
@@ -51,7 +58,9 @@ const coursesData = [
   {
     "id": "12",
     "courseName": "MANUAL TESTING",
-    "image": "../courses/manual.png"
+    "image": "../courses/manual.png",
+    "courseStructure":"../pdf/ManualTesting.pdf"
+
   },
  
   {
