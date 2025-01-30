@@ -5,6 +5,7 @@ import {
 import ScrollToTop from '../components/ScrollToTop';
 import BookingCalendar from '../components/BookingCalender';
 import { useForm, useWatch } from "react-hook-form";
+import { SendEmail } from '../services/api-email';
 
 const services = [
     {
@@ -101,6 +102,7 @@ const ConsultingPage = () => {
         const {
             register,
             handleSubmit,
+            reset,
             formState: { errors, isValid },
             control, // Control needed for useWatch
             setValue, // Add this line to destructure setValue
@@ -122,6 +124,28 @@ const ConsultingPage = () => {
             setSelectedDate(date.toDateString());
             setValue("selectedDate", date.toDateString()); // Update form state with selected date
         };
+        // const onSubmit = async (data) => {
+        //     const formattedData = {
+        //       formType: form_type, // Indicate the type of form
+        //       userData: {
+        //         name: data.name,
+        //         email: data.email, // Move email inside userData
+        //         mobile: data.mobile,
+        //         message: data.message,
+        //       },
+        //     };
+        //     console.log(formattedData)
+        //     try {
+        //       console.log(data);
+        //       await SendEmail(formattedData); // Wait for this to finish
+        //       reset(); // Clear form fields
+        //       setClose(true); // Close only after successful submission
+        //     } catch (error) {
+        //       console.error("Error submitting form:", error);
+        //       //toast.error("Submission failed. Please try again.");
+        //     }
+        //   };
+        
 
         const onSubmit = async (data) => {
             if (
@@ -133,6 +157,22 @@ const ConsultingPage = () => {
             }
             // Proceed with form submission logic
             console.log(data);
+            const formattedData = {
+                formType: "consulting", // Indicate the type of form
+                userData: {
+                  name: data.name,
+                  email: data.email, // Move email inside userData
+                  mobile: data.mobile,
+                  message: data.noteToCounceler,
+                  selectedDate: data.selectedDate,
+                  bookingType: data.bookingType,
+                  transactionNumber: data.transactionNumber,
+                  paymentMethod:data.paymentMethod
+                    },
+              };
+              console.log(formattedData)
+              await SendEmail(formattedData); // Wait for this to finish
+                    reset(); // Clear form fields
         };
 
         return (
@@ -211,7 +251,7 @@ const ConsultingPage = () => {
                                     type="text"
                                     value={selectedDate}
                                     readOnly
-                                    className="mt-1 block w-full p-2 border border-gray-300 rounded"
+                                    className="mt-1 block w-full p-2 border border-gray-300 rounded cursor-not-allowed "
                                     onClick={() => setSelectedDate(selectedDate)} // Update date logic
                                 />
                             </div>
@@ -223,7 +263,7 @@ const ConsultingPage = () => {
                                 {/* <label className="block text-sm font-medium">Note to Consuler</label> */}
                                 <textarea
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded"
-                                    placeholder="Note to Counceler (You can write your brief query)"
+                                    placeholder="write your brief query"
                                     {...register("noteToCounceler", { required: "Note is required" })}
                                 ></textarea>
                                 {errors.message && (
@@ -231,7 +271,7 @@ const ConsultingPage = () => {
                                 )}
                             </div>
                         </div>
-                        <div className='text-gray-600'>
+                        <div className='text-blue-800'>
                             <label className='text-md'>Booking amount for 1 session is 500 INR</label>
                             <div className='mx-5 border-2 border-gray-400 px-3'>
                                 <label className='text-md border-b border-black'>Services Included</label>

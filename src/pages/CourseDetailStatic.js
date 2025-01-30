@@ -4,6 +4,11 @@ import coursesData from "../staticUiData/courseData";
 import { FaWhatsapp, FaFileDownload } from "react-icons/fa";
 import PDFViewer from "../components/PdfViewer";
 import { useForm } from "react-hook-form";
+import { BiLogoGmail } from "react-icons/bi";
+import CONFIG from "../config";
+import { SendEmail } from "../services/api-email";
+
+
 
 
 
@@ -21,7 +26,7 @@ export default function CourseDetilsStatic() {
         return course ? course.courseName : 'Untitled';
     }
 
-    function getStructureById(id){
+    function getStructureById(id) {
         const course = coursesData.find(course => course.id === id);
         return course ? course.courseStructure : 'NA';
     }
@@ -52,16 +57,31 @@ export default function CourseDetilsStatic() {
     }
 
     function WhatsAppUpdate() {
+        const email = CONFIG.ADMIN_EMAIL;
+        const subject = encodeURIComponent(`Enquiry About ${getCourseTitleById(courseId)}`);
+        const body = encodeURIComponent("I would like to connect with you regarding this course.");
+
         return (
-            <>
-                <div className=" flexp-8 text-xl text-bold text-center bg-green-200 p-8">For any query connect us on WhatsApp <FaWhatsapp className="inline text-2xl text-green-600" />  +91 7909064575  <RedirectToWhatsApp /></div>
-            </>
+           
+            <div className=" flex space-x-4  text-xl text-bold text-center bg-green-200 p-3  items-center justify-center">
+                <div>For any query connect us on:</div>
+                <div className="flex space-x-2">
+                    <RedirectToWhatsApp />
+                    <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white px-5 rounded-md cursor-pointer flex items-center space-x-2">
+                        <BiLogoGmail className="text-4xl text-red-500" />
+                        <span>GMail</span>
+                    </a>
+                </div>
+            </div>
         )
     }
 
     function RedirectToWhatsApp() {
-        const phoneNumber = '+917909064575'; // Replace this with the actual phone number (include country code, e.g., '911234567890')
-        // const courseName = 'ReactJS Development'; // Course name dynamically set
+        const phoneNumber = CONFIG.ADMIN_WHATSAPP; // Replace this with the actual phone number (include country code, e.g., '911234567890')
         const message = `Hello, I am interested in learning more about the ${getCourseTitleById(courseId)} course. Could you please provide more details?`;
         const encodedMessage = encodeURIComponent(message);
         return (
@@ -70,24 +90,45 @@ export default function CourseDetilsStatic() {
                 target="_blank"  // Opens WhatsApp in a new tab
                 rel="noopener noreferrer" // Security features for opening a new tab
             >
-                <button style={{ padding: '10px 20px', backgroundColor: '#25D366', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                    Chat on WhatsApp
+                <button style={{ padding: '5px 8px', backgroundColor: '#25D366', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                    <FaWhatsapp className="inline m-2" /> WhatsApp
                 </button>
             </a>
         );
     }
 
 
-    function CourseStructure({courseName}) {
+    function CourseStructure({ courseName }) {
         const {
             register,
             handleSubmit,
-            formState: { errors,isValid },
+            reset,
+            formState: { errors, isValid },
         } = useForm();
 
-        const onSubmit = (data) => {
-            console.log("Form Submitted:", data);
-            alert("Course Enquiry submitted successfully!");
+        const onSubmit = async (data) => {
+            // console.log("Form Submitted:", data);
+            // alert("Course Enquiry submitted successfully!");
+            const formattedData = {
+                  formType: "course_enquiry_course_details_page", // Indicate the type of form
+                  userData: {
+                    name: data.name,
+                    email: data.email, // Move email inside userData
+                    mobile: data.mobile,
+                    course: data.courseName,
+                    message: data.message,
+                  },
+                };
+                console.log(formattedData)
+                try {
+                  console.log(data);
+                  await SendEmail(formattedData); // Wait for this to finish
+                  reset(); // Clear form fields
+                 // setClose(true); // Close only after successful submission
+                } catch (error) {
+                  console.error("Error submitting form:", error);
+                  //toast.error("Submission failed. Please try again.");
+                }
         };
         return (
             <div className="flex w-full">
@@ -162,14 +203,14 @@ export default function CourseDetilsStatic() {
                                     value={courseName}
                                     readOnly
                                     {...register("course", {
-                                     
+
                                     })}
                                 />
 
-                              
+
                             </div>
                             <div className="mb-4">
-                              
+
                                 <textarea
                                     id="query"
                                     className="w-full p-2 border rounded"
@@ -183,10 +224,9 @@ export default function CourseDetilsStatic() {
                             </div>
                             <button
                                 type="submit"
-                                disabled={!isValid }
-                                className={`${
-                                      !isValid ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-                                  }
+                                disabled={!isValid}
+                                className={`${!isValid ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+                                    }
                                      text-white px-4 py-2 rounded `}
                             >
                                 Submit

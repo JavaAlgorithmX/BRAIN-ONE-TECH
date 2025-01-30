@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "../css/clipPath.css";
-import { SendEnquiry } from "../services/api-enquiries";
+import { SendEmail } from "../services/api-email";
 import Spinner from "./spinner";
 
 function EnquireNow() {
@@ -15,8 +15,22 @@ function EnquireNow() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+
+
+    console.log(data)
+     // Transform the data into the refined format
+  const formattedData = {
+    formType: "enquiry", // Indicate the type of form
+    userData: {
+      name: data.name,
+      email: data.email, // Move email inside userData
+      mobile: data.mobile,
+      message: data.message,
+    },
+  };
+  console.log(formattedData)
     try {
-      await SendEnquiry(data); // Simulate API call
+      await SendEmail(formattedData); // Simulate API call
       alert("Enquiry submitted successfully!");
       reset(); // Reset the form after successful submission
     } catch (error) {

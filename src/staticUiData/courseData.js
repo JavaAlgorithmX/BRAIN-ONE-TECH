@@ -20,14 +20,14 @@ const coursesData = [
   {
     "id": "4",
     "courseName": "SCRUM MASTER",
-    "image": "../courses/java8.png",
+    "image": "../courses/sm.png",
     "courseStructure":"../pdf/ScrumMaster.pdf"
 
   },
   {
     "id": "5",
     "courseName": "DATA SCIENCE",
-    "image": "../courses/java8.png"
+    "image": "../courses/ds.png"
   },
   
   

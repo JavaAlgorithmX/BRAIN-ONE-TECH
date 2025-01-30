@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <ScrollToTop />
       <Hero setShowContactUs={openContactModel} />
-      {showContactUs && <ContactUs setClose={closeContactUsModel} />}
+      {showContactUs && <ContactUs setClose={closeContactUsModel} form_type="contact_us_home"/>}
       <DummyCaresol />
       <Services />
       {/* <WhyChooseUs setShowContactUs={openContactModel}/> */}

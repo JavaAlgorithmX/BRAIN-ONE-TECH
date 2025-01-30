@@ -13,6 +13,7 @@ import { SiMongodb } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiSpringboot } from "react-icons/si";
 import ContactUsButton from '../components/ContactUsButton';
+import ContactUs from './model/ContactUs-model';
 
 
 
@@ -123,17 +124,6 @@ function Hero({setShowContactUs}) {
     );
 }
 
-// function Filter() {
-//     return (
-//         <div className='flex px-10 py-3 justify-evenly'>
-//             <div className='cursor-pointer'>All Projects</div>
-//             <div className='cursor-pointer'>Application Development</div>
-//             <div className='cursor-pointer'>Website Development</div>
-//         </div>
-//     )
-// }
-
-
 
 const Projects = () => {
     const [showContactUs, setShowContactUs] = useState(false);
@@ -149,7 +139,7 @@ const Projects = () => {
         <div>
             <ScrollToTop />
             <Hero setShowContactUs={openContactModel} />
-            {/* <Filter /> */}
+            {showContactUs && <ContactUs setClose={closeContactUsModel} form_type="contact_us_projects" />}
             <div className='h-2 bg-white'></div>
             {projects.map((project, index) => (
                 <Project key={index} project={project} index={index} />

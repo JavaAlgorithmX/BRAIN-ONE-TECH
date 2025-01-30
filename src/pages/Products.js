@@ -12,6 +12,9 @@ import { SiTailwindcss } from "react-icons/si";
 import { SiMongodb } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiSpringboot } from "react-icons/si";
+import ContactUsButton from '../components/ContactUsButton';
+import ContactUs from './model/ContactUs-model';
+import { useState } from 'react';
 
 
 
@@ -114,7 +117,7 @@ function Product({ product, index }) {
 }
 
 
-function Hero() {
+function Hero({setShowContactUs}) {
     return (
         <div className="h-screen w-full bg-gradient-to-bl from-stone-500 via-stone-800 via-stone-600 to-slate-900 flex justify-center items-center flex-col  relative">
             <img
@@ -130,9 +133,10 @@ function Hero() {
                     <p className="mb-5 text-xl  text-lime-400">
                         Enhance efficiency and cut costs with our automated, streamlined<br /> processes tailored to meet your business needs
                     </p>
-                    <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
+                    {/* <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
                         <CiCircleChevDown className="inline text-4xl mr-1" /> GET IN TOUCH
-                    </button>
+                    </button> */}
+                    <ContactUsButton setShowContactUs={setShowContactUs} />
                 </div>
             </div>
         </div>
@@ -141,10 +145,21 @@ function Hero() {
 
 
 const Products = () => {
+    const [showContactUs, setShowContactUs] = useState(false);
+        function openContactModel() {
+            setShowContactUs(true)
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+          }
+          function closeContactUsModel() {
+            setShowContactUs(false);
+            document.body.style.overflow = 'auto';
+          }
     return (
         <div>
             <ScrollToTop />
-            <Hero />
+            <Hero setShowContactUs={openContactModel} />
+            {showContactUs && <ContactUs setClose={closeContactUsModel} form_type="contact_us_products" />}
+
             {/* <Filter /> */}
             {products.map((product, index) => (
                 <Product key={index} product={product} index={index} />
