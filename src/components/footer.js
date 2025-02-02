@@ -13,7 +13,9 @@ function Footer() {
         <p>&copy; Copyright 2024 BrainOneTech</p>
       </div>
       <div>
-        <p >Developed with <span><BsFillHeartFill className="inline text-red-600" /></span> <span className="cursor-pointer" onClick={openModal}> By Madhav Sharma</span></p>
+        <p >Developed with <span><BsFillHeartFill className="inline text-red-600" /></span> <span className="" 
+        // onClick={openModal}
+        > By Madhav Sharma</span></p>
       </div>
     </div>
   );

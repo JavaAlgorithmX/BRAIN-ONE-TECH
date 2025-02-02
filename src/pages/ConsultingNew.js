@@ -6,6 +6,8 @@ import ScrollToTop from '../components/ScrollToTop';
 import BookingCalendar from '../components/BookingCalender';
 import { useForm, useWatch } from "react-hook-form";
 import { SendEmail } from '../services/api-email';
+import CONFIG from "../config";
+
 
 const services = [
     {
@@ -32,6 +34,12 @@ const services = [
 
 const ConsultingPage = () => {
     const bookingSectionRef = useRef(null); // Create a reference for the booking section
+    const email = CONFIG.ADMIN_EMAIL;
+    const phoneNumber = CONFIG.ADMIN_WHATSAPP;
+    const subject = encodeURIComponent(`Payment proof for Slot booking`);
+    const body = encodeURIComponent("Please provide details along with name, mobile no, email, slot booking date, transaction number");
+    const message = `Please provide details along with name, mobile no, email, slot booking date, transaction number`;
+        const encodedMessage = encodeURIComponent(message);
 
 
     function Hero() {
@@ -145,7 +153,7 @@ const ConsultingPage = () => {
         //       //toast.error("Submission failed. Please try again.");
         //     }
         //   };
-        
+
 
         const onSubmit = async (data) => {
             if (
@@ -160,19 +168,19 @@ const ConsultingPage = () => {
             const formattedData = {
                 formType: "consulting", // Indicate the type of form
                 userData: {
-                  name: data.name,
-                  email: data.email, // Move email inside userData
-                  mobile: data.mobile,
-                  message: data.noteToCounceler,
-                  selectedDate: data.selectedDate,
-                  bookingType: data.bookingType,
-                  transactionNumber: data.transactionNumber,
-                  paymentMethod:data.paymentMethod
-                    },
-              };
-              console.log(formattedData)
-              await SendEmail(formattedData); // Wait for this to finish
-                    reset(); // Clear form fields
+                    name: data.name,
+                    email: data.email, // Move email inside userData
+                    mobile: data.mobile,
+                    message: data.noteToCounceler,
+                    selectedDate: data.selectedDate,
+                    bookingType: data.bookingType,
+                    transactionNumber: data.transactionNumber,
+                    paymentMethod: data.paymentMethod
+                },
+            };
+            console.log(formattedData)
+            await SendEmail(formattedData); // Wait for this to finish
+            reset(); // Clear form fields
         };
 
         return (
@@ -356,7 +364,7 @@ const ConsultingPage = () => {
                                  ${isValid ? 'cursor-pointer' : 'cursor-not-allowed'}
                                  `}
 
-                           >
+                            >
                                 Submit Booking
                             </button>
                         </div>
@@ -427,8 +435,13 @@ const ConsultingPage = () => {
 
                 <div>
                     <p className="mt-4">Send payment screenshot | Transaction details via email or WhatsApp</p>
-                    <a href="mailto:your-email@example.com" className="text-blue-600 mt-2 inline-block">Email</a> |
-                    <a href="https://wa.me/yourwhatsappnumber" className="text-green-600 mt-2 inline-block">WhatsApp</a>
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`}
+                        target="_blank"
+                        rel="noopener noreferrer" className="text-blue-600 mt-2 inline-block">Email</a> |
+                    <a href={`https://wa.me/${phoneNumber}?text=${encodedMessage}`}
+                        target="_blank"  // Opens WhatsApp in a new tab
+                        rel="noopener noreferrer"
+                        className="text-green-600 mt-2 inline-block">WhatsApp</a>
                 </div>
             </section>
         )
