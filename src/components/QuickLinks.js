@@ -107,10 +107,10 @@ export default function QuickLinks() {
             <IoMdMail />
             <span>info@brainonetech.com</span>
           </div>
-          <div className="flex space-x-2 items-center ">
+          {/* <div className="flex space-x-2 items-center ">
             <FaGlobeAmericas className="text-blue-500" />
             <span>www.brainonetech.com</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
