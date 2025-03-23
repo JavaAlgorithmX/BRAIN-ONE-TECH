@@ -51,15 +51,6 @@ function Navbar() {
       href: "/consulting",
     },
     {
-      name: "Projects",
-      href: "/projects",
-    },
-    {
-      name: "Products",
-      href: "/products",
-    },
-
-    {
       name: "About",
       href: "/aboutUs",
     },
