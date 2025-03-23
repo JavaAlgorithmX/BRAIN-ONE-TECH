@@ -2,8 +2,8 @@ import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import ContactUsButton from "./ContactUsButton";
 
-function Hero({setShowContactUs}) {
-  
+function Hero({ setShowContactUs }) {
+
 
   return (
     <div
@@ -57,7 +57,7 @@ function Hero({setShowContactUs}) {
         />
       </div>
       <div className="absolute bottom-10 right-14">
-        <ContactUsButton setShowContactUs={setShowContactUs}/>
+        <ContactUsButton setShowContactUs={setShowContactUs} />
       </div>
     </div>
   );

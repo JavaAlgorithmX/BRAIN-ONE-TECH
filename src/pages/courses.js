@@ -1,6 +1,6 @@
 import "@smastrom/react-rating/style.css";
 import CourseCard from "../components/courseCard";
-import { useCourseList } from "../services/api-course";
+// import { useCourseList } from "../services/api-course";
 import coursesData from "../staticUiData/courseData";
 import ScrollToTop from "../components/ScrollToTop";
 import QuickLinks from "../components/QuickLinks";
@@ -34,12 +34,9 @@ export default function Courses() {
             coursesData
             .map((data, index) => (
               <CourseCard
-                key={data._id}
-                // id={data._id}
+                key={data.id}
+                id={data.id}
                 title={data.courseName}
-                // originalPrice={data.actualPrice}
-                // specialPrice={data.price}
-                // nextBatch={data.nextBatch}
                 image={data.image}
               />
             ))

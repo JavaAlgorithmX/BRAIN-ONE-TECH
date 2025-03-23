@@ -1,11 +1,9 @@
 import React from "react";
 import { BsFillHeartFill } from "react-icons/bs";
-import { useAuth } from "../store/authContext";
 import { useModal } from "../store/modelContext";
 
 function Footer() {
   
-  // const {OpenDevModel, CloseDevModel}  = useAuth();
   const { openModal } = useModal();
 
 
@@ -15,13 +13,10 @@ function Footer() {
         <p>&copy; Copyright 2024 BrainOneTech</p>
       </div>
       <div>
-        <p >Developed with <span><BsFillHeartFill className="inline text-red-600" /></span> <span className="cursor-pointer" onClick={openModal}> By Madhav Sharma</span></p>
+        <p >Developed with <span><BsFillHeartFill className="inline text-red-600" /></span> <span className="" 
+        // onClick={openModal}
+        > By Madhav Sharma</span></p>
       </div>
-      {/* <div className="flex justify-between">
-        <p>Privacy</p>
-        <p className="mx-3">Terms</p>
-        <p>Sitemap</p>
-      </div> */}
     </div>
   );
 }

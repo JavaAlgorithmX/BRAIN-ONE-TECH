@@ -113,7 +113,7 @@ function AboutUs() {
     <>
       <ScrollToTop />
       <AboutUsHero />
-      {showContactUs && <ContactUs setClose={closeContactUsModel} />}
+      {showContactUs && <ContactUs setClose={closeContactUsModel} form_type="About_us" />}
       <OurAim />
     </>
   );

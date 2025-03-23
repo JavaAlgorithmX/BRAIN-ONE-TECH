@@ -15,25 +15,25 @@ import ContactUsButton from "../components/ContactUsButton";
 export default function Home() {
   const [showContactUs, setShowContactUs] = useState(false);
 
-  function openContactModel(){
+  function openContactModel() {
     setShowContactUs(true)
     document.body.style.overflow = 'hidden'; // Disable scrolling
   }
-  function closeContactUsModel(){
+  function closeContactUsModel() {
     setShowContactUs(false);
     document.body.style.overflow = 'auto';
   }
 
   return (
     <>
-    <ScrollToTop/>
-      <Hero setShowContactUs={openContactModel}/>
-      {showContactUs && <ContactUs setClose={closeContactUsModel}/>}
-      <DummyCaresol/>
-      <Services/>
+      <ScrollToTop />
+      <Hero setShowContactUs={openContactModel} />
+      {showContactUs && <ContactUs setClose={closeContactUsModel} form_type="contact_us_home"/>}
+      <DummyCaresol />
+      <Services />
       {/* <WhyChooseUs setShowContactUs={openContactModel}/> */}
       {/* {showContactUs && <ContactUs setClose={closeContactUsModel}/>} */}
-      <TechStack/>
+      <TechStack />
       <EnquireNow />
     </>
   );
