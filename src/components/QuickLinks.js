@@ -51,27 +51,27 @@ export default function QuickLinks() {
           <div className="space-y-2">
             <div>
               <NavLink to={"/"}>
-                <h3>HOME</h3>
+                <h3 className="hover:text-orange-500 inline-flex">HOME</h3>
               </NavLink>
             </div>
             <div>
               <NavLink to={"/courses"}>
-                <h3>TRAININGS</h3>
+                <h3 className="hover:text-orange-500 inline-flex">TRAININGS</h3>
               </NavLink>
             </div>
             <div>
               <NavLink to={"/projects"}>
-                <h3>PROJECTS</h3>
+                <h3 className="hover:text-orange-500 inline-flex">PROJECTS</h3>
               </NavLink>
             </div>
             <div>
               <NavLink to={"/consulting"}>
-                <h3>CONSULTING</h3>
+                <h3 className="hover:text-orange-500 inline-flex">CONSULTING</h3>
               </NavLink>
             </div>
             <div>
               <NavLink to={"/aboutUs"}>
-                <h3>ABOUT US</h3>
+                <h3 className="hover:text-orange-500 inline-flex">ABOUT US</h3>
               </NavLink>
             </div>
             {/* <div>
