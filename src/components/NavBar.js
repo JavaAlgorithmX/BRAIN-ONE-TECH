@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink, useLocation, useRouteMatch } from "react-router-dom";
-// import { useAuth } from "../store/authContext";
-// import { FaUser } from "react-icons/fa";
-// import { IoIosSettings } from "react-icons/io";
-// import { IoMdPower } from "react-icons/io";
-// import { IoIosMail } from "react-icons/io";
-// import { CiMobile3 } from "react-icons/ci";
+
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-
-  // const { user, isLoggedIn } = useAuth();
-  // const { name, isAdmin = false } = user || {};
   const [scroll, setScroll] = useState(0);
   const location = useLocation();
 
@@ -65,13 +56,13 @@ function Navbar() {
       {/* <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1"> */}
       <div className="grid grid-cols-12">
         {/* Logo  */}
-        <div className="inline-flex items-center justify-center col-span-2 ">
+        <div className="inline-flex items-center justify-center col-span-2">
           <span>
             <Link to={'/'}>
               <img
                 src="/logo1.png"
                 alt=""
-                className="cursor-pointer h-20 object-cover"
+                className="m-4 sm:m-0 cursor-pointer h-20 "
               ></img>
             </Link>
           </span>
