@@ -34,9 +34,18 @@ const techIcons = {
 
 const products = [
     {
-        name: "HRMaster",
-        description: "HRMaster is a comprehensive HR management system that streamlines employee records, payroll, attendance, and performance management in one platform.",
-        image: "../hrms.jpg",
+        name: "TaxGenie",
+        description: "Smart Tax Calculator & Planning Assistant - Simplify your tax calculations and plan smarter with TaxGenie. Designed for professionals and businesses, TaxGenie offers accurate tax estimations, smart planning tools, and personalised insights — all in one easy-to-use platform. Stay compliant, save time, and make informed financial decisions with confidence.",
+        image: "../TaxG.jpg",
+        bgColor: "bg-slate-400",
+        textColour: "text-white",
+        buttonTextColour: "text-blue-400",
+        isReady: false
+    },
+    {
+        name: "BrainoneTech AI Test Case Generator",
+        description: "Smarter Testing Starts Here BT AI Test Case Generator simplifies and accelerates your QA process using AI. Automatically generate accurate, efficient, and reusable test cases from requirements or user stories. Reduce manual effort, improve coverage, and boost productivity with intelligent automation.",
+        image: "../BT.jpg",
         bgColor: "bg-blue-400",
         textColour: "text-white",
         buttonTextColour: "text-blue-400",
@@ -69,15 +78,15 @@ const products = [
         buttonTextColour: "text-purple-700",
         isReady: false
     },
-    {
-        name: "ProjectPulse",
-        description: "ProjectPulse helps manage multiple projects by tracking deadlines, resources, and progress across teams in real-time to enhance collaboration and transparency.",
-        image: "../ProjectPulse.jpg",
-        bgColor: "bg-emerald-500",
-        textColour: "text-black",
-        buttonTextColour: "text-emerald-500",
-        isReady: false
-    }
+    // {
+    //     name: "ProjectPulse",
+    //     description: "ProjectPulse helps manage multiple projects by tracking deadlines, resources, and progress across teams in real-time to enhance collaboration and transparency.",
+    //     image: "../ProjectPulse.jpg",
+    //     bgColor: "bg-emerald-500",
+    //     textColour: "text-black",
+    //     buttonTextColour: "text-emerald-500",
+    //     isReady: false
+    // }
 ];
 
 
