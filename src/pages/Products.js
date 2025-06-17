@@ -45,7 +45,7 @@ const products = [
     {
         name: "BrainoneTech AI Test Case Generator",
         description: "Smarter Testing Starts Here BT AI Test Case Generator simplifies and accelerates your QA process using AI. Automatically generate accurate, efficient, and reusable test cases from requirements or user stories. Reduce manual effort, improve coverage, and boost productivity with intelligent automation.",
-        image: "../BT.jpg",
+        image: "../brainoneAITestCase.jpg",
         bgColor: "bg-blue-400",
         textColour: "text-white",
         buttonTextColour: "text-blue-400",
