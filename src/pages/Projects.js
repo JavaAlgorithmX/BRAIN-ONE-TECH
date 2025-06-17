@@ -32,16 +32,26 @@ const techIcons = {
 
 
 const projects = [
+   
     {
-        name: "FitFusion",
-        description: "FitFusion is a gym management app that provides personalized workout and nutrition plans, helping users achieve their fitness goals while connecting them with trainers and classes   ",
+        name: "ProjectPulse",
+        description: "ProjectPulse helps manage multiple projects by tracking deadlines, resources, and progress across teams in real-time to enhance collaboration and transparency.",
         technologies: ["React", "Tailwind CSS", "Node.js", "HTML 5", "MongoDB"],
-        domain: "Fitness",
-        image: "../project-gym.jpg", // Ensure this path is correct
-        bgColor: "bg-lime-600",
-        buttonTextColour: "text-lime-600",
-        textColour: "text-white"
-
+        domain: "Inventory Management",
+        image: "../ProjectPulse.jpg",
+        bgColor: "bg-emerald-500",
+        textColour: "text-black",
+        buttonTextColour: "text-emerald-500"
+    },
+    {
+        name: "HRMaster",
+        description: "HRMaster is a comprehensive HR management system that streamlines employee records, payroll, attendance, and performance management in one platform.",
+        technologies: ["React", "Tailwind CSS", "Node.js", "HTML 5", "MongoDB"],
+        domain: "HRMS",
+        image: "../hrms.jpg",
+        bgColor: "bg-blue-400",
+        textColour: "text-white",
+        buttonTextColour: "text-blue-400",
     },
     {
         name: "Flavorscape",
