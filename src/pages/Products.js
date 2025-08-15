@@ -95,18 +95,15 @@ function Product({ product, index }) {
     const isOdd = index % 2 !== 0; // Check if the index is odd
 
     return (
-        <div className={`flex ${isOdd ? 'flex-row-reverse' : 'flex-row'} h-[500px] bg-slate-600`}>
+        <div className={`flex flex-col md:flex-row ${isOdd ? 'md:flex-row-reverse' : 'md:flex-row'} h-auto md:h-[500px] bg-slate-600`}>
             <div className='flex-1 bg-red-200'>
                 <img className='h-full w-full object-cover' src={product.image} alt={product.name} />
             </div>
             <div className={`flex-1  ${product.bgColor} `}>
-                <div className={`px-12 py-32 ${product.textColour} flex flex-col justify-between h-full`}>
+                <div className={`px-12 py-10 md:py-32 ${product.textColour} flex flex-col justify-between h-full`}>
                     <h1 className="text-4xl font-bold mb-8">{product.name}</h1>
                     <p className='text-xl mb-5'>{product.description}</p>
                     <div >
-                        {/* <button className={` px-5 py-2 mt-3 bg-white text-xl  rounded-full border-2 ${product.buttonTextColour} `}>
-                        <CiCircleChevDown className="inline text-4xl mr-1" /> {product.isReady ? "VISIT WEBSITE" : "COMMING SOON"}
-                    </button> */}
                         <button
                             className={`px-5 py-2 mt-3 bg-white text-xl rounded-full border-2 ${product.buttonTextColour} ${product.isReady ? "cursor-pointer" : "cursor-default"
                                 }`}
@@ -142,9 +139,6 @@ function Hero({setShowContactUs}) {
                     <p className="mb-5 text-xl  text-lime-400">
                         Enhance efficiency and cut costs with our automated, streamlined<br /> processes tailored to meet your business needs
                     </p>
-                    {/* <button className=" px-5 py-2 mt-3   rounded-full border-2 border-slate-50 text-slate-50">
-                        <CiCircleChevDown className="inline text-4xl mr-1" /> GET IN TOUCH
-                    </button> */}
                     <ContactUsButton setShowContactUs={setShowContactUs} />
                 </div>
             </div>
