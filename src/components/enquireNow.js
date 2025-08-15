@@ -17,7 +17,7 @@ function EnquireNow() {
     setIsLoading(true);
 
 
-    console.log(data)
+    // console.log(data)
      // Transform the data into the refined format
   const formattedData = {
     formType: "enquiry", // Indicate the type of form
@@ -28,7 +28,7 @@ function EnquireNow() {
       message: data.message,
     },
   };
-  console.log(formattedData)
+  // console.log(formattedData)
     try {
       await SendEmail(formattedData); // Simulate API call
       alert("Enquiry submitted successfully!");
@@ -59,10 +59,20 @@ function EnquireNow() {
               className="drop-shadow-md h-10 mt-3 lg:mt-0 pl-4 w-full lg:w-1/2 rounded-lg"
               type="text"
               placeholder="Your Name"
-              {...register("name", { required: "Name is required" })}
+              {...register("name", { required: "Name is required",
+                pattern: {
+                  value: /^[A-Za-z\s'-]+$/, // Allows letters, spaces, hyphens, and apostrophes
+                  message: "Name can only contain letters, spaces, hyphens, and apostrophes",
+                },
+                minLength: {
+                  value: 1,
+                  message: "Name cannot be just blank spaces",
+                },
+                validate: (value) => value.trim().length > 0 || "Name cannot be just blank spaces", // Checks for non-empty, non-space name
+               })}
             />
             {errors.name && (
-              <span className="text-blue-500 text-sm">{errors.name.message}</span>
+              <span className="text-white text-sm">{errors.name.message}</span>
             )}
             <input
               className="drop-shadow-md my-2 h-10 pl-4 w-full lg:w-1/2 lg:my-0 rounded-lg"
@@ -71,13 +81,14 @@ function EnquireNow() {
               {...register("email", {
                 required: "Email is required",
                 pattern: {
-                  value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                  message: "Invalid email address",
+                  value: /^[a-zA-Z0-9._%+!/-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                  , // Allows "!" in the username part
+                  message: "Please enter a valid email address",
                 },
               })}
             />
             {errors.email && (
-              <span className="text-blue-700 text-sm">{errors.email.message}</span>
+              <span className="text-white text-sm">{errors.email.message}</span>
             )}
             <input
               className="drop-shadow-md mb-3 h-10 pl-4 w-full lg:w-1/2 lg:mb-0 rounded-lg"
@@ -86,23 +97,33 @@ function EnquireNow() {
               {...register("mobile", {
                 required: "Mobile number is required",
                 pattern: {
-                  value: /^[0-9]{10}$/,
-                  message: "Invalid mobile number",
+                  value: /^[7-9][0-9]{9}$/,
+                  message: "Mobile number must be 10 digits long and start with 7, 8, or 9",
                 },
               })}
             />
             {errors.mobile && (
-              <span className="text-blue-700 text-sm">{errors.mobile.message}</span>
+              <span className="text-white text-sm">{errors.mobile.message}</span>
             )}
           </div>
-          <div className="lg:px-2 lg:py-2 w-full">
+          <div className="lg:flex flex-col lg:px-2 lg:py-2 w-full">
             <textarea
               className="drop-shadow-md w-full lg:w-1/2 lg:h-full rounded-md mb-3 lg:mb-0 px-4 py-2 h-32"
               placeholder="Your Query"
-              {...register("message", { required: "Query is required" })}
+              {...register("message", { required: "Query is required",
+                pattern: {
+                  value: /^[A-Za-z0-9\s\.,?!'-]*$/, // Allows letters, numbers, spaces, punctuation, hyphens, apostrophes
+                  message: "Query can only contain letters, numbers, spaces, and valid punctuation marks",
+                },
+                minLength: {
+                  value: 1,
+                  message: "Query cannot be just blank spaces",
+                },
+                validate: (value) => value.trim().length > 0 || "Query cannot be just blank spaces", // Checks for non-empty, non-space query
+               })}
             ></textarea>
             {errors.message && (
-              <span className="text-red-500 text-sm">{errors.message.message}</span>
+              <span className="text-white text-sm">{errors.message.message}</span>
             )}
           </div>
         </div>
