@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ScrollToTop from '../components/ScrollToTop';
-import {
-    CiCircleChevDown,
-    CiUser,
-    CiCircleQuestion,
-    CiMail,
-    CiMobile2,
-} from "react-icons/ci";
+// import {
+//     CiCircleChevDown,
+//     CiUser,
+//     CiCircleQuestion,
+//     CiMail,
+//     CiMobile2,
+// } from "react-icons/ci";
 import { FaReact, FaNodeJs, FaHtml5, FaJava } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { SiMongodb } from "react-icons/si";

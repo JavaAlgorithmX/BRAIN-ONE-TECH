@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, useLocation, useRouteMatch } from "react-router-dom";
+import { Link, NavLink, 
+  // useLocation 
+} from "react-router-dom";
 // import { useAuth } from "../store/authContext";
 // import { FaUser } from "react-icons/fa";
 // import { IoIosSettings } from "react-icons/io";
@@ -15,7 +17,7 @@ function Navbar() {
   // const { user, isLoggedIn } = useAuth();
   // const { name, isAdmin = false } = user || {};
   const [scroll, setScroll] = useState(0);
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

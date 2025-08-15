@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import PropTypes from 'prop-types';
-import { format, addDays, isWeekend, isToday, isBefore } from 'date-fns';
+// import { format, addDays, isWeekend, isToday, isBefore } from 'date-fns';
 
 
 const BookingCalendar = ({ onDateChange }) => {
@@ -14,10 +14,10 @@ const BookingCalendar = ({ onDateChange }) => {
         defaultDate.setDate(today.getDate() + 1); // Start with tomorrow's date
         setDate(defaultDate);
         onDateChange(defaultDate); // Update selected date
-    }, []);
+    }, [onDateChange]);
 
     const handleDateChange = (newDate) => {
-        const selectedDay = newDate.getDay(); // Get the day of the week (0 = Sunday, 6 = Saturday)
+        //const selectedDay = newDate.getDay(); // Get the day of the week (0 = Sunday, 6 = Saturday)
         setDate(newDate);
         onDateChange(newDate); // Update selected date
     };

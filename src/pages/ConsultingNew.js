@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     CiCircleChevDown,
 } from "react-icons/ci";
@@ -415,7 +415,7 @@ const ConsultingPage = () => {
                     {/* Bank details section  */}
                     <div className='flex-1 flex justify-center flex-col'>
                         <h3 className="text-xl font-semibold">Bank Details</h3>
-                        <img src='../file.png' className='h-28 w-28 mx-auto' />
+                        <img src='../file.png' className='h-28 w-28 mx-auto' alt="bank_details_file"/>
                         <p>Account Name: Your Name</p>
                         <p>Account Number: 1234567890</p>
                         <p>IFSC Code: ABCD1234567</p>
@@ -427,7 +427,7 @@ const ConsultingPage = () => {
                             <h1 className="text-xl font-semibold">Scan And Pay </h1>
                         </div>
                         <div className='flex items-center justify-center'>
-                            <img className='h-56 w-56' src='../QRCODE.png' />
+                            <img className='h-56 w-56' alt="QR_Code" src='../QRCODE.png' />
                         </div>
 
                     </div>

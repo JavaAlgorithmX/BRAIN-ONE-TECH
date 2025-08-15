@@ -1,17 +1,13 @@
-import React from 'react';
+// import from 'react';
 import ScrollToTop from '../components/ScrollToTop';
 import {
     CiCircleChevDown,
-    CiUser,
-    CiCircleQuestion,
-    CiMail,
-    CiMobile2,
 } from "react-icons/ci";
-import { FaReact, FaNodeJs, FaHtml5, FaJava } from "react-icons/fa";
-import { SiTailwindcss } from "react-icons/si";
-import { SiMongodb } from "react-icons/si";
-import { TbBrandNextjs } from "react-icons/tb";
-import { SiSpringboot } from "react-icons/si";
+// import { FaReact, FaNodeJs, FaHtml5, FaJava } from "react-icons/fa";
+// import { SiTailwindcss } from "react-icons/si";
+// import { SiMongodb } from "react-icons/si";
+// import { TbBrandNextjs } from "react-icons/tb";
+// import { SiSpringboot } from "react-icons/si";
 import ContactUsButton from '../components/ContactUsButton';
 import ContactUs from './model/ContactUs-model';
 import { useState } from 'react';
@@ -20,16 +16,16 @@ import { useState } from 'react';
 
 
 // Mapping technologies to their respective icons
-const techIcons = {
-    "React": <FaReact />,
-    "Tailwind CSS": <SiTailwindcss />,
-    "Node.js": <FaNodeJs />,
-    "MongoDB": <SiMongodb />,
-    "Next.js": <TbBrandNextjs />,
-    "HTML 5": <FaHtml5 />,
-    "SpringBoot": <SiSpringboot />,
-    "Java": <FaJava />
-};
+// const techIcons = {
+//     "React": <FaReact />,
+//     "Tailwind CSS": <SiTailwindcss />,
+//     "Node.js": <FaNodeJs />,
+//     "MongoDB": <SiMongodb />,
+//     "Next.js": <TbBrandNextjs />,
+//     "HTML 5": <FaHtml5 />,
+//     "SpringBoot": <SiSpringboot />,
+//     "Java": <FaJava />
+// };
 
 
 const products = [
