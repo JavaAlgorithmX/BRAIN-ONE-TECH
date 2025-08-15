@@ -280,7 +280,7 @@ const ConsultingPage = () => {
                             </div>
                         </div>
                         <div className='text-blue-800'>
-                            <label className='text-md'>Booking amount for 1 session is 500 INR</label>
+                            <label className='text-md'>Booking amount for 1 session is 700 INR</label>
                             <div className='mx-5 border-2 border-gray-400 px-3'>
                                 <label className='text-md border-b border-black'>Services Included</label>
                                 <div className='flex'>
@@ -394,11 +394,11 @@ const ConsultingPage = () => {
 
     function PaymentDetails() {
         return (
-            <section className="p-10 bg-gray-200 text-center">
+            <section className="p-10 bg-gray-600 text-center b" >
                 <h2 className="text-3xl font-bold">Payment Details</h2>
                 <div className='flex flex-col md:flex-row space-x-3 mt-5'>
                     {/* Steps section  */}
-                    <div className='flex-1 flex text-start flex-col '>
+                    {/* <div className='flex-1 flex text-start flex-col '>
                         <h1 className="text-xl font-semibold">Steps For Making Payment</h1>
                         <ol>
                             <li>1. Choose Payment Method</li>
@@ -410,27 +410,30 @@ const ConsultingPage = () => {
                             <li className='px-6'> Through Email | WhatsApp </li>
                         </ol>
 
-                    </div>
+                    </div> */}
 
                     {/* Bank details section  */}
-                    <div className='flex-1 flex justify-center flex-col'>
+                    {/* <div className='flex-1 flex justify-center flex-col'>
                         <h3 className="text-xl font-semibold">Bank Details</h3>
                         <img src='../file.png' className='h-28 w-28 mx-auto' alt="bank_details_file"/>
                         <p>Account Name: Your Name</p>
                         <p>Account Number: 1234567890</p>
                         <p>IFSC Code: ABCD1234567</p>
                         <p>Bank Name: Your Bank Name</p>
-                    </div>
+                    </div> */}
                     {/* QR code section and UPI */}
+                    {/* <div className='flex-1 space-y-3 bg-cover bg-center' style={{ backgroundImage: "url('../payment-bg.jpg')" }}> */}
+                    
                     <div className='flex-1  space-y-3'>
                         <div>
                             <h1 className="text-xl font-semibold">Scan And Pay </h1>
                         </div>
+                        <h2 className='text-blue-600 font-bold'>brainonetech@ybl</h2>
                         <div className='flex items-center justify-center'>
                             <img className='h-56 w-56' alt="QR_Code" src='../QRCODE.png' />
                         </div>
-
                     </div>
+                    {/* </div> */}
                 </div>
 
                 <div>
@@ -446,6 +449,8 @@ const ConsultingPage = () => {
             </section>
         )
     }
+    
+    
 
     return (
         <div className="min-h-screen bg-gray-100">
