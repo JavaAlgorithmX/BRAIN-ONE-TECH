@@ -112,7 +112,7 @@ function EnquireNow() {
               placeholder="Your Query"
               {...register("message", { required: "Query is required",
                 pattern: {
-                  value: /^[A-Za-z0-9\s\.,?!'-]*$/, // Allows letters, numbers, spaces, punctuation, hyphens, apostrophes
+                  value: /^[A-Za-z0-9\s.,?!'-]*$/, // Allows letters, numbers, spaces, punctuation, hyphens, apostrophes
                   message: "Query can only contain letters, numbers, spaces, and valid punctuation marks",
                 },
                 minLength: {
