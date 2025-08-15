@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, useLocation, useRouteMatch } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
+// import { useAuth } from "../store/authContext";
+// import { FaUser } from "react-icons/fa";
+// import { IoIosSettings } from "react-icons/io";
+// import { IoMdPower } from "react-icons/io";
+// import { IoIosMail } from "react-icons/io";
+// import { CiMobile3 } from "react-icons/ci";
 
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scroll, setScroll] = useState(0);
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

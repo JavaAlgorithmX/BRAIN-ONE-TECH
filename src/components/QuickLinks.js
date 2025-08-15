@@ -3,9 +3,9 @@ import {
   FaFacebookF,
   FaLinkedinIn,
   FaInstagram,
-  FaTwitter,
+  // FaTwitter,
 } from "react-icons/fa";
-import { FaGlobeAmericas } from "react-icons/fa";
+// import { FaGlobeAmericas } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoIosCall } from "react-icons/io";

@@ -3,7 +3,7 @@ import CourseCard from "../components/courseCard";
 // import { useCourseList } from "../services/api-course";
 import coursesData from "../staticUiData/courseData";
 import ScrollToTop from "../components/ScrollToTop";
-import QuickLinks from "../components/QuickLinks";
+// import QuickLinks from "../components/QuickLinks";
 
 export default function Courses() {
   

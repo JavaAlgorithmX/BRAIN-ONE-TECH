@@ -44,7 +44,7 @@ export default function CourseCard({
         <h5 class=" text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
-        <h2 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white"></h2>
+        <h2 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">Cource card </h2>
       </div>
     </div>
   );

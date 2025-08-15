@@ -1,10 +1,10 @@
 import React from "react";
 import { BsFillHeartFill } from "react-icons/bs";
-import { useModal } from "../store/modelContext";
+// import { useModal } from "../store/modelContext";
 
 function Footer() {
   
-  const { openModal } = useModal();
+  // const { openModal } = useModal();
 
 
   return (

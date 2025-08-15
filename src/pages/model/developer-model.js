@@ -8,7 +8,7 @@ const DevloperModal = () => {
   const { isModalOpen, closeModal } = useModal();
   useEffect(() => {
     console.log("is model open value ", isModalOpen);
-  }, []);
+  }, [isModalOpen]);
   return (
     <div>
       {isModalOpen && (

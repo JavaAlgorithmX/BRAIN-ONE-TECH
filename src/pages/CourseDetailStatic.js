@@ -1,7 +1,7 @@
 // Creating this file to show course detail static without using api
 import { useParams } from "react-router-dom";
 import coursesData from "../staticUiData/courseData";
-import { FaWhatsapp, FaFileDownload } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import PDFViewer from "../components/PdfViewer";
 import { useForm } from "react-hook-form";
 import { BiLogoGmail } from "react-icons/bi";
