@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, 
-  // useLocation 
-} from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 // import { useAuth } from "../store/authContext";
 // import { FaUser } from "react-icons/fa";
 // import { IoIosSettings } from "react-icons/io";
